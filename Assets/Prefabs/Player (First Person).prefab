@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8976025228278158995
 MonoBehaviour:
@@ -396,7 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screechDuration: 0.4
-  screechEffectVP: {fileID: 406506593467835726}
+  screechEffectVolume: {fileID: 406506593467835726}
+  playerCamera: {fileID: 1718952369657980911}
 --- !u!1 &7481667445745203997
 GameObject:
   m_ObjectHideFlags: 0
