@@ -55,6 +55,7 @@ public class PlayerScreech : MonoBehaviour
         // Apply Screech Effect Volume effects
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
         mtp.SetDestination(playerCamera.transform.localPosition, screechEffectAppearanceSpeed);
+        playerCamera.GetComponent<PlayerLook>().StartShake(screechDuration);
 
         // End screech after specified amount of time
         Invoke("OnScreechEnd", screechDuration);
