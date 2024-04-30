@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &406506593467835726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7904258641018687301}
+  - component: {fileID: 6496340820424873681}
+  - component: {fileID: 8976025228278158995}
+  m_Layer: 0
+  m_Name: Screech Effect Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7904258641018687301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406506593467835726}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7397120588207391981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6496340820424873681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406506593467835726}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8976025228278158995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406506593467835726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 0
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 84384bb7a3693c54fb20a70e3be1aa6e, type: 2}
 --- !u!1 &1718952369657980911
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e93c63a0f312ee439cecb157227adea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseXSensitivity: 40
-  mouseYSensitivity: 40
+  mouseXSensitivity: 20
+  mouseYSensitivity: 20
   playerRoot: {fileID: 7397120588207391981}
 --- !u!1 &6156802555282385220
 GameObject:
@@ -163,8 +234,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7397120588207391981}
   - component: {fileID: 7178749940374722288}
-  - component: {fileID: 5409557740019232742}
   - component: {fileID: 2525269273166966926}
+  - component: {fileID: 5409557740019232742}
+  - component: {fileID: 7465564020053825881}
   m_Layer: 0
   m_Name: Player (First Person)
   m_TagString: Untagged
@@ -187,6 +259,7 @@ Transform:
   m_Children:
   - {fileID: 2063950109676833026}
   - {fileID: 2701350449083953600}
+  - {fileID: 7904258641018687301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7178749940374722288
@@ -215,22 +288,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5409557740019232742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156802555282385220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c067c7edc31a3e41828698c04198943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 3
-  gravity: -9.8
-  minNegativeVerticalVelocity: -2
-  controller: {fileID: 7178749940374722288}
 --- !u!114 &2525269273166966926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,11 +346,57 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e1fa5c11-ba8a-4774-ad7f-4ac922ae90cc
     m_ActionName: Player Controls/Movement
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7465564020053825881}
+        m_TargetAssemblyTypeName: PlayerScreech, Assembly-CSharp
+        m_MethodName: OnScreech
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d58259c-dfaa-4c61-938c-f1e43b46c707
+    m_ActionName: Player Controls/Screech[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5409557740019232742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156802555282385220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c067c7edc31a3e41828698c04198943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 3
+  gravity: -9.8
+  minNegativeVerticalVelocity: -2
+  controller: {fileID: 7178749940374722288}
+--- !u!114 &7465564020053825881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156802555282385220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a809877099e2eb449f23a3aea84d934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screechDuration: 0.4
+  screechEffectVP: {fileID: 406506593467835726}
 --- !u!1 &7481667445745203997
 GameObject:
   m_ObjectHideFlags: 0

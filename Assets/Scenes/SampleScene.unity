@@ -512,12 +512,12 @@ PrefabInstance:
     - target: {fileID: 6156802555282385220, guid: 9c7fcafd6d03d214f96e50673f63ec86,
         type: 3}
       propertyPath: m_Name
-      value: Player (First Person)
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7397120588207391981, guid: 9c7fcafd6d03d214f96e50673f63ec86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.118963405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7397120588207391981, guid: 9c7fcafd6d03d214f96e50673f63ec86,
         type: 3}
@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 7397120588207391981, guid: 9c7fcafd6d03d214f96e50673f63ec86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05872092
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7397120588207391981, guid: 9c7fcafd6d03d214f96e50673f63ec86,
         type: 3}
