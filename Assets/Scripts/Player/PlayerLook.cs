@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -22,11 +23,14 @@ public class PlayerLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
-    void Update()
+    // On LookAround event
+    public void OnLookAround(InputAction.CallbackContext context)
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseXSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseYSensitivity * Time.deltaTime;
+        // Read value
+        Vector2 value = context.ReadValue<Vector2>();
+
+        float mouseX = value.x * mouseXSensitivity * Time.deltaTime;
+        float mouseY = value.y * mouseYSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);

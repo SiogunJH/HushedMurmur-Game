@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
     [Header("Movement Settings")]
+    [Range(1, 10)]
+    [Tooltip("Walking speed, in meters per second.")]
     [SerializeField]
-    float walkSpeed = 12f;
+    float walkSpeed = 1.2f;
 
     [Header("Gravity Settings")]
     [SerializeField]
     float gravity = -9.8f;
-    [SerializeField]
-    Transform groundCheck;
-    [SerializeField]
-    [Tooltip("Radius of the sphere that is generated to check if the player is grounded")]
-    float groundDistance = 0.4f;
-    [SerializeField]
-    LayerMask groundMask;
     [SerializeField]
     [Tooltip("If vertical velocity were to be set to zero, because of collisions, it's instead set to this value, to keep player adjusted to the ground level.")]
     float minNegativeVerticalVelocity = -2;
@@ -26,28 +22,36 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     CharacterController controller;
 
+    Vector2 movementInput;
     Vector3 velocity;
-    bool isGrounded;
+    CollisionFlags collisionInfo;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool IsGrounded
     {
-
+        get => (collisionInfo & CollisionFlags.Below) != 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0) velocity.y = minNegativeVerticalVelocity;
+        // Reduce negative vertical velocity when grounded 
+        if (IsGrounded && velocity.y < 0) velocity.y = minNegativeVerticalVelocity;
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * walkSpeed * Time.deltaTime);
-
+        // Handle gravity
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+
+        // Handle movement input
+        velocity.x = (transform.right * movementInput.x + transform.forward * movementInput.y).x * walkSpeed;
+        velocity.z = (transform.right * movementInput.x + transform.forward * movementInput.y).z * walkSpeed;
+
+        // Apply movement and get CollisionFlags
+        collisionInfo = controller.Move(velocity * Time.deltaTime);
+    }
+
+    // On Movement event
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        // Read value
+        movementInput = context.ReadValue<Vector2>();
     }
 }
