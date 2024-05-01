@@ -7,9 +7,11 @@ public class PlayerLook : MonoBehaviour
 {
     [Header("Sensitivity Settings")]
     [SerializeField]
-    float mouseXSensitivity = 100;
+    float mouseXSensitivity = 20;
     [SerializeField]
-    float mouseYSensitivity = 100;
+    float mouseYSensitivity = 20;
+    [SerializeField]
+    public float mouseSensitivityModifier = 1;
 
     [Header("Shake Settings")]
     [SerializeField]
@@ -63,8 +65,8 @@ public class PlayerLook : MonoBehaviour
         // Read value
         Vector2 value = context.ReadValue<Vector2>();
 
-        float mouseX = value.x * mouseXSensitivity * Time.deltaTime;
-        float mouseY = value.y * mouseYSensitivity * Time.deltaTime;
+        float mouseX = value.x * mouseXSensitivity * mouseSensitivityModifier * Time.deltaTime;
+        float mouseY = value.y * mouseYSensitivity * mouseSensitivityModifier * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);

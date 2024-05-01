@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseXSensitivity: 20
   mouseYSensitivity: 20
+  mouseSensitivityModifier: 1
   shakeIntensity: 0.15
   playerRoot: {fileID: 7397120588207391981}
 --- !u!1 &6156802555282385220
@@ -494,6 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 3
+  walkSpeedModifier: 1
   gravity: -9.8
   minNegativeVerticalVelocity: -2
   controller: {fileID: 7178749940374722288}
@@ -514,7 +516,8 @@ MonoBehaviour:
   currentScreechStatus: 1
   screechEffectVolume: {fileID: 406506593467835726}
   screechAudioController: {fileID: 5451186433165143131}
-  playerCamera: {fileID: 1718952369657980911}
+  playerCamera: {fileID: 8749568939749793802}
+  playerMovement: {fileID: 5409557740019232742}
 --- !u!1 &7481667445745203997
 GameObject:
   m_ObjectHideFlags: 0

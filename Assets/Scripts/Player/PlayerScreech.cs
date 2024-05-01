@@ -11,6 +11,11 @@ public class PlayerScreech : MonoBehaviour
     float screechDuration = 0.6f;
     [SerializeField]
     float screechCooldownDuration = 0.5f;
+    [SerializeField]
+    float screechMovementModifier = 0.2f;
+    [SerializeField]
+    float screechMouseSensitivityModifier = 0.2f;
+
     float screechEffectAppearanceSpeed = 0.2f;
     float screechEffectDisappearanceSpeed = 1f;
     Vector3 screechEffectDisappearancePos = new Vector3(0, -0.5f, 0);
@@ -24,12 +29,16 @@ public class PlayerScreech : MonoBehaviour
     [SerializeField]
     AudioController screechAudioController;
     [SerializeField]
-    GameObject playerCamera;
+    PlayerLook playerCamera;
+    [SerializeField]
+    PlayerMovement playerMovement;
 
     void Start()
     {
         if (screechEffectVolume == null) Debug.LogWarning($"Missing [Screech Effect Volume] reference in {gameObject.name}");
+        if (screechAudioController == null) Debug.LogWarning($"Missing [Screech Audio Controller] reference in {gameObject.name}");
         if (playerCamera == null) Debug.LogWarning($"Missing [Player Camera] reference in {gameObject.name}");
+        if (playerMovement == null) Debug.LogWarning($"Missing [Player Movement] reference in {gameObject.name}");
     }
 
 
@@ -54,10 +63,14 @@ public class PlayerScreech : MonoBehaviour
         // Update screeching status
         currentScreechStatus = ScreechStatus.Performing;
 
+        // Slow down player movement and mouse sensitivity
+        playerMovement.walkSpeedModifier = screechMovementModifier;
+        playerCamera.mouseSensitivityModifier = screechMouseSensitivityModifier;
+
         // Apply Screech Effect Volume effects
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
-        mtp.SetDestination(playerCamera.transform.localPosition, screechEffectAppearanceSpeed);
-        playerCamera.GetComponent<PlayerLook>().StartShake(screechDuration);
+        mtp.SetDestination(playerCamera.gameObject.transform.localPosition, screechEffectAppearanceSpeed);
+        playerCamera.StartShake(screechDuration);
 
         // Play screech sound
         screechAudioController.Play();
@@ -70,6 +83,10 @@ public class PlayerScreech : MonoBehaviour
     {
         // Update screeching status
         currentScreechStatus = ScreechStatus.OnCooldown;
+
+        // Revert player movement speed and mouse sensitivity
+        playerMovement.walkSpeedModifier = 1;
+        playerCamera.mouseSensitivityModifier = 1;
 
         // Remove Screech Effect Volume effects
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [Range(1, 10)]
     [Tooltip("Walking speed, in meters per second.")]
     [SerializeField]
     float walkSpeed = 1.2f;
+    [SerializeField]
+    public float walkSpeedModifier = 1;
 
     [Header("Gravity Settings")]
     [SerializeField]
@@ -41,8 +43,8 @@ public class PlayerMove : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         // Handle movement input
-        velocity.x = (transform.right * movementInput.x + transform.forward * movementInput.y).x * walkSpeed;
-        velocity.z = (transform.right * movementInput.x + transform.forward * movementInput.y).z * walkSpeed;
+        velocity.x = (transform.right * movementInput.x + transform.forward * movementInput.y).x * walkSpeed * walkSpeedModifier;
+        velocity.z = (transform.right * movementInput.x + transform.forward * movementInput.y).z * walkSpeed * walkSpeedModifier;
 
         // Apply movement and get CollisionFlags
         collisionInfo = controller.Move(velocity * Time.deltaTime);
