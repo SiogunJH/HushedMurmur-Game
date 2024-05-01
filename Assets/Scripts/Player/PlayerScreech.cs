@@ -1,0 +1,112 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerScreech : MonoBehaviour
+{
+    [Header("Screech Settings")]
+    [SerializeField]
+    float screechDuration = 0.6f;
+    [SerializeField]
+    float screechCooldownDuration = 0.5f;
+    [SerializeField]
+    float screechMovementModifier = 0.2f;
+    [SerializeField]
+    float screechMouseSensitivityModifier = 0.2f;
+
+    float screechEffectAppearanceSpeed = 0.2f;
+    float screechEffectDisappearanceSpeed = 1f;
+    Vector3 screechEffectDisappearancePos = new Vector3(0, -0.5f, 0);
+
+    [SerializeField]
+    public ScreechStatus currentScreechStatus = ScreechStatus.Available;
+
+    [Header("Other")]
+    [SerializeField]
+    GameObject screechEffectVolume;
+    [SerializeField]
+    AudioController screechAudioController;
+    [SerializeField]
+    PlayerLook playerCamera;
+    [SerializeField]
+    PlayerMovement playerMovement;
+
+    void Start()
+    {
+        if (screechEffectVolume == null) Debug.LogWarning($"Missing [Screech Effect Volume] reference in {gameObject.name}");
+        if (screechAudioController == null) Debug.LogWarning($"Missing [Screech Audio Controller] reference in {gameObject.name}");
+        if (playerCamera == null) Debug.LogWarning($"Missing [Player Camera] reference in {gameObject.name}");
+        if (playerMovement == null) Debug.LogWarning($"Missing [Player Movement] reference in {gameObject.name}");
+    }
+
+
+    public void OnScreech(InputAction.CallbackContext context)
+    {
+        // Skip multiple callouts
+        if (!context.performed) return;
+
+        // Do not allow for overlapping screeching
+        if (currentScreechStatus != ScreechStatus.Available)
+        {
+            // Debug.Log("Screech is not available");
+            return;
+        }
+
+        // Begin screeching
+        OnScreechStart();
+    }
+
+    void OnScreechStart()
+    {
+        // Update screeching status
+        currentScreechStatus = ScreechStatus.Performing;
+
+        // Slow down player movement and mouse sensitivity
+        playerMovement.walkSpeedModifier = screechMovementModifier;
+        playerCamera.mouseSensitivityModifier = screechMouseSensitivityModifier;
+
+        // Apply Screech Effect Volume effects
+        MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
+        mtp.SetDestination(playerCamera.gameObject.transform.localPosition, screechEffectAppearanceSpeed);
+        playerCamera.StartShake(screechDuration);
+
+        // Play screech sound
+        screechAudioController.Play();
+
+        // End screech after specified amount of time
+        Invoke("OnScreechEnd", screechDuration);
+    }
+
+    void OnScreechEnd()
+    {
+        // Update screeching status
+        currentScreechStatus = ScreechStatus.OnCooldown;
+
+        // Revert player movement speed and mouse sensitivity
+        playerMovement.walkSpeedModifier = 1;
+        playerCamera.mouseSensitivityModifier = 1;
+
+        // Remove Screech Effect Volume effects
+        MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
+        mtp.SetDestination(screechEffectDisappearancePos, screechEffectDisappearanceSpeed);
+
+        // End screech cooldown after specified amount of time
+        Invoke("OnScreechCooldownEnd", screechCooldownDuration);
+    }
+
+    void OnScreechCooldownEnd()
+    {
+        // Update screeching status
+        currentScreechStatus = ScreechStatus.Available;
+    }
+
+    public enum ScreechStatus
+    {
+        Forbidden,
+        Available,
+        Performing,
+        OnCooldown,
+    }
+}
