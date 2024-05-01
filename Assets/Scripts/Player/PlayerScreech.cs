@@ -15,12 +15,14 @@ public class PlayerScreech : MonoBehaviour
     float screechEffectDisappearanceSpeed = 1f;
     Vector3 screechEffectDisappearancePos = new Vector3(0, -0.5f, 0);
 
-    [HideInInspector]
+    [SerializeField]
     public ScreechStatus currentScreechStatus = ScreechStatus.Available;
 
     [Header("Other")]
     [SerializeField]
     GameObject screechEffectVolume;
+    [SerializeField]
+    AudioController screechAudioController;
     [SerializeField]
     GameObject playerCamera;
 
@@ -56,6 +58,9 @@ public class PlayerScreech : MonoBehaviour
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
         mtp.SetDestination(playerCamera.transform.localPosition, screechEffectAppearanceSpeed);
         playerCamera.GetComponent<PlayerLook>().StartShake(screechDuration);
+
+        // Play screech sound
+        screechAudioController.Play();
 
         // End screech after specified amount of time
         Invoke("OnScreechEnd", screechDuration);
