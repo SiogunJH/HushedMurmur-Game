@@ -24,9 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Screech",
+                    "name": "Ability 1 (Screech)",
                     "type": "Button",
                     "id": "7d58259c-dfaa-4c61-938c-f1e43b46c707",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact 1",
+                    "type": "Button",
+                    "id": "041e1e74-4e83-4ef9-8af4-541d114f8704",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -162,7 +171,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Screech",
+                    "action": "Ability 1 (Screech)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3b19119-aaed-4a0a-a27c-9af6044458bd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Interact 1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

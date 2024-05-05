@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 6403821389631695093}
   - component: {fileID: 5282087477987032069}
   - component: {fileID: 8749568939749793802}
+  - component: {fileID: 1194259998966912996}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -224,8 +225,26 @@ MonoBehaviour:
   mouseXSensitivity: 20
   mouseYSensitivity: 20
   mouseSensitivityModifier: 1
-  shakeIntensity: 0.15
+  shakeIntensity: 0.1
   playerRoot: {fileID: 7397120588207391981}
+  playerInteract: {fileID: 8369214613958022831}
+--- !u!114 &1194259998966912996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718952369657980911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!1 &6156802555282385220
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,13 +254,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7397120588207391981}
+  - component: {fileID: 7630238019374994506}
   - component: {fileID: 7178749940374722288}
   - component: {fileID: 2525269273166966926}
   - component: {fileID: 6439050275205624948}
   - component: {fileID: 5451186433165143131}
   - component: {fileID: 5409557740019232742}
   - component: {fileID: 7465564020053825881}
-  m_Layer: 0
+  - component: {fileID: 8369214613958022831}
+  m_Layer: 7
   m_Name: Player (First Person)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,6 +287,23 @@ Transform:
   - {fileID: 7904258641018687301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7630238019374994506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156802555282385220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 97a204c6d6092b446987c26cc1725c83, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 410a3dc1636c1a047a27507928c9dcbf,
+    type: 3}
+  m_SortingOrder: 0
 --- !u!143 &7178749940374722288
 CharacterController:
   m_ObjectHideFlags: 0
@@ -366,6 +404,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7d58259c-dfaa-4c61-938c-f1e43b46c707
     m_ActionName: Player Controls/Screech[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8369214613958022831}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnTriggerInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 041e1e74-4e83-4ef9-8af4-541d114f8704
+    m_ActionName: Player Controls/Interact 1[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player Controls
@@ -499,6 +553,7 @@ MonoBehaviour:
   gravity: -9.8
   minNegativeVerticalVelocity: -2
   controller: {fileID: 7178749940374722288}
+  playerInteract: {fileID: 8369214613958022831}
 --- !u!114 &7465564020053825881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,11 +568,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screechDuration: 0.6
   screechCooldownDuration: 0.6
+  screechMovementModifier: 0.2
+  screechMouseSensitivityModifier: 0.2
   currentScreechStatus: 1
   screechEffectVolume: {fileID: 406506593467835726}
   screechAudioController: {fileID: 5451186433165143131}
   playerCamera: {fileID: 8749568939749793802}
   playerMovement: {fileID: 5409557740019232742}
+--- !u!114 &8369214613958022831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156802555282385220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a15b0687f19fe49b0413e2df21203b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1718952369657980911}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 64
+  rayLength: 3.5
 --- !u!1 &7481667445745203997
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +604,7 @@ GameObject:
   - component: {fileID: 5133965868918550248}
   - component: {fileID: 8736966220387468480}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Visual Representation (dev)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
