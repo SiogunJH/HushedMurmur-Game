@@ -6,23 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerLook : MonoBehaviour
 {
     [Header("Sensitivity Settings")]
-    [SerializeField]
-    float mouseXSensitivity = 20;
-    [SerializeField]
-    float mouseYSensitivity = 20;
-    [SerializeField]
-    public float mouseSensitivityModifier = 1;
+    [SerializeField] float mouseXSensitivity = 20;
+    [SerializeField] float mouseYSensitivity = 20;
+    [SerializeField] public float mouseSensitivityModifier = 1;
 
     Vector3 originalPosition;
 
-    [Header("Other")]
-    [SerializeField]
-    Transform playerRoot;
-    [SerializeField]
-    PlayerInteract playerInteract;
+    [Header("Other"), SerializeField] Transform playerRoot;
+    [SerializeField] PlayerInteract playerInteract;
     [Space]
-    [SerializeField]
-    Transform cameraHolder;
+    [SerializeField] Transform cameraHolder;
 
     float xRotation = 0;
 
@@ -65,7 +58,7 @@ public class PlayerLook : MonoBehaviour
         float mouseY = value.y * mouseYSensitivity * mouseSensitivityModifier * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        xRotation = Mathf.Clamp(xRotation, -80, 80);
 
         playerRoot.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);

@@ -18,7 +18,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     [Range(0.5f, 3.5f)]
     [Tooltip("In meters, maximum distance from which player can interact with objects.")]
-    float rayLength = 2.0f;
+    float rayLength = 1.5f;
 
     public void RaycastForInteractable()
     {
