@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Name: Screech Effect VP
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 5194266006589830172}
   - {fileID: -1140095622612882882}
+  - {fileID: 5194266006589830172}
 --- !u!114 &5194266006589830172
 MonoBehaviour:
   m_ObjectHideFlags: 3
