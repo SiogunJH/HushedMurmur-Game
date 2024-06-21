@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4447340223290410307}
-  - component: {fileID: 3919023003822482997}
+  - component: {fileID: 7301775722927884308}
   m_Layer: 0
   m_Name: Bird-Sample
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Transform:
   - {fileID: 6263943589691815591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3919023003822482997
+--- !u!114 &7301775722927884308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,5 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f2c53fa83142b4597c2400764328aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdType: 0
+  birdType: 1
   location: {fileID: 0}

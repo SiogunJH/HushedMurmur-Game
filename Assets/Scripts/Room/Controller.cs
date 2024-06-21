@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Room
@@ -23,12 +21,12 @@ namespace Room
 
         #region Occupants
 
-        [SerializeField] List<BirdBase> roomOccupants = new();
+        [SerializeField] List<Bird.Controller> roomOccupants = new();
 
-        public void AddOccupant(BirdBase newOccupant) { roomOccupants.Add(newOccupant); }
-        public void RemoveOccupant(BirdBase occupant) { roomOccupants.Remove(occupant); }
+        public void AddOccupant(Bird.Controller newOccupant) { roomOccupants.Add(newOccupant); }
+        public void RemoveOccupant(Bird.Controller occupant) { roomOccupants.Remove(occupant); }
 
-        public List<BirdBase> GetOccupants() => roomOccupants;
+        public List<Bird.Controller> GetOccupants() => roomOccupants;
 
         #endregion
 
