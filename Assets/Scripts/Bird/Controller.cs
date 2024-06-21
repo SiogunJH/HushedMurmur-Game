@@ -9,11 +9,19 @@ namespace Bird
         [SerializeField] BirdType birdType;
         [SerializeField, Tooltip("Current room that this bird is in")] Room.Controller location;
 
+        public void SetLocation(Room.Controller newLocation)
+        {
+            if (location != null) location.RemoveOccupant(this);
+            location = newLocation;
+            location.AddOccupant(this);
+
+            // Move this object to the location (debugging)
+            gameObject.transform.position = location.gameObject.transform.position;
+        }
+
         public void GoNextRoom()
         {
-            location.RemoveOccupant(this);
-            location = location.GetNextRoom();
-            location.AddOccupant(this);
+            SetLocation(location.GetNextRoom());
         }
 
         public void ScareAway()

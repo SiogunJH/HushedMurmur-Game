@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 7301775722927884308}
   m_Layer: 0
   m_Name: Bird-Sample
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

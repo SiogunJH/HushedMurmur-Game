@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5406418501928346083}
   m_Layer: 0
   m_Name: RoomController-Sample
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   roomName: Not Set
   roomOccupants: []
   roomConnectionsForward: []
+  tags: 
 --- !u!1 &7264421590908208324
 GameObject:
   m_ObjectHideFlags: 0

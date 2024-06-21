@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Room
+namespace Bird
 {
     public class Manager : MonoBehaviour
     {
@@ -22,19 +22,26 @@ namespace Room
 
         #endregion
 
-        private Controller[] allRooms;
-        private const string ROOM_OBJECT_TAG = "Room";
+        private Controller[] allBirds;
+        private const string BIRD_OBJECT_TAG = "Bird";
 
         void PreStart()
         {
-            allRooms = GameObject.FindGameObjectsWithTag(ROOM_OBJECT_TAG)
+            allBirds = GameObject.FindGameObjectsWithTag(BIRD_OBJECT_TAG)
                 .Select(obj => obj.GetComponent<Controller>())
                 .Where(component => component != null)
                 .ToArray();
         }
 
-        public Controller[] GetRoomsByTag(Tag tag)
-            => allRooms.Where(room => room.tags.Contains(tag)).ToArray();
+        void Start()
+        {
+            Room.Controller[] startingRooms = Room.Manager.Instance.GetRoomsByTag(Room.Tag.Start);
 
+            // Assign birds to rooms
+            foreach (var bird in allBirds)
+            {
+                bird.SetLocation(startingRooms[Random.Range(0, startingRooms.Length)]);
+            }
+        }
     }
 }
