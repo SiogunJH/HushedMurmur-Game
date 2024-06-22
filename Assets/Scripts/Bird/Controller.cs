@@ -6,8 +6,8 @@ namespace Bird
 {
     public class Controller : MonoBehaviour
     {
-        [SerializeField] BirdType birdType;
-        Room.Controller location;
+        [SerializeField] Type birdType;
+        [HideInInspector] public Room.Controller location;
 
         [Space, SerializeField] float initialSleepTime = 10;
 
@@ -24,7 +24,8 @@ namespace Bird
             {"Global", 10}
         };
 
-        [Space, SerializeField] float motionDetectionEvasionChance = 0.2f;
+        [Space, SerializeField] float motionDetectionEvasionChance = 0.35f;
+        [SerializeField] public float motionDetectionEvasionLimit = 3;
 
         void Start()
         {
@@ -34,7 +35,7 @@ namespace Bird
         const string WAKE_UP = "WakeUp";
         void WakeUp()
         {
-            Debug.Log($"{gameObject.name} is now active!");
+            Debug.Log($"{gameObject.name} has woken up!");
 
             Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
             Invoke(TRIGGER_MOVE, minMoveDelay + Random.Range(0, maxMoveDelay - minMoveDelay));
@@ -61,7 +62,6 @@ namespace Bird
             Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
         }
 
-
         const string TRIGGER_MOVE = "TriggerMove";
         void TriggerMove()
         {
@@ -69,17 +69,19 @@ namespace Bird
             if (location.tags.Contains(Room.Tag.End))
             {
                 Attack();
-                Debug.Log($"{gameObject.name} has attacked!");
                 return;
             }
 
             // Move to the next room
             GoNextRoom();
-            Debug.Log($"{gameObject.name} has moved!");
+            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
 
             // Reinvoke
             Invoke(TRIGGER_MOVE, minMoveDelay + Random.Range(0, maxMoveDelay - minMoveDelay));
         }
+
+        public bool TryToEvadeDetection()
+            => motionDetectionEvasionLimit > 0 && Random.Range(0f, 1f) < motionDetectionEvasionChance;
 
         public void SetLocation(Room.Controller newLocation)
         {

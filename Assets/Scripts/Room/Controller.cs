@@ -12,7 +12,11 @@ namespace Room
         {
             get
             {
-                if (roomName.Split(' ').Length != 2) throw new System.ArgumentException($"Room Code can be generated only from a Room Name consisting of two words. Current Room Name '{roomName}' does not match this requirement.");
+                if (roomName.Split(' ').Length != 2)
+                {
+                    Debug.LogWarning($"Room Code can be generated only from a Room Name consisting of two words. Current Room Name '{roomName}' does not match this requirement.");
+                    return "Room ID Failure";
+                }
                 return $"{roomName.TrimStart()[0]}{roomName.Split(' ')[1].Length}";
             }
         }

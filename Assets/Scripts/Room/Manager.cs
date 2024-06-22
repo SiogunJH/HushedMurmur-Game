@@ -36,5 +36,7 @@ namespace Room
         public Controller[] GetRoomsByTag(Tag tag)
             => allRooms.Where(room => room.tags.Contains(tag)).ToArray();
 
+        public Controller[] GetUnoccupiedRooms()
+            => allRooms.Where(room => room.GetOccupants().Count == 0).ToArray();
     }
 }
