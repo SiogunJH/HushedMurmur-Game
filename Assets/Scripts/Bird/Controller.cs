@@ -21,11 +21,18 @@ namespace Bird
         {
             {"Common", 70},
             {"Unique", 20},
-            {"Global", 10}
+            {"Global", 10},
+            {"Speak", 0},
+            {"Murmur", 0}
         };
 
         [Space, SerializeField] float motionDetectionEvasionChance = 0.35f;
         [SerializeField] public float motionDetectionEvasionLimit = 3;
+
+        [Header("Unique Noise Events")]
+        [SerializeField] AudioClip[] uniqueNoise;
+        [SerializeField] AudioClip[] speakNoise;
+        [SerializeField] AudioClip[] murmurNoise;
 
         void Start()
         {
@@ -52,7 +59,7 @@ namespace Bird
             {
                 if (randomizedWeight < noiseEvent.Value)
                 {
-                    Debug.Log($"{gameObject.name} triggered {noiseEvent.Key} Noise Event!");
+                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(GetNoiseEventClip(noiseEvent.Key), location);
                     break;
                 }
                 else randomizedWeight -= noiseEvent.Value;
@@ -60,6 +67,28 @@ namespace Bird
 
             // Reinvoke
             Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
+        }
+
+        AudioClip GetNoiseEventClip(string type)
+        {
+            switch (type)
+            {
+                case "Unique":
+                    return uniqueNoise[Random.Range(0, uniqueNoise.Length)];
+
+                case "Global":
+                    MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
+                    return Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
+
+                case "Speak":
+                    return speakNoise[Random.Range(0, speakNoise.Length)];
+
+                case "Murmur":
+                    return murmurNoise[Random.Range(0, murmurNoise.Length)];
+
+                default:
+                    return Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
+            }
         }
 
         const string TRIGGER_MOVE = "TriggerMove";

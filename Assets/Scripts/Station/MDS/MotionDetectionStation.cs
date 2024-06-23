@@ -23,13 +23,20 @@ public class MotionDetectionStation : MonoBehaviour
     float failureChance = 0.2f;
     float failureLimit = 3;
 
+    [SerializeField] MotionDetectionStationScreen MDSScreen;
+    [SerializeField] AudioSource audioSource;
+
+    void Start()
+    {
+        MDSScreen.ClearAll();
+    }
+
     public void ProcessMovementAlert(Bird.Controller bird)
     {
         // ON EVASION
         if (bird.TryToEvadeDetection())
         {
             bird.motionDetectionEvasionLimit--;
-            //Debug.Log("Motion Detection Evaded");
             return;
         }
 
@@ -48,6 +55,7 @@ public class MotionDetectionStation : MonoBehaviour
 
     void SendMovementAlert(string roomID)
     {
-        Debug.Log($"*BEEP*\nMotion detected in {roomID}!");
+        audioSource.Play();
+        MDSScreen.PushAlert($"> Motion in {roomID}");
     }
 }

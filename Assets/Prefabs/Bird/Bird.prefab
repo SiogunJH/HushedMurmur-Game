@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4447340223290410307}
   - component: {fileID: 7301775722927884308}
   m_Layer: 0
-  m_Name: Bird-Sample
+  m_Name: Bird
   m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,3 +152,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birdType: 1
   location: {fileID: 0}
+  initialSleepTime: 10
+  minMoveDelay: 45
+  maxMoveDelay: 60
+  minNoiseEventDelay: 2
+  maxNoiseEventDelay: 8
+  motionDetectionEvasionChance: 0.35
+  motionDetectionEvasionLimit: 3
+  commonNoise: []
+  uniqueNoise: []
+  globalNoise: []
+  speakNoise: []
+  murmurNoise: []

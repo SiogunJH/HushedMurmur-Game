@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4682391653640849267}
   - component: {fileID: 5406418501928346083}
   m_Layer: 0
-  m_Name: RoomController-Sample
+  m_Name: Room
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

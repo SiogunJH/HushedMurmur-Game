@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d173c82b88365243aa4b5c93d49c243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonNoise:
+  - {fileID: 8300000, guid: 1a218aefdabb44e40bc4fbb09346bd92, type: 3}
+  - {fileID: 8300000, guid: b07772c1060758f4a998ba4677a7ffae, type: 3}
+  - {fileID: 8300000, guid: aa1c3abc85b76ed458d27ebd6e3cc7e3, type: 3}
+  globalNoise:
+  - {fileID: 8300000, guid: b69ab26c0e2745646977d7f600d32e99, type: 3}
+  - {fileID: 8300000, guid: 1b68f582646358e43af465e8499fb571, type: 3}
+  - {fileID: 8300000, guid: 0bbdf9f5fc8ade149869e0dc315ded7f, type: 3}
