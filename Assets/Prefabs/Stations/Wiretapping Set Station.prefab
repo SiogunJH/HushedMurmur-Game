@@ -182,7 +182,8 @@ GameObject:
   - component: {fileID: 1969908204622569004}
   - component: {fileID: 227193949459407386}
   - component: {fileID: 6049476143820893292}
-  m_Layer: 0
+  - component: {fileID: 718629676098520090}
+  m_Layer: 6
   m_Name: Headset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 5808676514404786767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.11623735, z: 0, w: 0.99322146}
-  m_LocalPosition: {x: -1.023, y: 0.427, z: -0.066}
+  m_LocalPosition: {x: -1.023, y: 0.476, z: -0.066}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -233,6 +234,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 50760d5c0493db94085a83636cea984b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,6 +277,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &718629676098520090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808676514404786767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e04d973afd6f640898a1520c9cf94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4499075578313338005}
+        m_TargetAssemblyTypeName: WiretappingSetStation, Assembly-CSharp
+        m_MethodName: ToggleOnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  meshRenderer: {fileID: 227193949459407386}
 --- !u!1 &9206433042899084982
 GameObject:
   m_ObjectHideFlags: 0

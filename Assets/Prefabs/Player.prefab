@@ -238,7 +238,6 @@ GameObject:
   - component: {fileID: 7178749940374722288}
   - component: {fileID: 2525269273166966926}
   - component: {fileID: 6439050275205624948}
-  - component: {fileID: 5451186433165143131}
   - component: {fileID: 5409557740019232742}
   - component: {fileID: 7465564020053825881}
   - component: {fileID: 8369214613958022831}
@@ -485,21 +484,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5451186433165143131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156802555282385220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0e032aca28fe149bdada7969d5ae20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSourceComponent: {fileID: 6439050275205624948}
-  audioClips:
-  - {fileID: 8300000, guid: 41ad309fb890cad4787437c788eec036, type: 3}
 --- !u!114 &5409557740019232742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +521,9 @@ MonoBehaviour:
   screechShakeMagnitude: 0.1
   currentScreechStatus: 1
   screechEffectVolume: {fileID: 406506593467835726}
-  screechAudioController: {fileID: 5451186433165143131}
+  screechAudioSource: {fileID: 6439050275205624948}
+  screechAudio:
+  - {fileID: 8300000, guid: 41ad309fb890cad4787437c788eec036, type: 3}
   playerLook: {fileID: 3737940746634455616}
   playerCameraHolder: {fileID: 9219382790878601502}
   playerMovement: {fileID: 5409557740019232742}
@@ -557,7 +543,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 64
-  rayLength: 1.5
+  rayLength: 3.5
 --- !u!114 &3608204368673293026
 MonoBehaviour:
   m_ObjectHideFlags: 0

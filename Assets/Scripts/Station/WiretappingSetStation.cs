@@ -24,6 +24,11 @@ public class WiretappingSetStation : MonoBehaviour
     [SerializeField] Room.Controller roomCurrentlySpiedOn;
     [SerializeField] bool isActive = false;
 
+    public void ToggleOnOff()
+    {
+        isActive = !isActive;
+    }
+
     public void ProcessAudioRequest(AudioClip audioClip, Room.Controller sourceRoom)
     {
         if (sourceRoom != roomCurrentlySpiedOn) return;

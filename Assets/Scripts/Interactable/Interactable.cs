@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableBase : MonoBehaviour
 {
-    [SerializeField]
     const string BOOL_SHADER_PROPERTY_OUTLINE_ENABLED = "_OutlineEnabled";
+
+    public UnityEvent OnInteract;
 
     [SerializeField]
     MeshRenderer meshRenderer;
@@ -34,6 +36,6 @@ public class InteractableBase : MonoBehaviour
 
     public virtual void Interact()
     {
-        Debug.LogError($"[{gameObject.name}] has no Interact() override");
+        OnInteract?.Invoke();
     }
 }
