@@ -65,30 +65,10 @@ public class WiretappingSetStation : MonoBehaviour
         if (!isActive) return;
         if (sourceRoom.roomCode != letterDisplay.text + numberDisplay.text) return;
 
-        PlayAudio(audioClip);
-    }
-
-    void PlayAudio(AudioClip audioClip)
-    {
-        var obj = new GameObject("One-Time Audio Player");
-        obj.transform.position = audioSpawnPosition.position;
-
-        var audioSource = obj.AddComponent<AudioSource>();
-        audioSource.clip = audioClip;
-
+        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position);
         audioSource.spatialBlend = 1.0f;
         audioSource.minDistance = 1.0f;
         audioSource.maxDistance = 2.0f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
-
-        audioSource.Play();
-
-        StartCoroutine(DestroyAfterPlaying(obj, audioSource));
-    }
-
-    IEnumerator DestroyAfterPlaying(GameObject obj, AudioSource audioSource)
-    {
-        yield return new WaitWhile(() => audioSource.isPlaying && isActive);
-        Destroy(obj);
     }
 }
