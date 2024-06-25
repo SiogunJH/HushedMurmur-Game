@@ -63,10 +63,8 @@ namespace Bird
             // GLOBAL NOISE
             else if (randWeight - commonNoiseWeight < globalNoiseWeight)
             {
-                MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
-
                 var noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
-                Debug.Log($"Global Noise Event: {noise.name}");
+                VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
             }
             // MAIN TRAIT
             else if (randWeight - commonNoiseWeight - globalNoiseWeight < mainTraitWeight)
@@ -91,10 +89,8 @@ namespace Bird
                     break;
 
                 case Trait.Heavy:
-                    MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
-
                     noise = Manager.Instance.heavyTraitNoise[Random.Range(0, Manager.Instance.heavyTraitNoise.Length)];
-                    Debug.Log($"Global Noise Event: {noise.name}");
+                    VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
                     break;
 
                 case Trait.Drooling:
