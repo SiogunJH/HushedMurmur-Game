@@ -416,7 +416,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9b59473c6e3200444a5d8545143cc909, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -509,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 225886302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.93, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1114,12 +1114,12 @@ PrefabInstance:
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: C7
+      value: O7
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: roomName
-      value: C 7777777
+      value: O 7777777
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -2353,6 +2353,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194753372}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1200177961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5409557740019232742, guid: 9c7fcafd6d03d214f96e50673f63ec86,
+    type: 3}
+  m_PrefabInstance: {fileID: 276357524182808746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c067c7edc31a3e41828698c04198943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1247492756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,12 +2673,12 @@ PrefabInstance:
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: C4
+      value: G4
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: roomName
-      value: C 4444
+      value: G 4444
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -3147,12 +3159,12 @@ PrefabInstance:
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: C6
+      value: P6
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: roomName
-      value: C 666666
+      value: P 666666
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -4263,12 +4275,12 @@ PrefabInstance:
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: G5
+      value: W5
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: roomName
-      value: G 55555
+      value: W 55555
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -4877,12 +4889,12 @@ PrefabInstance:
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: A3
+      value: B3
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: roomName
-      value: A 333
+      value: B 333
       objectReference: {fileID: 0}
     - target: {fileID: 5406418501928346083, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -5005,6 +5017,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2109761805}
     m_Modifications:
+    - target: {fileID: 718629676098520090, guid: 4a1f2e5d1890e2243a08fbd92230bbd5,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1200177961}
     - target: {fileID: 2014276370892188418, guid: 4a1f2e5d1890e2243a08fbd92230bbd5,
         type: 3}
       propertyPath: m_LocalPosition.x

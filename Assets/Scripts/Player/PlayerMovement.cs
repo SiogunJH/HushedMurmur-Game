@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     float walkSpeed = 2.5f;
     [SerializeField]
     public float walkSpeedModifier = 1;
+    [SerializeField]
+    public bool allowForMovement = true;
 
     [Header("Gravity Settings"),]
     [SerializeField]
@@ -37,10 +39,19 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         // Handle movement input
-        velocity.x = (transform.right * movementInput.x + transform.forward * movementInput.y).x * walkSpeed * walkSpeedModifier;
-        velocity.z = (transform.right * movementInput.x + transform.forward * movementInput.y).z * walkSpeed * walkSpeedModifier;
+        if (allowForMovement)
+        {
+            velocity.x = (transform.right * movementInput.x + transform.forward * movementInput.y).x * walkSpeed * walkSpeedModifier;
+            velocity.z = (transform.right * movementInput.x + transform.forward * movementInput.y).z * walkSpeed * walkSpeedModifier;
+        }
+        else
+        {
+            velocity.x = 0;
+            velocity.z = 0;
+        }
 
-        // Apply movement and get CollisionFlags
+
+        // Apply movement
         controller.Move(velocity * Time.deltaTime);
 
         if (velocity.x != 0 || velocity.z != 0) playerInteract.RaycastForInteractable();
@@ -51,5 +62,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // Read value
         movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void ToggleOnOff()
+    {
+        allowForMovement = !allowForMovement;
     }
 }

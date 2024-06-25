@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 namespace Bird
@@ -7,7 +8,15 @@ namespace Bird
     public class Controller : MonoBehaviour
     {
         [SerializeField] Type birdType;
-        [HideInInspector] public Room.Controller location;
+
+        [Space, SerializeField] Trait mainTrait;
+        [SerializeField] Trait secondaryTrait;
+        [SerializeField] Room.Type favoredRoom;
+
+        [Space, SerializeField, ReadOnly] readonly int commonNoiseWeight = 10;
+        [SerializeField, ReadOnly] readonly int globalNoiseWeight = 4;
+        [SerializeField, ReadOnly] readonly int mainTraitWeight = 2;
+        [SerializeField, ReadOnly] readonly int secondaryTraitWeight = 1;
 
         [Space, SerializeField] float initialSleepTime = 10;
 
@@ -17,22 +26,10 @@ namespace Bird
         [Space, SerializeField] float minNoiseEventDelay = 2;
         [SerializeField] float maxNoiseEventDelay = 8;
 
-        Dictionary<string, float> weightedNoiseEvents = new()
-        {
-            {"Common", 70},
-            {"Unique", 20},
-            {"Global", 10},
-            {"Speak", 0},
-            {"Murmur", 0}
-        };
-
         [Space, SerializeField] float motionDetectionEvasionChance = 0.35f;
         [SerializeField] public float motionDetectionEvasionLimit = 3;
 
-        [Header("Unique Noise Events")]
-        [SerializeField] AudioClip[] uniqueNoise;
-        [SerializeField] AudioClip[] speakNoise;
-        [SerializeField] AudioClip[] murmurNoise;
+        [HideInInspector] public Room.Controller location;
 
         void Start()
         {
@@ -44,6 +41,8 @@ namespace Bird
         {
             Debug.Log($"{gameObject.name} has woken up!");
 
+            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
+
             Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
             Invoke(TRIGGER_MOVE, minMoveDelay + Random.Range(0, maxMoveDelay - minMoveDelay));
         }
@@ -51,43 +50,72 @@ namespace Bird
         const string TRIGGER_NOISE_EVENT = "TriggerNoiseEvent";
         void TriggerNoiseEvent()
         {
-            float totalWeight = 0;
-            foreach (var noiseEvent in weightedNoiseEvents) totalWeight += noiseEvent.Value;
+            int totalWeight = mainTraitWeight + secondaryTraitWeight + commonNoiseWeight + globalNoiseWeight;
 
-            float randomizedWeight = Random.Range(0, totalWeight);
-            foreach (var noiseEvent in weightedNoiseEvents)
+            float randWeight = Random.Range(0, totalWeight);
+
+            // COMMON NOISE
+            if (randWeight < commonNoiseWeight)
             {
-                if (randomizedWeight < noiseEvent.Value)
-                {
-                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(GetNoiseEventClip(noiseEvent.Key), location);
-                    break;
-                }
-                else randomizedWeight -= noiseEvent.Value;
+                var noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
+                WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
             }
+            // GLOBAL NOISE
+            else if (randWeight - commonNoiseWeight < globalNoiseWeight)
+            {
+                MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
+
+                var noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
+                Debug.Log($"Global Noise Event: {noise.name}");
+            }
+            // MAIN TRAIT
+            else if (randWeight - commonNoiseWeight - globalNoiseWeight < mainTraitWeight)
+                HandleTraitNoiseEvent(mainTrait);
+
+            // SECONDARY TRAIT
+            else HandleTraitNoiseEvent(secondaryTrait);
+
 
             // Reinvoke
             Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
         }
 
-        AudioClip GetNoiseEventClip(string type)
+        void HandleTraitNoiseEvent(Trait trait)
         {
-            switch (type)
+            AudioClip noise;
+            switch (trait)
             {
-                case "Unique":
-                    return uniqueNoise[Random.Range(0, uniqueNoise.Length)];
+                case Trait.Clumsy:
+                    noise = Manager.Instance.clumsyTraitNoise[Random.Range(0, Manager.Instance.clumsyTraitNoise.Length)];
+                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    break;
 
-                case "Global":
+                case Trait.Heavy:
                     MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
-                    return Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
 
-                case "Speak":
-                    return speakNoise[Random.Range(0, speakNoise.Length)];
+                    noise = Manager.Instance.heavyTraitNoise[Random.Range(0, Manager.Instance.heavyTraitNoise.Length)];
+                    Debug.Log($"Global Noise Event: {noise.name}");
+                    break;
 
-                case "Murmur":
-                    return murmurNoise[Random.Range(0, murmurNoise.Length)];
+                case Trait.Drooling:
+                    noise = Manager.Instance.droolingTraitNoise[Random.Range(0, Manager.Instance.droolingTraitNoise.Length)];
+                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    break;
+
+                case Trait.Brutal:
+                    noise = Manager.Instance.brutalTraitNoise[Random.Range(0, Manager.Instance.brutalTraitNoise.Length)];
+                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    break;
+
+                case Trait.Speaking:
+                    noise = Manager.Instance.speakingTraitNoise[Random.Range(0, Manager.Instance.speakingTraitNoise.Length)];
+                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    break;
 
                 default:
-                    return Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
+                    Debug.LogWarning($"Unhandled trait: {trait}");
+                    break;
+
             }
         }
 
