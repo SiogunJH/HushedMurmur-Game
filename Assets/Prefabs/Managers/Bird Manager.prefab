@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 4118074633590290620, guid: 475cfd6ffa335814ebde899e2f09810c, type: 3}
   - {fileID: 1619191632027401442, guid: e8f8d6d2010ff7240bb827ed472854f4, type: 3}
   - {fileID: 2554044940799074561, guid: 96302beecfbe395438dbe8db5abcb5b0, type: 3}
+  birdCage: {fileID: 8215639047836366365}
   commonNoise:
   - {fileID: 8300000, guid: 1a218aefdabb44e40bc4fbb09346bd92, type: 3}
   - {fileID: 8300000, guid: b07772c1060758f4a998ba4677a7ffae, type: 3}

@@ -1,5 +1,8 @@
 using System.Linq;
 using UnityEngine;
+using UnityEditor;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 namespace Bird
 {
@@ -16,8 +19,6 @@ namespace Bird
 
             //One time setup of a Singleton
             else Instance = this;
-
-            PreStart();
         }
 
         #endregion
@@ -26,30 +27,35 @@ namespace Bird
 
         [Space, Header("Bird Prefabs")]
         [SerializeField] GameObject[] birdPrefabs;
+        [SerializeField, Tooltip("A Game Object, in which new Birds will spawn")] GameObject birdCage;
+        HashSet<GameObject> activeBirds = new();
 
-        private Controller[] allBirds;
-        private const string BIRD_OBJECT_TAG = "Bird";
-
-        void PreStart()
+        public void SpawnBird()
         {
-            allBirds = GameObject.FindGameObjectsWithTag(BIRD_OBJECT_TAG)
-                .Select(obj => obj.GetComponent<Controller>())
-                .Where(component => component != null)
+            Room.Controller[] startingRooms = Room.Manager.Instance
+                .GetRoomsByTag(Room.Tag.Start)
+                .Where(room => room.GetOccupants().Count() == 0)
                 .ToArray();
+            if (startingRooms.Length == 0)
+            {
+                Debug.LogError("Could not spawn new Bird - no empty starting rooms available.");
+                return;
+            }
+
+            GameObject[] birdPool = birdPrefabs.Where(bird => !activeBirds.Select(x => x.GetComponent<Controller>().birdType).Contains(bird.GetComponent<Controller>().birdType)).ToArray();
+            if (birdPool.Length == 0)
+            {
+                Debug.LogError("Could not spawn new Bird - unique bird prefabs left.");
+                return;
+            }
+
+            GameObject spawnedBird = Instantiate(birdPool[Random.Range(0, birdPool.Length)]);
+            spawnedBird.transform.SetParent(birdCage.transform);
+            spawnedBird.GetComponent<Controller>().SetLocation(startingRooms[Random.Range(0, startingRooms.Length)]);
+            activeBirds.Add(spawnedBird);
         }
 
         #endregion
-
-        void Start()
-        {
-            Room.Controller[] startingRooms = Room.Manager.Instance.GetRoomsByTag(Room.Tag.Start);
-
-            // Assign birds to rooms
-            foreach (var bird in allBirds)
-            {
-                bird.SetLocation(startingRooms[Random.Range(0, startingRooms.Length)]);
-            }
-        }
 
         #region Noise Events
 
