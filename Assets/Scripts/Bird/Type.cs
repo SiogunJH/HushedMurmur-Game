@@ -9,5 +9,8 @@ namespace Bird
         Hawk,
         Crow,
         Cock,
+        Parrot,
+        Owl,
+        Penguin
     }
 }

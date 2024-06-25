@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,23 +23,51 @@ public class WiretappingSetStation : MonoBehaviour
 
     public UnityEvent<AudioClip, Room.Controller> OnAudioRequestTrigger;
 
-    [SerializeField] Room.Controller roomCurrentlySpiedOn;
     [SerializeField] bool isActive = false;
+    string lettersAvailable = "BGKLOPSWX";
+
+    [SerializeField] TextMeshProUGUI letterDisplay;
+    [SerializeField] TextMeshProUGUI numberDisplay;
+
+    [SerializeField] Transform audioSpawnPosition;
+    [SerializeField] GameObject headsetObject;
+
+    void Start()
+    {
+        ScrambleDisplay();
+    }
 
     public void ToggleOnOff()
     {
         isActive = !isActive;
+        headsetObject.SetActive(!isActive);
+    }
+    public void ChangeLetter(bool forward)
+    {
+        int i = lettersAvailable.IndexOf(letterDisplay.text);
+
+        letterDisplay.text = lettersAvailable[(i + (forward ? 1 : -1 + lettersAvailable.Length)) % lettersAvailable.Length].ToString();
+    }
+
+    public void ChangeNumber(bool forward)
+    {
+        numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + 10)) % 10).ToString();
+    }
+
+    void ScrambleDisplay()
+    {
+        letterDisplay.text = lettersAvailable[Random.Range(0, lettersAvailable.Length)].ToString();
+        numberDisplay.text = Random.Range(0, 10).ToString();
     }
 
     public void ProcessAudioRequest(AudioClip audioClip, Room.Controller sourceRoom)
     {
-        if (sourceRoom != roomCurrentlySpiedOn) return;
         if (!isActive) return;
+        if (sourceRoom.roomCode != letterDisplay.text + numberDisplay.text) return;
 
         PlayAudio(audioClip);
     }
 
-    [SerializeField] Transform audioSpawnPosition;
     void PlayAudio(AudioClip audioClip)
     {
         var obj = new GameObject("One-Time Audio Player");
@@ -47,7 +77,7 @@ public class WiretappingSetStation : MonoBehaviour
         audioSource.clip = audioClip;
 
         audioSource.spatialBlend = 1.0f;
-        audioSource.minDistance = 0.0f;
+        audioSource.minDistance = 1.0f;
         audioSource.maxDistance = 2.0f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
 

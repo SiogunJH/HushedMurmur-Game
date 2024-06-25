@@ -22,7 +22,10 @@ namespace Bird
 
         #endregion
 
-        #region Get Birds References
+        #region Birds
+
+        [Space, Header("Bird Prefabs")]
+        [SerializeField] GameObject[] birdPrefabs;
 
         private Controller[] allBirds;
         private const string BIRD_OBJECT_TAG = "Bird";
@@ -48,10 +51,16 @@ namespace Bird
             }
         }
 
-        #region Non-Unique Noise Events
+        #region Noise Events
 
+        [Space, Header("Noise Event Arrays")]
         public AudioClip[] commonNoise;
         public AudioClip[] globalNoise;
+        public AudioClip[] clumsyTraitNoise;
+        public AudioClip[] heavyTraitNoise;
+        public AudioClip[] droolingTraitNoise;
+        public AudioClip[] brutalTraitNoise;
+        public AudioClip[] speakingTraitNoise;
 
         #endregion
     }
