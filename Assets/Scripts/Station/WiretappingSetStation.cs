@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -69,6 +68,6 @@ public class WiretappingSetStation : MonoBehaviour
         audioSource.spatialBlend = 1.0f;
         audioSource.minDistance = 1.0f;
         audioSource.maxDistance = 2.0f;
-        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
     }
 }
