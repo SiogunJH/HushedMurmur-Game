@@ -7,16 +7,16 @@ namespace Bird
 {
     public class Controller : MonoBehaviour
     {
-        [SerializeField] Type birdType;
+        [SerializeField] public Type birdType;
 
         [Space, SerializeField] Trait mainTrait;
         [SerializeField] Trait secondaryTrait;
         [SerializeField] Room.Type favoredRoom;
 
-        [Space, SerializeField, ReadOnly] readonly int commonNoiseWeight = 10;
-        [SerializeField, ReadOnly] readonly int globalNoiseWeight = 4;
-        [SerializeField, ReadOnly] readonly int mainTraitWeight = 2;
-        [SerializeField, ReadOnly] readonly int secondaryTraitWeight = 1;
+        int commonNoiseWeight = 12;
+        int globalNoiseWeight = 2;
+        int mainTraitWeight = 2;
+        int secondaryTraitWeight = 1;
 
         [Space, SerializeField] float initialSleepTime = 10;
 
