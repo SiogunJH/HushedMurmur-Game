@@ -1,48 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerScreech : MonoBehaviour
 {
-    [Header("Screech Settings")]
-    [SerializeField]
-    float screechDuration = 0.6f;
-    [SerializeField]
-    float screechCooldownDuration = 0.5f;
-    [SerializeField]
-    float screechMovementModifier = 0.2f;
-    [SerializeField]
-    float screechMouseSensitivityModifier = 0.2f;
-    [SerializeField]
-    float screechShakeMagnitude = 0.1f;
+    [Header("Screech")]
+    [SerializeField] float screechDuration = 0.6f;
+    [SerializeField] float screechCooldownDuration = 0.5f;
+    [SerializeField] float screechMovementModifier = 0.2f;
+    [SerializeField] float screechMouseSensitivityModifier = 0.2f;
+    [SerializeField] float screechShakeMagnitude = 0.1f;
 
     float screechEffectAppearanceSpeed = 0.2f;
     float screechEffectDisappearanceSpeed = 1f;
     Vector3 screechEffectDisappearancePos = new(0, -0.5f, 0);
     Coroutine screechShakeCoroutine;
 
-    [SerializeField]
     public ScreechStatus currentScreechStatus = ScreechStatus.Available;
 
+    [Header("Syringe & Repellant")]
+    public static Bird.Type? birdRepelled = null;
+    [SerializeField] LayerMask corridorEntranceLayer;
+
+
     [Header("Other")]
-    [SerializeField]
-    GameObject screechEffectVolume;
-    [SerializeField]
-    AudioSource screechAudioSource;
-    [SerializeField]
-    AudioClip[] screechAudio;
+    [SerializeField] GameObject screechEffectVolume;
+    [SerializeField] AudioSource screechAudioSource;
+    [SerializeField] AudioClip[] screechAudio;
 
     [Space]
-    [SerializeField]
-    PlayerLook playerLook;
-    [SerializeField]
-    Transform playerCameraHolder;
+    [SerializeField] PlayerLook playerLook;
+    [SerializeField] Transform playerCameraHolder;
 
     [Space]
-    [SerializeField]
-    PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
 
     void Start()
     {
@@ -59,11 +54,7 @@ public class PlayerScreech : MonoBehaviour
         if (!context.performed) return;
 
         // Do not allow for overlapping screeching
-        if (currentScreechStatus != ScreechStatus.Available)
-        {
-            // Debug.Log("Screech is not available");
-            return;
-        }
+        if (currentScreechStatus != ScreechStatus.Available) return;
 
         // Begin screeching
         OnScreechStart();
@@ -89,6 +80,9 @@ public class PlayerScreech : MonoBehaviour
 
         // End screech after specified amount of time
         Invoke("OnScreechEnd", screechDuration);
+
+        // Attempt a screech attack
+        OnScreechAttack();
     }
 
     void OnScreechEnd()
@@ -112,6 +106,29 @@ public class PlayerScreech : MonoBehaviour
     {
         // Update screeching status
         currentScreechStatus = ScreechStatus.Available;
+    }
+
+    void OnScreechAttack()
+    {
+        if (birdRepelled == null) return;
+
+        Ray ray = new Ray(playerLook.transform.position, playerLook.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 10, corridorEntranceLayer))
+        {
+            var corridorEntrance = hit.collider.gameObject.GetComponent<CorridorEntrance>();
+            if (corridorEntrance == null)
+            {
+                Debug.LogError("An object of [CorridorEntrance] layer with no [CorridorEntrance] script was hit.");
+                return;
+            }
+
+            var vulnerableOccupants = corridorEntrance.connectedRoom.GetOccupants().Where(bird => bird.birdType == birdRepelled).ToList();
+            if (vulnerableOccupants.Count != 0)
+                foreach (var occupant in vulnerableOccupants)
+                    occupant.ScareAway();
+        }
+        birdRepelled = null;
     }
 
     public enum ScreechStatus

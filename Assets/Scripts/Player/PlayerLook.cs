@@ -14,9 +14,6 @@ public class PlayerLook : MonoBehaviour
 
     [Header("Other"), SerializeField] Transform playerRoot;
     [SerializeField] PlayerInteract playerInteract;
-    [Space]
-    [SerializeField] Transform cameraHolder;
-
     float xRotation = 0;
 
     // Start is called before the first frame update
