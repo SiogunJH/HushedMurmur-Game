@@ -32,10 +32,11 @@ public static class AudioSourceExtensions
     /// <param name="executor"><i>MonoBehaviour</i> component, what will execute the coroutine responsible for removing <i>GameObject</i> upon finishing assigned <i>AudioClip</i>.</param>
     /// <param name="audioClip"><i>AudioClip</i> that will be played.</param>
     /// <param name="position">Position, in which a <i>GameObject</i> will be created.</param>
+    /// <param name="name">Name of a created <i>GameObject</i></param>
     /// <returns><i>AudioSource</i> component of a created <i>GameObject</i></returns>
-    public static AudioSource PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position)
+    public static AudioSource PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position, string name = "One-Time Audio Player")
     {
-        var obj = new GameObject("One-Time Audio Player");
+        var obj = new GameObject(name);
         obj.transform.position = position;
 
         var audioSource = obj.AddComponent<AudioSource>();
