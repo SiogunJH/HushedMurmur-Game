@@ -822,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421034861}
   m_Layer: 0
-  m_Name: --== BUILDING ROOMS ==--
+  m_Name: --== ROOMS ==--
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

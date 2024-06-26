@@ -58,7 +58,7 @@ namespace Bird
             if (randWeight < commonNoiseWeight)
             {
                 var noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
-                WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
             }
             // GLOBAL NOISE
             else if (randWeight - commonNoiseWeight < globalNoiseWeight)
@@ -85,7 +85,7 @@ namespace Bird
             {
                 case Trait.Clumsy:
                     noise = Manager.Instance.clumsyTraitNoise[Random.Range(0, Manager.Instance.clumsyTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Heavy:
@@ -95,17 +95,17 @@ namespace Bird
 
                 case Trait.Drooling:
                     noise = Manager.Instance.droolingTraitNoise[Random.Range(0, Manager.Instance.droolingTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Brutal:
                     noise = Manager.Instance.brutalTraitNoise[Random.Range(0, Manager.Instance.brutalTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Speaking:
                     noise = Manager.Instance.speakingTraitNoise[Random.Range(0, Manager.Instance.speakingTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnAudioRequestTrigger.Invoke(noise, location);
+                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 default:

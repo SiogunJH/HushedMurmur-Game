@@ -20,7 +20,8 @@ public class WiretappingSetStation : MonoBehaviour
 
     #endregion
 
-    public UnityEvent<AudioClip, Room.Controller> OnAudioRequestTrigger;
+    public UnityEvent<AudioClip, Room.Controller> OnNewAudioRequest;
+    public UnityEvent<bool, string> OnStationStatusChange;
 
     [SerializeField] bool isActive = false;
     string lettersAvailable = "BGKLOPSWX";
@@ -40,34 +41,52 @@ public class WiretappingSetStation : MonoBehaviour
     {
         isActive = !isActive;
         headsetObject.SetActive(!isActive);
+
+        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
     public void ChangeLetter(bool forward)
     {
-        int i = lettersAvailable.IndexOf(letterDisplay.text);
+        letterDisplay.text = lettersAvailable[(lettersAvailable.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + lettersAvailable.Length)) % lettersAvailable.Length].ToString();
 
-        letterDisplay.text = lettersAvailable[(i + (forward ? 1 : -1 + lettersAvailable.Length)) % lettersAvailable.Length].ToString();
+        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     public void ChangeNumber(bool forward)
     {
         numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + 10)) % 10).ToString();
+
+        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     void ScrambleDisplay()
     {
         letterDisplay.text = lettersAvailable[Random.Range(0, lettersAvailable.Length)].ToString();
         numberDisplay.text = Random.Range(0, 10).ToString();
+
+        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
-    public void ProcessAudioRequest(AudioClip audioClip, Room.Controller sourceRoom)
-    {
-        if (!isActive) return;
-        if (sourceRoom.roomCode != letterDisplay.text + numberDisplay.text) return;
+    string GetWiretappedRoomCode() => letterDisplay.text + numberDisplay.text;
 
-        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position);
+    public void PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
+    {
+        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position, GetWiretappedRoomCode());
+
         audioSource.spatialBlend = 1.0f;
         audioSource.minDistance = 1.0f;
         audioSource.maxDistance = 2.0f;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
+
+        if (!isActive || sourceRoom.roomCode != audioSource.name) audioSource.mute = true;
+
+        UnityAction<bool, string> listener = null;
+        listener = (isActive, wiretappedRoom) =>
+        {
+            if (audioSource == null) OnStationStatusChange.RemoveListener(listener);
+            else if (!isActive || audioSource.gameObject.name != wiretappedRoom) audioSource.mute = true;
+            else audioSource.mute = false;
+        };
+
+        OnStationStatusChange.AddListener(listener);
     }
 }
