@@ -1058,16 +1058,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnStationToggle:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWiretappedRoomChange:
+  OnStationStatusChange:
     m_PersistentCalls:
       m_Calls: []
   isActive: 0
   letterDisplay: {fileID: 8726313067696371279}
   numberDisplay: {fileID: 3716390581563929673}
-  audioSpawnPosition: {fileID: 0}
+  audioSpawnPosition: {fileID: 1914175726930625151}
   headsetObject: {fileID: 3660842982872411906}
 --- !u!1 &5395241741529728706
 GameObject:

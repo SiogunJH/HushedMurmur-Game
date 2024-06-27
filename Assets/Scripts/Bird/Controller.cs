@@ -22,7 +22,7 @@ namespace Bird
         int secondaryTraitWeight = 10;
 
         [Header("Statistics")]
-        [Space, SerializeField] float initialSleepTime = 10;
+        [Space, SerializeField] public float initialSleepTime = 10;
 
         [Space, SerializeField] float moveDelay = 60;
         [SerializeField] float moveDelayOffset = 15;
@@ -54,7 +54,7 @@ namespace Bird
         {
             int totalWeight = mainTraitWeight + secondaryTraitWeight + commonNoiseWeight + globalNoiseWeight;
 
-            float randWeight = Random.Range(0, totalWeight);
+            float randWeight = Random.Range(0f, totalWeight);
 
             // COMMON NOISE
             if (randWeight < commonNoiseWeight)
@@ -62,18 +62,24 @@ namespace Bird
                 var noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
                 WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
             }
+
             // GLOBAL NOISE
             else if (randWeight - commonNoiseWeight < globalNoiseWeight)
             {
                 var noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
                 VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
             }
+
             // MAIN TRAIT
             else if (randWeight - commonNoiseWeight - globalNoiseWeight < mainTraitWeight)
                 HandleTraitNoiseEvent(mainTrait);
 
             // SECONDARY TRAIT
-            else HandleTraitNoiseEvent(secondaryTrait);
+            else
+            {
+                Debug.Log("Secondary Trait Triggered!");
+                HandleTraitNoiseEvent(secondaryTrait);
+            }
 
 
             // Reinvoke
@@ -153,13 +159,12 @@ namespace Bird
 
         public void ScareAway()
         {
-            Debug.Log($"{gameObject.name} was scared away!");
             Destroy(gameObject);
         }
 
         void Attack()
         {
-            Debug.Log($"{gameObject.name} is attacking!");
+            Gameplay.Manager.Instance.Lose();
         }
     }
 }

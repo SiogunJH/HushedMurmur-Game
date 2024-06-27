@@ -1,7 +1,6 @@
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 namespace Bird
@@ -30,7 +29,7 @@ namespace Bird
         [SerializeField, Tooltip("A Game Object, in which new Birds will spawn")] GameObject birdCage;
         HashSet<GameObject> activeBirds = new();
 
-        public void SpawnBird()
+        public GameObject SpawnBird()
         {
             Room.Controller[] startingRooms = Room.Manager.Instance
                 .GetRoomsByTag(Room.Tag.Start)
@@ -39,20 +38,22 @@ namespace Bird
             if (startingRooms.Length == 0)
             {
                 Debug.LogError("Could not spawn new Bird - no empty starting rooms available.");
-                return;
+                return null;
             }
 
             GameObject[] birdPool = birdPrefabs.Where(bird => !activeBirds.Select(x => x.GetComponent<Controller>().birdType).Contains(bird.GetComponent<Controller>().birdType)).ToArray();
             if (birdPool.Length == 0)
             {
                 Debug.LogError("Could not spawn new Bird - unique bird prefabs left.");
-                return;
+                return null;
             }
 
             GameObject spawnedBird = Instantiate(birdPool[Random.Range(0, birdPool.Length)]);
             spawnedBird.transform.SetParent(birdCage.transform);
             spawnedBird.GetComponent<Controller>().SetLocation(startingRooms[Random.Range(0, startingRooms.Length)]);
             activeBirds.Add(spawnedBird);
+
+            return spawnedBird;
         }
 
         #endregion

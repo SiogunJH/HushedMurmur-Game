@@ -73,14 +73,14 @@ public class WiretappingSetStation : MonoBehaviour
 
     public void PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
     {
-        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position, GetWiretappedRoomCode());
+        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position, sourceRoom.roomCode);
 
         audioSource.spatialBlend = 1.0f;
-        audioSource.minDistance = 1.0f;
-        audioSource.maxDistance = 2.0f;
+        audioSource.minDistance = 5.0f;
+        audioSource.maxDistance = 10.0f;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
-        if (!isActive || sourceRoom.roomCode != audioSource.name) audioSource.mute = true;
+        if (!isActive || sourceRoom.roomCode != GetWiretappedRoomCode()) audioSource.mute = true;
 
         UnityAction<bool, string> listener = null;
         listener = (isActive, wiretappedRoom) =>
