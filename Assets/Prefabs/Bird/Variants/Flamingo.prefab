@@ -85,6 +85,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
         type: 3}
+      propertyPath: repellantColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
+        type: 3}
+      propertyPath: repellantColor.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
+        type: 3}
+      propertyPath: repellantColor.g
+      value: 0.28144273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
+        type: 3}
+      propertyPath: repellantColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
+        type: 3}
       propertyPath: speakNoise.Array.size
       value: 1
       objectReference: {fileID: 0}
