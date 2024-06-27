@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
         type: 3}
       propertyPath: favoredRoom
-      value: 12
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7301775722927884308, guid: fc1671ea14a4c1c4b9ee556f84ec732a,
         type: 3}

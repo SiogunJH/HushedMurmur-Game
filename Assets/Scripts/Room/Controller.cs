@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 namespace Room
@@ -7,18 +9,18 @@ namespace Room
     {
         #region Naming
 
-        [SerializeField] string roomName = "Not Set";
-        public string roomCode
+        [SerializeField] TextMeshProUGUI codeDisplay;
+        [HideInInspector] public string roomCode = "X0";
+
+        void RequestRoomCode()
         {
-            get
-            {
-                if (roomName.Split(' ').Length != 2)
-                {
-                    Debug.LogWarning($"Room Code can be generated only from a Room Name consisting of two words. Current Room Name '{roomName}' does not match this requirement.");
-                    return "Room ID Failure";
-                }
-                return $"{roomName.TrimStart()[0]}{roomName.Split(' ')[1].Length}";
-            }
+            Manager.Instance.GenerateRoomCode(this);
+            UpdateCodeDisplay();
+        }
+
+        void UpdateCodeDisplay()
+        {
+            codeDisplay.text = roomCode;
         }
 
         #endregion
@@ -38,10 +40,21 @@ namespace Room
 
         [SerializeField] List<Controller> roomConnectionsForward = new();
         public List<Tag> tags;
+        public Type type;
 
-        public Controller GetNextRoom()
-            => roomConnectionsForward[Random.Range(0, roomConnectionsForward.Count)];
+        public Controller GetNextRoom(Type preferredRoomType)
+        {
+            if (roomConnectionsForward.Select(room => room.type).Contains(preferredRoomType))
+                return roomConnectionsForward.Where(room => room.type == preferredRoomType).ToArray()[0];
+
+            return roomConnectionsForward[Random.Range(0, roomConnectionsForward.Count)];
+        }
 
         #endregion
+
+        void Start()
+        {
+            RequestRoomCode();
+        }
     }
 }

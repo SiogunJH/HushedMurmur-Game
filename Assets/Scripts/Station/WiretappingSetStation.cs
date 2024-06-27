@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,7 +25,6 @@ public class WiretappingSetStation : MonoBehaviour
     public UnityEvent<bool, string> OnStationStatusChange;
 
     [SerializeField] bool isActive = false;
-    string lettersAvailable = "BGKLOPSWX";
 
     [SerializeField] TextMeshProUGUI letterDisplay;
     [SerializeField] TextMeshProUGUI numberDisplay;
@@ -46,21 +46,24 @@ public class WiretappingSetStation : MonoBehaviour
     }
     public void ChangeLetter(bool forward)
     {
-        letterDisplay.text = lettersAvailable[(lettersAvailable.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + lettersAvailable.Length)) % lettersAvailable.Length].ToString();
+        string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
+        letterDisplay.text = letters[(letters.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + letters.Length)) % letters.Length].ToString();
 
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     public void ChangeNumber(bool forward)
     {
-        numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + 10)) % 10).ToString();
+        numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + Room.Manager.roomCodeAmountOfNumbers)) % Room.Manager.roomCodeAmountOfNumbers).ToString();
 
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     void ScrambleDisplay()
     {
-        letterDisplay.text = lettersAvailable[Random.Range(0, lettersAvailable.Length)].ToString();
+        char[] letters = EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray();
+
+        letterDisplay.text = letters[Random.Range(0, letters.Length)].ToString();
         numberDisplay.text = Random.Range(0, 10).ToString();
 
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());

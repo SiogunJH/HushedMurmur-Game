@@ -66,3 +66,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58652fef5876b604d81584001677d957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectedRoom: {fileID: 0}
