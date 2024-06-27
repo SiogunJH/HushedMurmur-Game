@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6263943589691815591
 Transform:
   m_ObjectHideFlags: 0
@@ -153,12 +153,12 @@ MonoBehaviour:
   birdType: 0
   mainTrait: 0
   secondaryTrait: 0
-  favoredRoom: 0
+  favoredRoom: 66
   initialSleepTime: 10
-  minMoveDelay: 45
-  maxMoveDelay: 60
-  minNoiseEventDelay: 5
-  maxNoiseEventDelay: 12
-  motionDetectionEvasionChance: 0.35
+  moveDelay: 60
+  moveDelayOffset: 15
+  noiseEventDelay: 5
+  noiseEventDelayOffset: 3
+  motionDetectionEvasionChance: 0.25
   motionDetectionEvasionLimit: 3
   location: {fileID: 0}

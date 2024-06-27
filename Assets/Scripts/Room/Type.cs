@@ -2,28 +2,14 @@ namespace Room
 {
     public enum Type
     {
-        Bathroom,
-        Bedroom,
-        Balcony,
-
-        Garage,
-        Gym,
-        Greenhouse,
-
-        Kitchen, // SPECIAL
-
-        Lounge,
-        Library,
-        Laundry,
-
-        Observatory,
-        Office,
-
-        Pantry, // SPECIAL
-
-        Storage,
-        Sauna,
-
-        Workshop, // SPECIAL
+        Bedroom = 'B', //Non-Special
+        Greenhouse = 'G',
+        Kitchen = 'K',
+        Library = 'L',
+        Office = 'O', // Non-Special
+        Pantry = 'P',
+        Storage = 'S', // Non-Special
+        Toilet = 'T', // Non-Special
+        Workshop = 'W',
     }
 }

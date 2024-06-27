@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,27 +17,32 @@ namespace Room
 
             //One time setup of a Singleton
             else Instance = this;
-
-            PreStart();
         }
 
         #endregion
 
-        private Controller[] allRooms;
-        private const string ROOM_OBJECT_TAG = "Room";
-
-        void PreStart()
-        {
-            allRooms = GameObject.FindGameObjectsWithTag(ROOM_OBJECT_TAG)
-                .Select(obj => obj.GetComponent<Controller>())
-                .Where(component => component != null)
-                .ToArray();
-        }
+        HashSet<Controller> allRooms = new();
 
         public Controller[] GetRoomsByTag(Tag tag)
             => allRooms.Where(room => room.tags.Contains(tag)).ToArray();
 
         public Controller[] GetUnoccupiedRooms()
             => allRooms.Where(room => room.GetOccupants().Count == 0).ToArray();
+
+        public static int roomCodeAmountOfNumbers = 10;
+
+        public void GenerateRoomCode(Controller room)
+        {
+            string newCode;
+            char letter = (char)room.type;
+
+            do newCode = $"{letter}{Random.Range(0, roomCodeAmountOfNumbers)}";
+            while (allRooms.Select(room => room.roomCode).Contains(newCode));
+
+            room.roomCode = newCode;
+            allRooms.Add(room);
+        }
+
+
     }
 }

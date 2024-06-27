@@ -7,26 +7,29 @@ namespace Bird
 {
     public class Controller : MonoBehaviour
     {
+
         [SerializeField] public Type birdType;
 
+        [Header("Traits and Preferences")]
         [Space, SerializeField] Trait mainTrait;
         [SerializeField] Trait secondaryTrait;
         [SerializeField] Room.Type favoredRoom;
 
-        int commonNoiseWeight = 12;
-        int globalNoiseWeight = 2;
-        int mainTraitWeight = 2;
-        int secondaryTraitWeight = 1;
+        int commonNoiseWeight = 120;
+        int globalNoiseWeight = 20;
+        int mainTraitWeight = 20;
+        int secondaryTraitWeight = 10;
 
+        [Header("Statistics")]
         [Space, SerializeField] float initialSleepTime = 10;
 
-        [Space, SerializeField] float minMoveDelay = 45;
-        [SerializeField] float maxMoveDelay = 60;
+        [Space, SerializeField] float moveDelay = 60;
+        [SerializeField] float moveDelayOffset = 15;
 
-        [Space, SerializeField] float minNoiseEventDelay = 2;
-        [SerializeField] float maxNoiseEventDelay = 8;
+        [Space, SerializeField] float noiseEventDelay = 5;
+        [SerializeField] float noiseEventDelayOffset = 3;
 
-        [Space, SerializeField] float motionDetectionEvasionChance = 0.35f;
+        [Space, SerializeField] float motionDetectionEvasionChance = 0.25f;
         [SerializeField] public float motionDetectionEvasionLimit = 3;
 
         [HideInInspector] public Room.Controller location;
@@ -39,12 +42,10 @@ namespace Bird
         const string WAKE_UP = "WakeUp";
         void WakeUp()
         {
-            Debug.Log($"{gameObject.name} has woken up!");
-
             MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
 
-            Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
-            Invoke(TRIGGER_MOVE, minMoveDelay + Random.Range(0, maxMoveDelay - minMoveDelay));
+            Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
+            Invoke(TRIGGER_MOVE, Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset));
         }
 
         const string TRIGGER_NOISE_EVENT = "TriggerNoiseEvent";
@@ -75,7 +76,7 @@ namespace Bird
 
 
             // Reinvoke
-            Invoke(TRIGGER_NOISE_EVENT, minNoiseEventDelay + Random.Range(0, maxNoiseEventDelay - minNoiseEventDelay));
+            Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
         }
 
         void HandleTraitNoiseEvent(Trait trait)
@@ -130,7 +131,7 @@ namespace Bird
             MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
 
             // Reinvoke
-            Invoke(TRIGGER_MOVE, minMoveDelay + Random.Range(0, maxMoveDelay - minMoveDelay));
+            Invoke(TRIGGER_MOVE, Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset));
         }
 
         public bool TryToEvadeDetection()
@@ -141,15 +142,12 @@ namespace Bird
             if (location != null) location.RemoveOccupant(this);
             location = newLocation;
             location.AddOccupant(this);
-
-            // Move this object to the location (debugging)
-            gameObject.transform.position = location.gameObject.transform.position;
         }
 
         public void GoNextRoom()
         {
             if (location == null) return;
-            SetLocation(location.GetNextRoom());
+            SetLocation(location.GetNextRoom(favoredRoom));
         }
 
         public void ScareAway()
