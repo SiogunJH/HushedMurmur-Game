@@ -11,9 +11,10 @@ namespace Bird
         [SerializeField] public Type birdType;
 
         [Header("Traits and Preferences")]
-        [Space, SerializeField] Trait mainTrait;
-        [SerializeField] Trait secondaryTrait;
-        [SerializeField] Room.Type favoredRoom;
+        [Space, SerializeField] public Trait mainTrait;
+        [SerializeField] public Trait secondaryTrait;
+        [SerializeField] public Room.Type favoredRoom;
+        [SerializeField] public Color repellantColor;
 
         int commonNoiseWeight = 120;
         int globalNoiseWeight = 20;
