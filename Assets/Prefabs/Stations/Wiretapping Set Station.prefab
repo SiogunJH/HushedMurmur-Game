@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4499075578313338005}
         m_TargetAssemblyTypeName: WiretappingSetStation, Assembly-CSharp
-        m_MethodName: ChangeNumber
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -134,7 +134,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  meshRenderer: {fileID: 1130194219595828323}
+  meshRenderers:
+  - {fileID: 1130194219595828323}
 --- !u!1 &883274691329721849
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +584,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  meshRenderer: {fileID: 5889525316674039296}
+  meshRenderers:
+  - {fileID: 5889525316674039296}
 --- !u!1 &3660842982872411906
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4499075578313338005}
         m_TargetAssemblyTypeName: WiretappingSetStation, Assembly-CSharp
-        m_MethodName: ChangeLetter
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -860,7 +862,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  meshRenderer: {fileID: 1918017771101504683}
+  meshRenderers:
+  - {fileID: 1918017771101504683}
 --- !u!1 &4360493938302204468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1321,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  meshRenderer: {fileID: 227193949459407386}
+  meshRenderers:
+  - {fileID: 227193949459407386}
 --- !u!1 &6109895743501975246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1693,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  meshRenderer: {fileID: 8624460201463786971}
+  meshRenderers:
+  - {fileID: 8624460201463786971}
 --- !u!1 &9206433042899084982
 GameObject:
   m_ObjectHideFlags: 0

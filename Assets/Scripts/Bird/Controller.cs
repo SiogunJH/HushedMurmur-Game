@@ -77,7 +77,7 @@ namespace Bird
             // SECONDARY TRAIT
             else
             {
-                Debug.Log("Secondary Trait Triggered!");
+                //Debug.Log("Secondary Trait Triggered!");
                 HandleTraitNoiseEvent(secondaryTrait);
             }
 
