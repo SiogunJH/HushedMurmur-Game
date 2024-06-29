@@ -147,7 +147,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: c3802be9ba567ef4aa08950638ddbbff, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -501,7 +501,6 @@ MonoBehaviour:
   gravity: -9.8
   minNegativeVerticalVelocity: -2
   controller: {fileID: 7178749940374722288}
-  playerInteract: {fileID: 8369214613958022831}
 --- !u!114 &7465564020053825881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,4 +678,3 @@ MonoBehaviour:
   mouseYSensitivity: 9
   mouseSensitivityModifier: 1
   playerRoot: {fileID: 7397120588207391981}
-  playerInteract: {fileID: 8369214613958022831}
