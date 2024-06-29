@@ -13,7 +13,6 @@ public class PlayerLook : MonoBehaviour
     Vector3 originalPosition;
 
     [Header("Other"), SerializeField] Transform playerRoot;
-    [SerializeField] PlayerInteract playerInteract;
     float xRotation = 0;
 
     // Start is called before the first frame update
@@ -59,8 +58,5 @@ public class PlayerLook : MonoBehaviour
 
         playerRoot.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-
-        // Search for interactibles
-        playerInteract.RaycastForInteractable();
     }
 }

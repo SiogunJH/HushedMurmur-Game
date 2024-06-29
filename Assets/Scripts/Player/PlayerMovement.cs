@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Other")]
     [SerializeField]
     CharacterController controller;
-    [SerializeField]
-    PlayerInteract playerInteract;
 
     Vector2 movementInput;
     Vector3 velocity;
@@ -53,8 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply movement
         controller.Move(velocity * Time.deltaTime);
-
-        if (velocity.x != 0 || velocity.z != 0) playerInteract.RaycastForInteractable();
     }
 
     // On Movement event
