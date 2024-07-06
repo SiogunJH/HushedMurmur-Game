@@ -17,8 +17,8 @@ namespace Bird
         [SerializeField] public Color repellantColor;
 
         int commonNoiseWeight = 120;
-        int globalNoiseWeight = 20;
-        int mainTraitWeight = 20;
+        int globalNoiseWeight = 0;
+        int mainTraitWeight = 15;
         int secondaryTraitWeight = 10;
 
         [Header("Statistics")]
@@ -30,7 +30,7 @@ namespace Bird
         [Space, SerializeField] float noiseEventDelay = 5;
         [SerializeField] float noiseEventDelayOffset = 3;
 
-        [Space, SerializeField] float motionDetectionEvasionChance = 0.25f;
+        [Space, SerializeField] float motionDetectionEvasionChance = 0f;
         [SerializeField] public float motionDetectionEvasionLimit = 3;
 
         [HideInInspector] public Room.Controller location;
@@ -43,7 +43,7 @@ namespace Bird
         const string WAKE_UP = "WakeUp";
         void WakeUp()
         {
-            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
+            MotionDetectionStation.Instance.OnMotionDetectionTrigger?.Invoke(this);
 
             Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
             Invoke(TRIGGER_MOVE, Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset));
@@ -55,18 +55,20 @@ namespace Bird
             int totalWeight = mainTraitWeight + secondaryTraitWeight + commonNoiseWeight + globalNoiseWeight;
 
             float randWeight = Random.Range(0f, totalWeight);
+            AudioClip noise;
 
             // COMMON NOISE
             if (randWeight < commonNoiseWeight)
             {
-                var noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
+                noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
                 WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
             }
 
             // GLOBAL NOISE
             else if (randWeight - commonNoiseWeight < globalNoiseWeight)
             {
-                var noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
+                noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
+                WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                 VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
             }
 
@@ -77,7 +79,6 @@ namespace Bird
             // SECONDARY TRAIT
             else
             {
-                //Debug.Log("Secondary Trait Triggered!");
                 HandleTraitNoiseEvent(secondaryTrait);
             }
 
@@ -86,7 +87,7 @@ namespace Bird
             Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
         }
 
-        void HandleTraitNoiseEvent(Trait trait)
+        AudioClip HandleTraitNoiseEvent(Trait trait)
         {
             AudioClip noise;
             switch (trait)
@@ -117,10 +118,12 @@ namespace Bird
                     break;
 
                 default:
+                    noise = null;
                     Debug.LogWarning($"Unhandled trait: {trait}");
                     break;
 
             }
+            return noise;
         }
 
         const string TRIGGER_MOVE = "TriggerMove";
@@ -159,12 +162,12 @@ namespace Bird
 
         public void ScareAway()
         {
-            Destroy(gameObject);
+            Manager.Instance.RemoveBird(gameObject);
         }
 
         void Attack()
         {
-            Gameplay.Manager.Instance.Lose();
+            Gameplay.Manager.Instance.OnDefeat.Invoke();
         }
     }
 }

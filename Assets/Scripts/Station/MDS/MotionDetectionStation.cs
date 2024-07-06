@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,15 +21,17 @@ public class MotionDetectionStation : MonoBehaviour
     #endregion
 
     [SerializeField] public UnityEvent<Bird.Controller> OnMotionDetectionTrigger;
-    float failureChance = 0.2f;
+    float failureChance = 0f;
     float failureLimit = 3;
 
-    [SerializeField] MotionDetectionStationScreen MDSScreen;
     [SerializeField] AudioSource audioSource;
+
+    [SerializeField] TextMeshProUGUI tmpText;
+    [SerializeField] int maxAmountOfLines = 8;
 
     void Start()
     {
-        MDSScreen.ClearAll();
+        tmpText.text = "Admin> run MDS";
     }
 
     public void ProcessMovementAlert(Bird.Controller bird)
@@ -56,6 +59,17 @@ public class MotionDetectionStation : MonoBehaviour
     void SendMovementAlert(string roomID)
     {
         audioSource.Play();
-        MDSScreen.PushAlert($"> Motion in {roomID}");
+        PushMessage($"MDS> Motion in {roomID}");
+    }
+
+    void PushMessage(string message)
+    {
+        if (tmpText.GetAmountOfLineBreaks() >= maxAmountOfLines)
+        {
+            string[] lines = tmpText.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.None);
+            tmpText.text = string.Join(System.Environment.NewLine, lines, 1, lines.Length - 1);
+        }
+
+        tmpText.text += $"\n{message}";
     }
 }

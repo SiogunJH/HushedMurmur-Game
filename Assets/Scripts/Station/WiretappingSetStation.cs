@@ -24,9 +24,13 @@ public class WiretappingSetStation : MonoBehaviour
     public UnityEvent<AudioClip, Room.Controller> OnNewAudioRequest;
     public UnityEvent<bool, string> OnStationStatusChange;
 
-    [SerializeField] bool isActive = false;
+    bool isActive = false;
 
-    [SerializeField] TextMeshProUGUI letterDisplay;
+    [Space, SerializeField] AudioClip[] enableSound;
+    [Space, SerializeField] AudioClip[] disableSound;
+    [Space, SerializeField] AudioClip[] buttonClick;
+
+    [Space, SerializeField] TextMeshProUGUI letterDisplay;
     [SerializeField] TextMeshProUGUI numberDisplay;
 
     [SerializeField] Transform audioSpawnPosition;
@@ -42,6 +46,9 @@ public class WiretappingSetStation : MonoBehaviour
         isActive = !isActive;
         headsetObject.SetActive(!isActive);
 
+        if (isActive) AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[0], audioSpawnPosition.position, "Pick up Headset");
+        else AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[0], audioSpawnPosition.position, "Put away Headset");
+
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
     public void ChangeLetter(bool forward)
@@ -49,12 +56,16 @@ public class WiretappingSetStation : MonoBehaviour
         string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
         letterDisplay.text = letters[(letters.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + letters.Length)) % letters.Length].ToString();
 
+        AudioSourceExtensions.PlayOneTimeAudio(this, buttonClick[0], audioSpawnPosition.position, "Button Click");
+
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     public void ChangeNumber(bool forward)
     {
         numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + Room.Manager.roomCodeAmountOfNumbers)) % Room.Manager.roomCodeAmountOfNumbers).ToString();
+
+        AudioSourceExtensions.PlayOneTimeAudio(this, buttonClick[0], audioSpawnPosition.position, "Button Click");
 
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }

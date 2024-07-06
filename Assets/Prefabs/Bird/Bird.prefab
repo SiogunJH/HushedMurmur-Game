@@ -154,11 +154,12 @@ MonoBehaviour:
   mainTrait: 0
   secondaryTrait: 0
   favoredRoom: 66
+  repellantColor: {r: 0, g: 0, b: 0, a: 0}
   initialSleepTime: 10
   moveDelay: 60
   moveDelayOffset: 15
   noiseEventDelay: 5
   noiseEventDelayOffset: 3
-  motionDetectionEvasionChance: 0.25
+  motionDetectionEvasionChance: 0
   motionDetectionEvasionLimit: 3
   location: {fileID: 0}

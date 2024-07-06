@@ -57,20 +57,31 @@ MonoBehaviour:
   - {fileID: 2554044940799074561, guid: 96302beecfbe395438dbe8db5abcb5b0, type: 3}
   birdCage: {fileID: 8215639047836366365}
   commonNoise:
-  - {fileID: 8300000, guid: 1a218aefdabb44e40bc4fbb09346bd92, type: 3}
-  - {fileID: 8300000, guid: b07772c1060758f4a998ba4677a7ffae, type: 3}
-  - {fileID: 8300000, guid: aa1c3abc85b76ed458d27ebd6e3cc7e3, type: 3}
+  - {fileID: 8300000, guid: ca9f553da49d7f04697f796c76564a93, type: 3}
+  - {fileID: 8300000, guid: 27dbfd5e7ea8b8f47bb0acf023e6222d, type: 3}
+  - {fileID: 8300000, guid: 735be1a9613b158499df6d14342c2131, type: 3}
+  - {fileID: 8300000, guid: 1223254ab89c3dc4287ec0f91484200a, type: 3}
+  - {fileID: 8300000, guid: e29fbf625d901f24c91c63788d7fe44b, type: 3}
+  - {fileID: 8300000, guid: 6bc3f9b8f995feb499432ab229ee0012, type: 3}
+  - {fileID: 8300000, guid: 23eb5430876ea804d926c0c8aa629c80, type: 3}
+  - {fileID: 8300000, guid: ed2fd3df5096237449af82b8874b835a, type: 3}
+  - {fileID: 8300000, guid: 4f8fdfc79aa6af843abf4970c206f60d, type: 3}
+  - {fileID: 8300000, guid: ef9a51dfb7e11684287aad5c8bc1c1de, type: 3}
+  - {fileID: 8300000, guid: 79c42beb9953c6a4e8a28f30cd95af34, type: 3}
   globalNoise:
-  - {fileID: 8300000, guid: b69ab26c0e2745646977d7f600d32e99, type: 3}
-  - {fileID: 8300000, guid: 1b68f582646358e43af465e8499fb571, type: 3}
-  - {fileID: 8300000, guid: 0bbdf9f5fc8ade149869e0dc315ded7f, type: 3}
+  - {fileID: 8300000, guid: 1cd897f1069f00549be57b81d144b9ad, type: 3}
   clumsyTraitNoise:
-  - {fileID: 8300000, guid: c79032fb003c4a24396d6e8b30709e06, type: 3}
+  - {fileID: 8300000, guid: 3c7d8433d1418a2478b3440ef2a0dc46, type: 3}
+  - {fileID: 8300000, guid: 9daacab041b69374591e9695b2d629a8, type: 3}
+  - {fileID: 8300000, guid: ab89d735f096f3f47a00ae816a5bd0a6, type: 3}
   heavyTraitNoise:
-  - {fileID: 8300000, guid: 290bb8f47ef7d2a4192b48437d8fa52c, type: 3}
+  - {fileID: 8300000, guid: 97e46d3be93428c4da797068a3aa41bf, type: 3}
   droolingTraitNoise:
-  - {fileID: 8300000, guid: f530d6c3cb0492f498be84f2bdfb8088, type: 3}
+  - {fileID: 8300000, guid: 54cc577c2bc0c8844bf6ceb4372c2345, type: 3}
+  - {fileID: 8300000, guid: 4e30b6c7a082f9746a14505500dc0745, type: 3}
+  - {fileID: 8300000, guid: 1a007be006b13034c8a30de2f1bbbb89, type: 3}
+  - {fileID: 8300000, guid: 674a90e2a80a44d42bda234e728acc97, type: 3}
   brutalTraitNoise:
-  - {fileID: 8300000, guid: 10d08ae9c237603488f0f5cdf6d14fcc, type: 3}
+  - {fileID: 8300000, guid: 6c21577aa2200c041a466359bfc876f8, type: 3}
   speakingTraitNoise:
-  - {fileID: 8300000, guid: ecbabcdc3b4ecb540a7811bc68157743, type: 3}
+  - {fileID: 8300000, guid: a8f2d8ef059426f4eb991cac5e74cd99, type: 3}
