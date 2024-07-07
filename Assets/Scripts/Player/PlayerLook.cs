@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerLook : MonoBehaviour
 {
     [Header("Sensitivity Settings")]
-    [SerializeField] float mouseXSensitivity = 20;
-    [SerializeField] float mouseYSensitivity = 20;
+    [SerializeField] public static float mouseXSensitivity = 20;
+    [SerializeField] public static float mouseYSensitivity = 20;
     [SerializeField] public float mouseSensitivityModifier = 1;
 
     Vector3 originalPosition;

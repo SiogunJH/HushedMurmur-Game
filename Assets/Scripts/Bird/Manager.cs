@@ -56,6 +56,14 @@ namespace Bird
             return spawnedBird;
         }
 
+        public void RemoveBird(GameObject bird)
+        {
+            activeBirds.Remove(bird);
+            Destroy(bird);
+
+            if (activeBirds.Count == 0) Gameplay.Manager.Instance.OnVictory.Invoke();
+        }
+
         #endregion
 
         #region Noise Events

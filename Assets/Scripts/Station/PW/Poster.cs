@@ -17,10 +17,10 @@ public class Poster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        birdName.text = Enum.GetName(typeof(Bird.Type), bird.birdType);
+        birdName.text = Enum.GetName(typeof(Bird.Type), bird.birdType).ToUpper();
         repellant.color = bird.repellantColor;
-        mainTrait.text = Enum.GetName(typeof(Bird.Trait), bird.mainTrait);
-        secondaryTrait.text = Enum.GetName(typeof(Bird.Trait), bird.secondaryTrait);
-        favoredRoom.text = Enum.GetName(typeof(Room.Type), bird.favoredRoom);
+        mainTrait.text = Enum.GetName(typeof(Bird.Trait), bird.mainTrait).ToUpper();
+        secondaryTrait.text = Enum.GetName(typeof(Bird.Trait), bird.secondaryTrait).ToUpper();
+        favoredRoom.text = Enum.GetName(typeof(Room.Type), bird.favoredRoom).ToUpper();
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Gameplay
@@ -22,6 +24,19 @@ namespace Gameplay
 
         #endregion
 
+        public UnityEvent OnVictory;
+        public UnityEvent OnDefeat;
+
+
+        [SerializeField] TextMeshProUGUI winMessage;
+        [SerializeField] TextMeshProUGUI loseMessage;
+
+        public void ChangeSensitivity(float value)
+        {
+            PlayerLook.mouseXSensitivity = Mathf.Clamp(PlayerLook.mouseXSensitivity + value, 0.1f, 100);
+            PlayerLook.mouseYSensitivity = Mathf.Clamp(PlayerLook.mouseYSensitivity + value, 0.1f, 100);
+        }
+
         public void Easy()
         {
             var birdOne = Bird.Manager.Instance.SpawnBird().GetComponent<Bird.Controller>();
@@ -32,6 +47,18 @@ namespace Gameplay
         }
 
         public void Lose()
+        {
+            loseMessage.gameObject.SetActive(true);
+            Invoke("Reload", 10);
+        }
+
+        public void Win()
+        {
+            winMessage.gameObject.SetActive(true);
+            Invoke("Reload", 10);
+        }
+
+        void Reload()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

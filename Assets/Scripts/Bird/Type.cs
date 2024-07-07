@@ -8,7 +8,7 @@ namespace Bird
         Albatros,
         Hawk,
         Crow,
-        Cock,
+        Rooster,
         Parrot,
         Owl,
         Penguin
