@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 108001958623992890}
   - component: {fileID: 2063872363458625048}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Computer On/Off Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
