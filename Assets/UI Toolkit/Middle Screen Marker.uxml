@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1;">
-        <ui:VisualElement name="middle-screen-marker" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Middle%20Screen%20Marker.png?fileID=21300000&amp;guid=9302560530f720243ae95cf325dd4a2c&amp;type=3#Middle Screen Marker&apos;); -unity-background-scale-mode: scale-to-fit; width: 25px; height: auto; align-items: auto; justify-content: flex-start; align-self: center; flex-direction: column; -unity-background-image-tint-color: rgba(255, 255, 255, 0.39); transition-duration: 0.5s;" />
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="middle-screen-marker" picking-mode="Ignore" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Middle%20Screen%20Marker.png?fileID=21300000&amp;guid=9302560530f720243ae95cf325dd4a2c&amp;type=3#Middle Screen Marker&apos;); -unity-background-scale-mode: scale-to-fit; width: 25px; height: auto; align-items: auto; justify-content: flex-start; align-self: center; flex-direction: column; -unity-background-image-tint-color: rgba(255, 255, 255, 0.39);" />
     </ui:VisualElement>
 </ui:UXML>

@@ -34,11 +34,10 @@ public class PlayerLook : MonoBehaviour
 
     #endregion
 
-    void Start()
+    void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         originalPosition = transform.localPosition;
-
     }
 
     // Shake coroutine
