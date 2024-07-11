@@ -67,7 +67,7 @@ public class PlayerScreech : MonoBehaviour
 
         // Slow down player movement and mouse sensitivity
         playerMovement.walkSpeedModifier = screechMovementModifier;
-        playerLook.mouseSensitivityModifier = screechMouseSensitivityModifier;
+        PlayerLook.mouseSensitivityModifier = screechMouseSensitivityModifier;
 
         // Apply Screech Effect Volume effects
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
@@ -92,7 +92,7 @@ public class PlayerScreech : MonoBehaviour
 
         // Revert player movement speed and mouse sensitivity
         playerMovement.walkSpeedModifier = 1;
-        playerLook.mouseSensitivityModifier = 1;
+        PlayerLook.mouseSensitivityModifier = 1;
 
         // Remove Screech Effect Volume effects
         MoveTowardsPoint mtp = screechEffectVolume.AddComponent<MoveTowardsPoint>();
