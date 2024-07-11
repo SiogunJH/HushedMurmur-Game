@@ -28,7 +28,6 @@ public class WiretappingSetStation : MonoBehaviour
 
     [Space, SerializeField] AudioClip[] enableSound;
     [Space, SerializeField] AudioClip[] disableSound;
-    [Space, SerializeField] AudioClip[] buttonClick;
 
     [Space, SerializeField] TextMeshProUGUI letterDisplay;
     [SerializeField] TextMeshProUGUI numberDisplay;
@@ -56,16 +55,12 @@ public class WiretappingSetStation : MonoBehaviour
         string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
         letterDisplay.text = letters[(letters.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + letters.Length)) % letters.Length].ToString();
 
-        AudioSourceExtensions.PlayOneTimeAudio(this, buttonClick[0], audioSpawnPosition.position, "Button Click");
-
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
 
     public void ChangeNumber(bool forward)
     {
         numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + Room.Manager.roomCodeAmountOfNumbers)) % Room.Manager.roomCodeAmountOfNumbers).ToString();
-
-        AudioSourceExtensions.PlayOneTimeAudio(this, buttonClick[0], audioSpawnPosition.position, "Button Click");
 
         OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
     }
