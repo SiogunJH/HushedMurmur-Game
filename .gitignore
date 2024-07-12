@@ -72,3 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Assets/Shaders/Samples
 Assets/Shaders/Samples.meta
+/Build Archives
