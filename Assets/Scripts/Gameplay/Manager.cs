@@ -24,6 +24,11 @@ namespace Gameplay
 
         #endregion
 
+        void OnEnable()
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         public UnityEvent OnVictory;
         public UnityEvent OnDefeat;
 
@@ -58,7 +63,7 @@ namespace Gameplay
             Invoke("Reload", 10);
         }
 
-        void Reload()
+        public static void Reload()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

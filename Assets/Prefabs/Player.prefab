@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 5409557740019232742}
   - component: {fileID: 7465564020053825881}
   - component: {fileID: 8369214613958022831}
+  - component: {fileID: 1628339866092669751}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -406,6 +407,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 041e1e74-4e83-4ef9-8af4-541d114f8704
     m_ActionName: Player Controls/Interact 1[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1628339866092669751}
+        m_TargetAssemblyTypeName: PlayerQuit, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 98b5647a-e486-4256-8c08-10095b66ab80
+    m_ActionName: Player Controls/Quit[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player Controls
@@ -563,6 +580,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7a15b0687f19fe49b0413e2df21203b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1628339866092669751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156802555282385220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b0ba734a689b440816a59d564d8438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7481667445745203997
