@@ -6,21 +6,38 @@ using UnityEngine.InputSystem;
 public class PlayerLook : MonoBehaviour
 {
     [Header("Sensitivity Settings")]
-    [SerializeField] public static float mouseXSensitivity = 20;
-    [SerializeField] public static float mouseYSensitivity = 20;
-    [SerializeField] public float mouseSensitivityModifier = 1;
+    public static float mouseXSensitivity = 4;
+    public static float mouseYSensitivity = 4;
+    public static float mouseSensitivityModifier = 1;
 
     Vector3 originalPosition;
+
+    [Header("Object Looked At Settings")]
+    [SerializeField, Range(0.5f, 3.5f), Tooltip("In meters, maximum distance from which player can detect objects and interact with them.")]
+    float maxObjectDetectionDistance = 1.5f;
 
     [Header("Other"), SerializeField] Transform playerRoot;
     float xRotation = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+
+    public static PlayerLook Instance { get; private set; }
+
+    void Awake()
+    {
+        // Destroy self, if object of this class already exists
+        if (Instance != null) Destroy(gameObject);
+
+        //One time setup of a Singleton
+        else Instance = this;
+    }
+
+    #endregion
+
+    void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         originalPosition = transform.localPosition;
-
     }
 
     // Shake coroutine
@@ -42,6 +59,16 @@ public class PlayerLook : MonoBehaviour
             // Execute once per frame
             yield return null;
         }
+    }
+
+    public GameObject GetObjectLookedAt()
+    {
+        var rayOrigin = transform.position;
+        var rayDirection = transform.forward;
+
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, maxObjectDetectionDistance)) return hit.collider.gameObject;
+        else return null;
     }
 
     // On LookAround event

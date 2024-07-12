@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4714957937241138856}
   - component: {fileID: 877701344607194051}
   - component: {fileID: 242969662390802615}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Syringe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,11 +125,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  meshRenderers:
-  - {fileID: 164383531258452448}
-  - {fileID: 4163162585403990489}
-  - {fileID: 1473103302339542513}
-  - {fileID: 7026037762944795574}
 --- !u!1 &5410978540219397315
 GameObject:
   m_ObjectHideFlags: 0

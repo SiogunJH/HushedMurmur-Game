@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/button.uss?fileID=7433441132597879392&amp;guid=5100779bc067b9f48a6341b61aedbeaa&amp;type=3#button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="empty" style="flex-grow: 1; width: 60%; flex-direction: column;" />
+        <ui:VisualElement name="main-menu" style="flex-grow: 1; width: 30%; margin-top: 5%; margin-right: 5%; margin-bottom: 5%; margin-left: 5%; align-items: stretch; justify-content: center;">
+            <ui:Label tabindex="-1" text="The Hurmur" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="title-text" />
+            <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="play-button" class="menu-button" />
+            <ui:Button text="Select Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level-selection-button" class="menu-button" />
+            <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options-button" class="menu-button" />
+            <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quit-button" class="menu-button" />
+            <ui:Label tabindex="-1" text="v0.3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="version" class="version-text" style="color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
