@@ -35,18 +35,24 @@ public static class AudioSourceExtensions
     /// <param name="name">Name of a created <i>GameObject</i></param>
     /// <param name="spatialBlend">[0,1] How much audio is treated as 3D source.</param>
     /// <returns><i>AudioSource</i> component of a created <i>GameObject</i></returns>
-    public static AudioSource PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position, string name = "One-Time Audio Player", float spatialBlend = 1)
+    public static AudioSource PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position, string name = "One-Time Audio Player", GameObject parent = null)
     {
+        // create new game object
         var obj = new GameObject(name);
         obj.transform.position = position;
 
+        // attach an audio source component to created game object and play provided clip
         var audioSource = obj.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
-        audioSource.spatialBlend = Mathf.Clamp(spatialBlend, 0, 1);
         audioSource.Play();
 
+        // attach game object to a parent, if provided with one
+        if (parent != null) obj.transform.SetParent(parent.transform, true);
+
+        // start coroutine
         executor.StartCoroutine(DestroyAfterPlaying(audioSource));
 
+        // return audio source component
         return audioSource;
     }
 

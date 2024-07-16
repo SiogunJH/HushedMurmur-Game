@@ -1,0 +1,7 @@
+**Followers of Murmur** is a religious organization led by the [[Raven Lady]], along with her subordinates, the [[Nest Sentinel|Nest Sentinels]]. Members of this cult profess the lady as their prophet, and believe that by stripping away their humanity with [[Mutations|mutations]] she offers, they will achieve salvation.
+
+Followers are provided with food, shelter and companionship, in exchange for their loyalty and donations - aside from professing their faith, by taking part in sermons, they all live normal lives, have or are provided with job opportunities, but are forbidden to attach themselves to people outside of the cult. For many of them, Followers of Murmur is their only family.
+
+Higher up in the hierarchy, are enforcers of cult's laws, known as the [[Nest Sentinel|Nest Sentinels]]. They are the followers, that gave the cult all they could, and now are a step closer to salvation. The amount of mutations they were subjected to, changed their appearance so much, they no longer appear as human, yet are fully sentient. Due to this, they are not allowed to leave cult's grounds, unless they are ordered to, by [[Raven Lady|the lady]]. The amount of sentinels is always eleven.
+
+The [[Raven Lady]] is the prophet of Followers of Murmur. She's the one to preach a sermon, and the one to choose the next [[Nest Sentinel|sentinels]]. She provides the followers with [[Mutations]] and hopes for salvation.

@@ -1,0 +1,3 @@
+**Raven Lady** or just **Lady**, is the leader of [[Followers of Murmur]] and a scientist. Before forsaking her identity to form a cult, she was know as *Lisa Remmins*.
+
+Leading a cult provides her with willing test subjects, she can experiment on, to perfect her [[Mutations|mutagens]]. She aims to create a mutagen, that will provide an ordinary human with enhanced senses, stronger immune system, and several additional features, that would benefit the quality of human's life.

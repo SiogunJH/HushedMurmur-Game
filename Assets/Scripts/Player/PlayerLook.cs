@@ -18,6 +18,8 @@ public class PlayerLook : MonoBehaviour
 
     [Header("Other"), SerializeField] Transform playerRoot;
     float xRotation = 0;
+    const float xRotationMin = -80;
+    const float xRotationMax = 80;
 
     #region Singleton
 
@@ -81,7 +83,7 @@ public class PlayerLook : MonoBehaviour
         float mouseY = value.y * mouseYSensitivity * mouseSensitivityModifier * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -80, 80);
+        xRotation = Mathf.Clamp(xRotation, xRotationMin, xRotationMax);
 
         playerRoot.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);

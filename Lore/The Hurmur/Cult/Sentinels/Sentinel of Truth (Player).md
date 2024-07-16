@@ -1,0 +1,3 @@
+Once a loyal follower of the lady, now turned hostile towards her and other sentinels. Sentinel of Truth is the only sentinel, who chose to abandon all they believed in and all the cult has provided them with, once learning how the mutations were created.
+
+This betrayal forced them to flee the cult's grounds and seek shelter in an abandoned [[The Lady's College|college]], which was once a school to the lady.
