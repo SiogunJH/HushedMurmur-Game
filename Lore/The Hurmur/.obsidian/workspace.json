@@ -1,0 +1,158 @@
+{
+  "main": {
+    "id": "b4903f722cb073ab",
+    "type": "split",
+    "children": [
+      {
+        "id": "ff3cab848190a13e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1cc7bd7e157f5d12",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "316d5df0dd341128",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b75f2fc08390b80",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b8c2ab81ba21823e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "71c86834c85a5262",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a5bf4610640748cf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7156e55774487d16",
+    "type": "split",
+    "children": [
+      {
+        "id": "9133740c5663a9e8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f0fd9994ee4f230c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5ffcc1b669b726bd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5990a0f6a443c69d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d9604dfff0a95515",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "1cc7bd7e157f5d12",
+  "lastOpenFiles": [
+    "Cult/Followers of Murmur.md",
+    "Cult/Sentinels/Nest Sentinel.md",
+    "Untitled.canvas",
+    "Cult/Sentinels/Sentinel of Truth (Player).md",
+    "Cult/Raven Lady.md",
+    "Cult/Mutations.md",
+    "The Lady's College.md",
+    "Cult/Sentinels",
+    "Nest Sentinels.md",
+    "(Player).md",
+    "Cult",
+    "Characters",
+    "create a link.md",
+    "Welcome.md"
+  ]
+}
