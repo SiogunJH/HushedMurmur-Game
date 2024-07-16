@@ -32,37 +32,54 @@ public class WiretappingSetStation : MonoBehaviour
     [Space, SerializeField] TextMeshProUGUI letterDisplay;
     [SerializeField] TextMeshProUGUI numberDisplay;
 
-    [SerializeField] Transform audioSpawnPosition;
     [SerializeField] GameObject headsetObject;
+    Vector3 headsetPositionOnTable;
+    Quaternion headsetRotationOnTable;
+
+    string WiretappedRoomCode { get => letterDisplay.text + numberDisplay.text; }
 
     void Start()
     {
         ScrambleDisplay();
+
+        headsetPositionOnTable = headsetObject.transform.position;
+        headsetRotationOnTable = headsetObject.transform.rotation;
     }
 
     public void ToggleOnOff()
     {
         isActive = !isActive;
-        headsetObject.SetActive(!isActive);
 
-        if (isActive) AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[0], audioSpawnPosition.position, "Pick up Headset");
-        else AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[0], audioSpawnPosition.position, "Put away Headset");
+        if (isActive)
+        {
+            AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[0], headsetObject.transform.position, "Pick up Headset", headsetObject);
 
-        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
+            headsetObject.transform.position = PlayerLook.Instance.gameObject.transform.position;
+            headsetObject.transform.rotation = PlayerLook.Instance.gameObject.transform.rotation;
+        }
+        else
+        {
+            headsetObject.transform.position = headsetPositionOnTable;
+            headsetObject.transform.rotation = headsetRotationOnTable;
+
+            AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[0], headsetObject.transform.position, "Put away Headset", headsetObject);
+        }
+
+        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
     }
     public void ChangeLetter(bool forward)
     {
         string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
         letterDisplay.text = letters[(letters.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + letters.Length)) % letters.Length].ToString();
 
-        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
+        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
     }
 
     public void ChangeNumber(bool forward)
     {
         numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + Room.Manager.roomCodeAmountOfNumbers)) % Room.Manager.roomCodeAmountOfNumbers).ToString();
 
-        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
+        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
     }
 
     void ScrambleDisplay()
@@ -72,21 +89,19 @@ public class WiretappingSetStation : MonoBehaviour
         letterDisplay.text = letters[Random.Range(0, letters.Length)].ToString();
         numberDisplay.text = Random.Range(0, 10).ToString();
 
-        OnStationStatusChange?.Invoke(isActive, GetWiretappedRoomCode());
+        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
     }
-
-    string GetWiretappedRoomCode() => letterDisplay.text + numberDisplay.text;
 
     public void PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
     {
-        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioSpawnPosition.position, sourceRoom.roomCode);
+        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, headsetObject.transform.position, name: sourceRoom.roomCode, parent: headsetObject);
 
         audioSource.spatialBlend = 1.0f;
         audioSource.minDistance = 5.0f;
         audioSource.maxDistance = 10.0f;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
-        if (!isActive || sourceRoom.roomCode != GetWiretappedRoomCode()) audioSource.mute = true;
+        if (!isActive || sourceRoom.roomCode != WiretappedRoomCode) audioSource.mute = true;
 
         UnityAction<bool, string> listener = null;
         listener = (isActive, wiretappedRoom) =>
