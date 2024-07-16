@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(1, 5), Tooltip("Walking speed, in meters per second.")]
     float walkSpeed = 2.5f;
     [SerializeField]
-    public float walkSpeedModifier = 1;
+    public static float walkSpeedModifier = 1;
     [SerializeField]
     public bool allowForMovement = true;
 
