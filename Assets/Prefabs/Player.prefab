@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 406506593467835726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -537,8 +537,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   allowForMovement: 1
-  gravity: -9.8
-  minNegativeVerticalVelocity: -2
   controller: {fileID: 7178749940374722288}
 --- !u!114 &7465564020053825881
 MonoBehaviour:
@@ -552,7 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a809877099e2eb449f23a3aea84d934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: 1
   chargeDuration: 0.8
   chargeMovementModifier: 0.2
   chargeMouseSensitivityModifier: 0.2
@@ -560,15 +557,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a63996f8b126b404d81985d4f304017a, type: 3}
   chargeCancelAudio:
   - {fileID: 8300000, guid: 5b1c5fc2cfce6b54fa658dec74627756, type: 3}
+  screechOnsetDuration: 0.1
   screechDuration: 0.6
   screechShakeMagnitude: 0.15
   screechAudio:
   - {fileID: 8300000, guid: f628b1da91fcfa34398efa9011e76dbc, type: 3}
   fullRechargeDuration: 1
   shortRechargeDuration: 0.4
-  corridorEntranceLayer:
-    serializedVersion: 2
-    m_Bits: 256
   audioSource: {fileID: 6439050275205624948}
   screechEffectVolumeProfile: {fileID: 11400000, guid: 84384bb7a3693c54fb20a70e3be1aa6e,
     type: 2}

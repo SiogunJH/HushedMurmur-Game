@@ -146,6 +146,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  disabled: 0
 --- !u!82 &7208132013843388007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -702,6 +703,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  disabled: 0
 --- !u!82 &5264515431007601658
 AudioSource:
   m_ObjectHideFlags: 0
@@ -981,6 +983,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  disabled: 0
 --- !u!82 &7677439154706637087
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1264,7 +1267,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4499075578313338005}
         m_TargetAssemblyTypeName: WiretappingSetStation, Assembly-CSharp
-        m_MethodName: PlayAudio
+        m_MethodName: PlayAudioWrapper
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1483,6 +1486,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  disabled: 0
 --- !u!1 &6109895743501975246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1869,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  disabled: 0
 --- !u!82 &6988008389126726125
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,10 +16,7 @@ namespace Bird
         [SerializeField] public Room.Type favoredRoom;
         [SerializeField] public Color repellantColor;
 
-        int commonNoiseWeight = 120;
-        int globalNoiseWeight = 0;
-        int mainTraitWeight = 15;
-        int secondaryTraitWeight = 10;
+        public (int Common, int Global, int MainTrait, int SecondaryTrait) NoiseEventWeight { get; set; } = (120, 0, 15, 10);
 
         [Header("Statistics")]
         [Space, SerializeField] public float initialSleepTime = 10;
@@ -27,53 +24,71 @@ namespace Bird
         [Space, SerializeField] float moveDelay = 60;
         [SerializeField] float moveDelayOffset = 15;
 
-        [Space, SerializeField] float noiseEventDelay = 5;
-        [SerializeField] float noiseEventDelayOffset = 3;
+        [Space, SerializeField] public float noiseDelay = 5;
+        [SerializeField] public float noiseDelayOffset = 3;
 
         [Space, SerializeField] float motionDetectionEvasionChance = 0f;
         [SerializeField] public float motionDetectionEvasionLimit = 3;
 
         [HideInInspector] public Room.Controller location;
 
+        // Coroutines
+        public Coroutine MoveCoroutine { get; private set; }
+        public Coroutine NoiseCoroutine { get; private set; }
+
         void Start()
         {
             Invoke(WAKE_UP, initialSleepTime);
         }
 
-        const string WAKE_UP = "WakeUp";
-        void WakeUp()
+        public const string WAKE_UP = "WakeUp";
+        public void WakeUp()
         {
             MotionDetectionStation.Instance.OnMotionDetectionTrigger?.Invoke(this);
 
-            Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
-            Invoke(TRIGGER_MOVE, Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset));
+            NoiseCoroutine = StartCoroutine(NoiseLogic());
+            MoveCoroutine = StartCoroutine(MoveLogic());
         }
 
-        const string TRIGGER_NOISE_EVENT = "TriggerNoiseEvent";
-        void TriggerNoiseEvent()
+        IEnumerator NoiseLogic()
         {
-            int totalWeight = mainTraitWeight + secondaryTraitWeight + commonNoiseWeight + globalNoiseWeight;
+            while (true)
+            {
+                // Wait for the next noise delay
+                var delay = Random.Range(noiseDelay - noiseDelayOffset, noiseDelay + noiseDelayOffset);
+                yield return new WaitForSeconds(delay);
+
+                // Trigger noise
+                TriggerNoiseEvent();
+            }
+        }
+
+        public void StopNoiseLogic() => StopCoroutine(NoiseCoroutine);
+
+        public void TriggerNoiseEvent()
+        {
+            int totalWeight = NoiseEventWeight.MainTrait + NoiseEventWeight.SecondaryTrait + NoiseEventWeight.Common + NoiseEventWeight.Global;
 
             float randWeight = Random.Range(0f, totalWeight);
             AudioClip noise;
 
             // COMMON NOISE
-            if (randWeight < commonNoiseWeight)
+            if (randWeight < NoiseEventWeight.Common)
             {
                 noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
                 WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
             }
 
             // GLOBAL NOISE
-            else if (randWeight - commonNoiseWeight < globalNoiseWeight)
+            else if (randWeight - NoiseEventWeight.Common < NoiseEventWeight.Global)
             {
                 noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
                 WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
-                VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
+                // VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
             }
 
             // MAIN TRAIT
-            else if (randWeight - commonNoiseWeight - globalNoiseWeight < mainTraitWeight)
+            else if (randWeight - NoiseEventWeight.Common - NoiseEventWeight.Global < NoiseEventWeight.MainTrait)
                 HandleTraitNoiseEvent(mainTrait);
 
             // SECONDARY TRAIT
@@ -81,10 +96,6 @@ namespace Bird
             {
                 HandleTraitNoiseEvent(secondaryTrait);
             }
-
-
-            // Reinvoke
-            Invoke(TRIGGER_NOISE_EVENT, Random.Range(noiseEventDelay - noiseEventDelayOffset, noiseEventDelay + noiseEventDelayOffset));
         }
 
         AudioClip HandleTraitNoiseEvent(Trait trait)
@@ -99,7 +110,8 @@ namespace Bird
 
                 case Trait.Heavy:
                     noise = Manager.Instance.heavyTraitNoise[Random.Range(0, Manager.Instance.heavyTraitNoise.Length)];
-                    VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
+                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
+                    // VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
                     break;
 
                 case Trait.Drooling:
@@ -126,23 +138,27 @@ namespace Bird
             return noise;
         }
 
-        const string TRIGGER_MOVE = "TriggerMove";
-        void TriggerMove()
+        IEnumerator MoveLogic()
         {
-            // If right before the office, attempt to attack
-            if (location.tags.Contains(Room.Tag.End))
+            while (true)
             {
-                Attack();
-                return;
+                // Wait for the next move delay
+                var delay = Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset);
+                yield return new WaitForSeconds(delay);
+
+                // If right before the office, attempt to attack
+                if (location.tags.Contains(Room.Tag.End))
+                {
+                    Attack();
+                    yield break;
+                }
+
+                // Move to the next room
+                GoNextRoom();
             }
-
-            // Move to the next room
-            GoNextRoom();
-            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
-
-            // Reinvoke
-            Invoke(TRIGGER_MOVE, Random.Range(moveDelay - moveDelayOffset, moveDelay + moveDelayOffset));
         }
+
+        public void StopMoveLogic() => StopCoroutine(MoveCoroutine);
 
         public bool TryToEvadeDetection()
             => motionDetectionEvasionLimit > 0 && Random.Range(0f, 1f) < motionDetectionEvasionChance;
@@ -158,16 +174,19 @@ namespace Bird
         {
             if (location == null) return;
             SetLocation(location.GetNextRoom(favoredRoom));
+            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
         }
 
         public void ScareAway()
         {
+            if (location != null) location.RemoveOccupant(this);
             Manager.Instance.RemoveBird(gameObject);
+            Destroy(gameObject);
         }
 
         void Attack()
         {
-            Gameplay.Manager.Instance.OnDefeat.Invoke();
+            Gameplay.Manager.Instance.OnDefeat?.Invoke();
         }
     }
 }

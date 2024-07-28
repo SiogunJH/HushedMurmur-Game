@@ -17,7 +17,8 @@ public class PlayerLook : MonoBehaviour
     float maxObjectDetectionDistance = 1.5f;
 
     [Header("Other"), SerializeField] Transform playerRoot;
-    float xRotation = 0;
+    public float yRotation { get; private set; }
+    public float xRotation { get; private set; } = 0;
     const float xRotationMin = -80;
     const float xRotationMax = 80;
 
@@ -84,8 +85,9 @@ public class PlayerLook : MonoBehaviour
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, xRotationMin, xRotationMax);
+        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         playerRoot.Rotate(Vector3.up * mouseX);
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        yRotation = playerRoot.rotation.eulerAngles.y;
     }
 }
