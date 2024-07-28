@@ -6,26 +6,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Settings")]
     [SerializeField, Range(1, 5), Tooltip("Walking speed, in meters per second.")]
     float walkSpeed = 2.5f;
     [SerializeField]
-    public static float walkSpeedModifier = 1;
-    [SerializeField]
     public bool allowForMovement = true;
+    public static float walkSpeedModifier = 1;
 
-    [Header("Gravity Settings"),]
-    [SerializeField]
+    //[Header("Gravity Settings"),]
+    //[SerializeField]
     float gravity = -9.8f;
-    [SerializeField, Tooltip("If vertical velocity were to be set to zero, because of collisions, it's instead set to this value, to keep player adjusted to the ground level.")]
+    //[SerializeField, Tooltip("If vertical velocity were to be set to zero due of collisions, it's instead set to this value, to keep player adjusted to the ground level.")]
     float minNegativeVerticalVelocity = -2;
 
-    [Header("Other")]
+    [Header("References")]
     [SerializeField]
     CharacterController controller;
 
     Vector2 movementInput;
     Vector3 velocity;
+
+    #region Singleton
+
+    public static PlayerMovement Instance { get; private set; }
+
+    void Awake()
+    {
+        // Destroy self, if object of this class already exists
+        if (Instance != null) Destroy(gameObject);
+
+        //One time setup of a Singleton
+        else Instance = this;
+    }
+
+    #endregion
 
     // Update is called once per frame
     void Update()

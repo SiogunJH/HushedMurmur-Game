@@ -59,9 +59,8 @@ namespace Bird
         public void RemoveBird(GameObject bird)
         {
             activeBirds.Remove(bird);
-            Destroy(bird);
 
-            if (activeBirds.Count == 0) Gameplay.Manager.Instance.OnVictory.Invoke();
+            if (activeBirds.Count == 0) Gameplay.Manager.Instance.OnVictory?.Invoke();
         }
 
         #endregion

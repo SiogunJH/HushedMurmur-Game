@@ -24,7 +24,7 @@ public class WiretappingSetStation : MonoBehaviour
     public UnityEvent<AudioClip, Room.Controller> OnNewAudioRequest;
     public UnityEvent<bool, string> OnStationStatusChange;
 
-    bool isActive = false;
+    public bool IsActive { get; private set; } = false;
 
     [Space, SerializeField] AudioClip[] enableSound;
     [Space, SerializeField] AudioClip[] disableSound;
@@ -36,7 +36,7 @@ public class WiretappingSetStation : MonoBehaviour
     Vector3 headsetPositionOnTable;
     Quaternion headsetRotationOnTable;
 
-    string WiretappedRoomCode { get => letterDisplay.text + numberDisplay.text; }
+    public string WiretappedRoomCode { get => letterDisplay.text + numberDisplay.text; }
 
     void Start()
     {
@@ -48,9 +48,9 @@ public class WiretappingSetStation : MonoBehaviour
 
     public void ToggleOnOff()
     {
-        isActive = !isActive;
+        IsActive = !IsActive;
 
-        if (isActive)
+        if (IsActive)
         {
             AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[0], headsetObject.transform.position, "Pick up Headset", headsetObject);
 
@@ -65,21 +65,21 @@ public class WiretappingSetStation : MonoBehaviour
             AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[0], headsetObject.transform.position, "Put away Headset", headsetObject);
         }
 
-        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
+        OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
     public void ChangeLetter(bool forward)
     {
         string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
         letterDisplay.text = letters[(letters.IndexOf(letterDisplay.text) + (forward ? 1 : -1 + letters.Length)) % letters.Length].ToString();
 
-        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
+        OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
 
     public void ChangeNumber(bool forward)
     {
         numberDisplay.text = ((int.Parse(numberDisplay.text) + (forward ? 1 : -1 + Room.Manager.roomCodeAmountOfNumbers)) % Room.Manager.roomCodeAmountOfNumbers).ToString();
 
-        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
+        OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
 
     void ScrambleDisplay()
@@ -89,28 +89,31 @@ public class WiretappingSetStation : MonoBehaviour
         letterDisplay.text = letters[Random.Range(0, letters.Length)].ToString();
         numberDisplay.text = Random.Range(0, 10).ToString();
 
-        OnStationStatusChange?.Invoke(isActive, WiretappedRoomCode);
+        OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
 
-    public void PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
+    public void PlayAudioWrapper(AudioClip audioClip, Room.Controller sourceRoom) => PlayAudio(audioClip, sourceRoom); // This bullshit will be removed as soon as I can; it's here because UnityEvent accepts only void methods
+    public (AudioSource audioSource, Coroutine coroutine) PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
     {
-        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, headsetObject.transform.position, name: sourceRoom.roomCode, parent: headsetObject);
+        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, headsetObject.transform.position, name: sourceRoom.roomCode, parent: headsetObject);
 
-        audioSource.spatialBlend = 1.0f;
-        audioSource.minDistance = 5.0f;
-        audioSource.maxDistance = 10.0f;
-        audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
+        oneTimeAudio.audioSource.spatialBlend = 1.0f;
+        oneTimeAudio.audioSource.minDistance = 5.0f;
+        oneTimeAudio.audioSource.maxDistance = 10.0f;
+        oneTimeAudio.audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
-        if (!isActive || sourceRoom.roomCode != WiretappedRoomCode) audioSource.mute = true;
+        if (!IsActive || sourceRoom.roomCode != WiretappedRoomCode) oneTimeAudio.audioSource.mute = true;
 
         UnityAction<bool, string> listener = null;
-        listener = (isActive, wiretappedRoom) =>
+        listener = (IsActive, wiretappedRoom) =>
         {
-            if (audioSource == null) OnStationStatusChange.RemoveListener(listener);
-            else if (!isActive || audioSource.gameObject.name != wiretappedRoom) audioSource.mute = true;
-            else audioSource.mute = false;
+            if (oneTimeAudio.audioSource == null) OnStationStatusChange.RemoveListener(listener);
+            else if (!IsActive || oneTimeAudio.audioSource.gameObject.name != wiretappedRoom) oneTimeAudio.audioSource.mute = true;
+            else oneTimeAudio.audioSource.mute = false;
         };
 
         OnStationStatusChange.AddListener(listener);
+
+        return oneTimeAudio;
     }
 }

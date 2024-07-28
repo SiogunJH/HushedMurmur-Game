@@ -156,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (3)
+      value: Syringe (Cock)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -251,7 +251,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (9)
+      value: Syringe (Penguin)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -346,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (8)
+      value: Syringe (Parrot)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -441,7 +441,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (10)
+      value: Syringe (Raven)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -536,7 +536,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (1)
+      value: Syringe (Albatros)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -631,7 +631,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (5)
+      value: Syringe (Flamingo)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -726,7 +726,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (4)
+      value: Syringe (Crow)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -884,7 +884,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (7)
+      value: Syringe (Owl)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -979,7 +979,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (6)
+      value: Syringe (Hawk)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1074,7 +1074,7 @@ PrefabInstance:
     - target: {fileID: 5000205619541678234, guid: 14a6fc0f56d6bdc45b76dafe2ef6167e,
         type: 3}
       propertyPath: m_Name
-      value: Syringe (2)
+      value: Syringe (Bat)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

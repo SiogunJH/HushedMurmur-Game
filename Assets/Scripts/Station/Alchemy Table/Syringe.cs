@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Syringe : MonoBehaviour
 {
     [SerializeField] Bird.Controller birdRepelled;
-
-    [Space, SerializeField] MeshRenderer fluidMeshRenderer;
+    [SerializeField] MeshRenderer fluidMeshRenderer;
+    public bool IsFull { get; private set; } = true;
     Animator animator;
 
     const string T_USE = "Use";
@@ -36,10 +37,12 @@ public class Syringe : MonoBehaviour
         PlayerScreech.birdRepelled = birdRepelled.birdType;
 
         animator.SetTrigger(T_USE);
+        IsFull = false;
     }
 
     public void Refill()
     {
         animator.SetTrigger(T_REFILL);
+        IsFull = true;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Gameplay.Manager))]
+//[CustomEditor(typeof(Gameplay.Manager))]
 public class GameplayManager_Editor : Editor
 {
     public override void OnInspectorGUI()

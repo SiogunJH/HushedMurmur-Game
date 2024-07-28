@@ -11,18 +11,17 @@ public class PlayerQuit : MonoBehaviour
     {
         if (context.started)
         {
-            StartCoroutine(TRY_TO_QUIT);
+            StartCoroutine(TryToQuit());
         }
         else if (context.canceled)
         {
-            StopCoroutine(TRY_TO_QUIT);
+            StopCoroutine(TryToQuit());
         }
     }
 
-    const string TRY_TO_QUIT = "TryToQuit";
     IEnumerator TryToQuit()
     {
         yield return new WaitForSeconds(quittingTime);
-        Gameplay.Manager.Reload();
+        Gameplay.Manager.Load(Gameplay.Manager.MAIN_MENU_SCENE_NAME);
     }
 }

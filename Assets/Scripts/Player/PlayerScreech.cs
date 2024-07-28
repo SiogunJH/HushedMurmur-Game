@@ -8,9 +8,9 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerScreech : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] ScreechStatus status = ScreechStatus.Available;
+    public static ScreechStatus Status { get; private set; } = ScreechStatus.Available;
 
+    [Header("Settings")]
     [Space, SerializeField] float chargeDuration = 0.8f;
     [SerializeField] float chargeMovementModifier = 0.2f;
     [SerializeField] float chargeMouseSensitivityModifier = 0.2f;
@@ -57,7 +57,7 @@ public class PlayerScreech : MonoBehaviour
         // Start screeching
         if (context.started)
         {
-            if (status != ScreechStatus.Available) return;
+            if (Status != ScreechStatus.Available) return;
 
             // Begin charging the screech
             ScreechInputStart();
@@ -70,7 +70,7 @@ public class PlayerScreech : MonoBehaviour
 
     void ScreechInputStart()
     {
-        status = ScreechStatus.Charging;
+        Status = ScreechStatus.Charging;
         chargeCoroutine = StartCoroutine(ScreechCharge());
     }
 
@@ -105,14 +105,14 @@ public class PlayerScreech : MonoBehaviour
 
         // Adjust
 
-        // Update status
-        status = ScreechStatus.Prepared;
+        // Update Status
+        Status = ScreechStatus.Prepared;
     }
 
     void ScreechInputEnd()
     {
-        if (status == ScreechStatus.Charging) ScreechCancel();
-        else if (status == ScreechStatus.Prepared) StartCoroutine(ScreechPerform());
+        if (Status == ScreechStatus.Charging) ScreechCancel();
+        else if (Status == ScreechStatus.Prepared) StartCoroutine(ScreechPerform());
     }
 
     void ScreechCancel()
@@ -131,8 +131,8 @@ public class PlayerScreech : MonoBehaviour
 
     IEnumerator ScreechPerform()
     {
-        // Update status
-        status = ScreechStatus.Performing;
+        // Update Status
+        Status = ScreechStatus.Performing;
 
         // Play screech audio
         audioSource.SetClipFromPool(screechAudio);
@@ -210,8 +210,8 @@ public class PlayerScreech : MonoBehaviour
             yield return null;
         }
 
-        // Update status
-        status = ScreechStatus.Available;
+        // Update Status
+        Status = ScreechStatus.Available;
     }
 
     void ScreechAttack()
@@ -230,16 +230,16 @@ public class PlayerScreech : MonoBehaviour
                 foreach (var occupant in vulnerableOccupants)
                     occupant.ScareAway();
         }
-        birdRepelled = null;
+        //birdRepelled = null;
     }
+}
 
-    enum ScreechStatus
-    {
-        Unavailable,
-        Available,
-        Charging,
-        Prepared,
-        Performing,
-        Recharging,
-    }
+public enum ScreechStatus
+{
+    Unavailable,
+    Available,
+    Charging,
+    Prepared,
+    Performing,
+    Recharging,
 }

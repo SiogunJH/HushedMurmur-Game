@@ -7,6 +7,10 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public UnityEvent OnInteract;
+    public bool disabled = false;
 
-    public void Interact() => OnInteract?.Invoke();
+    public void Interact()
+    {
+        if (!disabled) OnInteract?.Invoke();
+    }
 }

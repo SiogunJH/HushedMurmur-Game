@@ -23,12 +23,12 @@ public class VentilationSystem : MonoBehaviour
 
     public void PlayAudio(AudioClip audioClip)
     {
-        var audioSource = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, transform.position);
+        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, transform.position);
 
-        audioSource.spatialBlend = 1.0f;
-        audioSource.volume = 0.35f;
-        audioSource.minDistance = 2.0f;
-        audioSource.maxDistance = 20.0f;
-        audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
+        oneTimeAudio.audioSource.spatialBlend = 1.0f;
+        oneTimeAudio.audioSource.volume = 0.35f;
+        oneTimeAudio.audioSource.minDistance = 2.0f;
+        oneTimeAudio.audioSource.maxDistance = 20.0f;
+        oneTimeAudio.audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
     }
 }

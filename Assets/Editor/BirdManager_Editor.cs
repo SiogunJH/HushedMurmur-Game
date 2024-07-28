@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Bird.Manager))]
+//[CustomEditor(typeof(Bird.Manager))]
 public class BirdManager_Editor : Editor
 {
     public override void OnInspectorGUI()

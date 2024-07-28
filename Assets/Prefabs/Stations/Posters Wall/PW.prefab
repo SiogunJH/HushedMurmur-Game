@@ -52,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (5)
+      value: Poster (Hawk)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (3)
+      value: Poster (Crow)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -312,7 +312,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (8)
+      value: Poster (Penguin)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (9)
+      value: Poster (Raven)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -572,7 +572,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (1)
+      value: Poster (Bat)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -702,7 +702,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (2)
+      value: Poster (Cock)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (7)
+      value: Poster (Parrot)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -962,7 +962,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (4)
+      value: Poster (Flamingo)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -1092,7 +1092,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (0)
+      value: Poster (Albatros)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
@@ -1222,7 +1222,7 @@ PrefabInstance:
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
       propertyPath: m_Name
-      value: Poster (6)
+      value: Poster (Owl)
       objectReference: {fileID: 0}
     - target: {fileID: 583390880525875369, guid: ba8b3c7d3d728724f8b91821c37b6dec,
         type: 3}
