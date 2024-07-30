@@ -31,23 +31,21 @@ public static class AudioSourceExtensions
     /// </summary>
     /// <param name="executor"><i>MonoBehaviour</i> component, what will execute the coroutine responsible for removing <i>GameObject</i> upon finishing assigned <i>AudioClip</i>.</param>
     /// <param name="audioClip"><i>AudioClip</i> that will be played.</param>
-    /// <param name="position">Position, in which a <i>GameObject</i> will be created.</param>
+    /// <param name="parent"><i>GameObject</i> to which newly created Audio will be attached to, with local position of (0,0,0).</param>
     /// <param name="name">Name of a created <i>GameObject</i></param>
     /// <param name="spatialBlend">[0,1] How much audio is treated as 3D source.</param>
     /// <returns><i>AudioSource</i> component of a created <i>GameObject</i></returns>
-    public static (AudioSource audioSource, Coroutine coroutine) PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position, string name = "One-Time Audio Player", GameObject parent = null)
+    public static (AudioSource audioSource, Coroutine coroutine) PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, GameObject parent, string name = "One-Time Audio Player")
     {
         // create new game object
         var obj = new GameObject(name);
-        obj.transform.position = position;
+        if (parent != null) obj.transform.SetParent(parent.transform, true);
+        obj.transform.localPosition = Vector3.zero;
 
         // attach an audio source component to created game object and play provided clip
         var audioSource = obj.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.Play();
-
-        // attach game object to a parent, if provided with one
-        if (parent != null) obj.transform.SetParent(parent.transform, true);
 
         // return audio source component and run coroutine
         return (audioSource, executor.StartCoroutine(DestroyAfterPlaying(audioSource)));

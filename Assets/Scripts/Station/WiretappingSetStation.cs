@@ -21,52 +21,79 @@ public class WiretappingSetStation : MonoBehaviour
 
     #endregion
 
-    public UnityEvent<AudioClip, Room.Controller> OnNewAudioRequest;
-    public UnityEvent<bool, string> OnStationStatusChange;
+    [HideInInspector] public UnityEvent<bool, string> OnStationStatusChange;
 
     public bool IsActive { get; private set; } = false;
-
-    [Space, SerializeField] AudioClip[] enableSound;
-    [Space, SerializeField] AudioClip[] disableSound;
-
-    [Space, SerializeField] TextMeshProUGUI letterDisplay;
-    [SerializeField] TextMeshProUGUI numberDisplay;
-
-    [SerializeField] GameObject headsetObject;
-    Vector3 headsetPositionOnTable;
-    Quaternion headsetRotationOnTable;
-
     public string WiretappedRoomCode { get => letterDisplay.text + numberDisplay.text; }
+
+    const float HEADSET_ANIMATION_LENGTH = 0.35f;
+
+    [Space, Header("Sound"), SerializeField] AudioClip[] enableSound;
+    [SerializeField] AudioClip[] disableSound;
+
+    [Space, Header("Children References"), SerializeField] TextMeshProUGUI letterDisplay;
+    [SerializeField] TextMeshProUGUI numberDisplay;
+    [SerializeField] GameObject headsetObject;
+    [SerializeField] GameObject headsetTransformMarker;
+    [SerializeField] GameObject headsetTableParent;
+
+    // Coroutines
+    Coroutine headsetCoroutine;
 
     void Start()
     {
         ScrambleDisplay();
-
-        headsetPositionOnTable = headsetObject.transform.position;
-        headsetRotationOnTable = headsetObject.transform.rotation;
     }
 
     public void ToggleOnOff()
     {
         IsActive = !IsActive;
 
-        if (IsActive)
-        {
-            AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[0], headsetObject.transform.position, "Pick up Headset", headsetObject);
-
-            headsetObject.transform.position = PlayerLook.Instance.gameObject.transform.position;
-            headsetObject.transform.rotation = PlayerLook.Instance.gameObject.transform.rotation;
-        }
-        else
-        {
-            headsetObject.transform.position = headsetPositionOnTable;
-            headsetObject.transform.rotation = headsetRotationOnTable;
-
-            AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[0], headsetObject.transform.position, "Put away Headset", headsetObject);
-        }
+        if (IsActive) TurnOn();
+        else TurnOff();
 
         OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
+
+    void TurnOn()
+    {
+        AudioSourceExtensions.PlayOneTimeAudio(this, enableSound[Random.Range(0, enableSound.Length)], headsetObject, "Pick up Headset");
+        headsetObject.transform.SetParent(PlayerLook.Instance.gameObject.transform);
+
+        if (headsetCoroutine != null) StopCoroutine(headsetCoroutine);
+        headsetCoroutine = StartCoroutine(MoveHeadset(PlayerLook.Instance.gameObject.transform, HEADSET_ANIMATION_LENGTH));
+    }
+
+    void TurnOff()
+    {
+        headsetObject.transform.SetParent(headsetTableParent.transform);
+        AudioSourceExtensions.PlayOneTimeAudio(this, disableSound[Random.Range(0, disableSound.Length)], headsetObject, "Put away Headset");
+
+        if (headsetCoroutine != null) StopCoroutine(headsetCoroutine);
+        headsetCoroutine = StartCoroutine(MoveHeadset(headsetTransformMarker.transform, HEADSET_ANIMATION_LENGTH));
+    }
+
+    IEnumerator MoveHeadset(Transform targetTransform, float time)
+    {
+        Vector3 initialPosition = headsetObject.transform.position;
+        Quaternion initialRotation = headsetObject.transform.rotation;
+        float totalTime = time;
+        float progress;
+
+        while (time != 0)
+        {
+            time = Mathf.Clamp(time - Time.deltaTime, 0, totalTime);
+            progress = 1 - (time / totalTime);
+
+            var newPosition = Vector3.Slerp(initialPosition, targetTransform.position, progress);
+            var newRotation = Quaternion.Slerp(initialRotation, targetTransform.rotation, progress);
+
+            headsetObject.transform.SetPositionAndRotation(newPosition, newRotation);
+
+            yield return null;
+        }
+    }
+
     public void ChangeLetter(bool forward)
     {
         string letters = new string(EnumExtensions.GetEnumValues<Room.Type>().Select(i => (char)i).ToArray());
@@ -92,10 +119,9 @@ public class WiretappingSetStation : MonoBehaviour
         OnStationStatusChange?.Invoke(IsActive, WiretappedRoomCode);
     }
 
-    public void PlayAudioWrapper(AudioClip audioClip, Room.Controller sourceRoom) => PlayAudio(audioClip, sourceRoom); // This bullshit will be removed as soon as I can; it's here because UnityEvent accepts only void methods
     public (AudioSource audioSource, Coroutine coroutine) PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
     {
-        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, headsetObject.transform.position, name: sourceRoom.roomCode, parent: headsetObject);
+        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, headsetObject, name: sourceRoom.roomCode);
 
         oneTimeAudio.audioSource.spatialBlend = 1.0f;
         oneTimeAudio.audioSource.minDistance = 5.0f;
