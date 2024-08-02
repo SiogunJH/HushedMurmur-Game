@@ -8,7 +8,7 @@
             <ui:Button text="Tutorial" parse-escape-sequences="true" display-tooltip-when-elided="true" name="tutorial-button" class="menu-button" />
             <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options-button" class="menu-button" />
             <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quit-button" class="menu-button" />
-            <ui:Label tabindex="-1" text="v0.5" parse-escape-sequences="true" display-tooltip-when-elided="true" name="version" class="version-text" style="color: rgb(255, 255, 255);" />
+            <ui:Label tabindex="-1" text="v0.6" parse-escape-sequences="true" display-tooltip-when-elided="true" name="version" class="version-text" style="color: rgb(255, 255, 255);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

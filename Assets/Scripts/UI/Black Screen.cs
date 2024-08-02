@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class BlackScreen : MonoBehaviourSingleton<BlackScreen>, ISingleton
 {
     [SerializeField] UIDocument uiDocument;
+    [SerializeField] bool fadeInOnSceneLoad = true;
 
     const string BLACK_SCREEN_VISUAL_ELEMENT_NAME = "black-screen";
     VisualElement blackScreen;
@@ -24,9 +25,11 @@ public class BlackScreen : MonoBehaviourSingleton<BlackScreen>, ISingleton
         var root = uiDocument.rootVisualElement;
         blackScreen = root.Q<VisualElement>(BLACK_SCREEN_VISUAL_ELEMENT_NAME);
 
-        SetOpacity(NON_TRANSPARENT_OPACITY);
-        FadeIn();
-
+        if (fadeInOnSceneLoad)
+        {
+            SetOpacity(NON_TRANSPARENT_OPACITY);
+            FadeIn();
+        }
     }
 
     void SetOpacity(float opacity)
