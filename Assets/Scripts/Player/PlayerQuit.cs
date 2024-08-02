@@ -22,6 +22,6 @@ public class PlayerQuit : MonoBehaviour
     IEnumerator TryToQuit()
     {
         yield return new WaitForSeconds(quittingTime);
-        Gameplay.Manager.Load(Gameplay.Manager.MAIN_MENU_SCENE_NAME);
+        Gameplay.Manager.Instance.Load(Gameplay.Manager.MAIN_MENU_SCENE_NAME);
     }
 }

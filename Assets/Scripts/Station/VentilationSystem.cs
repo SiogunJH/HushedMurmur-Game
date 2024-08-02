@@ -23,7 +23,7 @@ public class VentilationSystem : MonoBehaviour
 
     public void PlayAudio(AudioClip audioClip)
     {
-        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, transform.position);
+        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, gameObject);
 
         oneTimeAudio.audioSource.spatialBlend = 1.0f;
         oneTimeAudio.audioSource.volume = 0.35f;

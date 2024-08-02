@@ -31,23 +31,21 @@ public static class AudioSourceExtensions
     /// </summary>
     /// <param name="executor"><i>MonoBehaviour</i> component, what will execute the coroutine responsible for removing <i>GameObject</i> upon finishing assigned <i>AudioClip</i>.</param>
     /// <param name="audioClip"><i>AudioClip</i> that will be played.</param>
-    /// <param name="position">Position, in which a <i>GameObject</i> will be created.</param>
+    /// <param name="parent"><i>GameObject</i> to which newly created Audio will be attached to, with local position of (0,0,0).</param>
     /// <param name="name">Name of a created <i>GameObject</i></param>
     /// <param name="spatialBlend">[0,1] How much audio is treated as 3D source.</param>
     /// <returns><i>AudioSource</i> component of a created <i>GameObject</i></returns>
-    public static (AudioSource audioSource, Coroutine coroutine) PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, Vector3 position, string name = "One-Time Audio Player", GameObject parent = null)
+    public static (AudioSource audioSource, Coroutine coroutine) PlayOneTimeAudio(this MonoBehaviour executor, AudioClip audioClip, GameObject parent, string name = "One-Time Audio Player")
     {
         // create new game object
         var obj = new GameObject(name);
-        obj.transform.position = position;
+        if (parent != null) obj.transform.SetParent(parent.transform, true);
+        obj.transform.localPosition = Vector3.zero;
 
         // attach an audio source component to created game object and play provided clip
         var audioSource = obj.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.Play();
-
-        // attach game object to a parent, if provided with one
-        if (parent != null) obj.transform.SetParent(parent.transform, true);
 
         // return audio source component and run coroutine
         return (audioSource, executor.StartCoroutine(DestroyAfterPlaying(audioSource)));
@@ -65,7 +63,7 @@ public static class AudioSourceExtensions
 
     public static AudioSourceSettings SavePreset(this AudioSource audioSource)
     {
-        AudioSourceSettings ass;
+        AudioSourceSettings ass = new();
 
         ass.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
         ass.mute = audioSource.mute;
@@ -116,26 +114,27 @@ public static class AudioSourceExtensions
     }
 }
 
-public struct AudioSourceSettings
+[System.Serializable]
+public class AudioSourceSettings
 {
-    public AudioMixerGroup outputAudioMixerGroup;
-    public bool mute;
-    public bool bypassEffects;
-    public bool bypassListenerEffects;
-    public bool bypassReverbZones;
-    public bool playOnAwake;
-    public bool loop;
+    public AudioMixerGroup outputAudioMixerGroup = null;
+    public bool mute = false;
+    public bool bypassEffects = false;
+    public bool bypassListenerEffects = false;
+    public bool bypassReverbZones = false;
+    public bool playOnAwake = true;
+    public bool loop = false;
 
-    public int priority;
-    public float volume;
-    public float pitch;
-    public float panStereo;
-    public float spatialBlend;
-    public float reverbZoneMix;
+    [Range(0, 256)] public int priority = 128;
+    [Range(0, 1)] public float volume = 1;
+    [Range(-3, 3)] public float pitch = 1;
+    [Range(-1, 1)] public float panStereo = 0;
+    [Range(0, 1)] public float spatialBlend = 0;
+    [Range(0, 1.1f)] public float reverbZoneMix = 1;
 
-    public float dopplerLevel;
-    public float spread;
-    public AudioRolloffMode rolloffMode;
-    public float minDistance;
-    public float maxDistance;
+    [Range(0, 5)] public float dopplerLevel = 1;
+    [Range(0, 360)] public float spread = 0;
+    public AudioRolloffMode rolloffMode = AudioRolloffMode.Logarithmic;
+    public float minDistance = 1;
+    public float maxDistance = 500;
 }

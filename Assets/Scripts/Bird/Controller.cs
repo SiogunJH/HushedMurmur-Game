@@ -68,70 +68,56 @@ namespace Bird
         public void TriggerNoiseEvent()
         {
             int totalWeight = NoiseEventWeight.MainTrait + NoiseEventWeight.SecondaryTrait + NoiseEventWeight.Common + NoiseEventWeight.Global;
-
             float randWeight = Random.Range(0f, totalWeight);
             AudioClip noise;
 
             // COMMON NOISE
             if (randWeight < NoiseEventWeight.Common)
-            {
                 noise = Manager.Instance.commonNoise[Random.Range(0, Manager.Instance.commonNoise.Length)];
-                WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
-            }
 
             // GLOBAL NOISE
             else if (randWeight - NoiseEventWeight.Common < NoiseEventWeight.Global)
-            {
                 noise = Manager.Instance.globalNoise[Random.Range(0, Manager.Instance.globalNoise.Length)];
-                WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
-                // VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
-            }
 
             // MAIN TRAIT
             else if (randWeight - NoiseEventWeight.Common - NoiseEventWeight.Global < NoiseEventWeight.MainTrait)
-                HandleTraitNoiseEvent(mainTrait);
+                noise = TraitToAudioClip(mainTrait);
 
             // SECONDARY TRAIT
             else
-            {
-                HandleTraitNoiseEvent(secondaryTrait);
-            }
+                noise = TraitToAudioClip(secondaryTrait);
+
+            WiretappingSetStation.Instance.PlayAudio(noise, location);
         }
 
-        AudioClip HandleTraitNoiseEvent(Trait trait)
+        AudioClip TraitToAudioClip(Trait trait)
         {
             AudioClip noise;
             switch (trait)
             {
                 case Trait.Clumsy:
                     noise = Manager.Instance.clumsyTraitNoise[Random.Range(0, Manager.Instance.clumsyTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Heavy:
                     noise = Manager.Instance.heavyTraitNoise[Random.Range(0, Manager.Instance.heavyTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
-                    // VentilationSystem.Instance.OnNewAudioRequest.Invoke(noise);
                     break;
 
                 case Trait.Drooling:
                     noise = Manager.Instance.droolingTraitNoise[Random.Range(0, Manager.Instance.droolingTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Brutal:
                     noise = Manager.Instance.brutalTraitNoise[Random.Range(0, Manager.Instance.brutalTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 case Trait.Speaking:
                     noise = Manager.Instance.speakingTraitNoise[Random.Range(0, Manager.Instance.speakingTraitNoise.Length)];
-                    WiretappingSetStation.Instance.OnNewAudioRequest.Invoke(noise, location);
                     break;
 
                 default:
                     noise = null;
-                    Debug.LogWarning($"Unhandled trait: {trait}");
+                    Debug.LogError($"Unhandled trait: {trait}");
                     break;
 
             }
