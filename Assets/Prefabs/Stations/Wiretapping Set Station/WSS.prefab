@@ -1300,6 +1300,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 75a73c7b86e82dd47bb881a47927484f, type: 3}
   disableSound:
   - {fileID: 8300000, guid: bdfe27d5c01b3ce4583c7059610cb190, type: 3}
+  noiseAdioSettings:
+    outputAudioMixerGroup: {fileID: 0}
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    playOnAwake: 1
+    loop: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    rolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
   letterDisplay: {fileID: 8726313067696371279}
   numberDisplay: {fileID: 3716390581563929673}
   headsetObject: {fileID: 7921127869390228147}

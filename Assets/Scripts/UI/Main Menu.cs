@@ -4,23 +4,13 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
-    public UIDocument uiDocument;
+    [SerializeField] UIDocument uiDocument;
 
-    [Space]
     const string PLAY_BUTTON_NAME = "play-button";
-    public UnityEvent onPlayButtonClick;
-
     const string LEVEL_SELECT_BUTTON_NAME = "level-selection-button";
-    public UnityEvent onLevelSelectButtonClick;
-
     const string TUTORIAL_BUTTON_NAME = "tutorial-button";
-    public UnityEvent onTutorialButtonClick;
-
     const string SETTINGS_BUTTON_NAME = "options-button";
-    public UnityEvent onSettingsButtonClick;
-
     const string QUIT_BUTTON_NAME = "quit-button";
-    public UnityEvent onQuitButtonClick;
 
     void OnEnable()
     {
@@ -31,25 +21,25 @@ public class MainMenu : MonoBehaviour
     {
         var root = uiDocument.rootVisualElement;
 
-        root.Q<Button>(PLAY_BUTTON_NAME).clicked += () => { onPlayButtonClick?.Invoke(); };
-
-        // root.Q<Button>(LEVEL_SELECT_BUTTON_NAME).clicked += () => { onLevelSelectButtonClick?.Invoke(); };
-
-        root.Q<Button>(TUTORIAL_BUTTON_NAME).clicked += () => { onTutorialButtonClick?.Invoke(); };
-
-        root.Q<Button>(SETTINGS_BUTTON_NAME).clicked += () => { onSettingsButtonClick?.Invoke(); };
-
-        root.Q<Button>(QUIT_BUTTON_NAME).clicked += () => { onQuitButtonClick?.Invoke(); };
+        root.Q<Button>(PLAY_BUTTON_NAME).clicked += Play;
+        root.Q<Button>(TUTORIAL_BUTTON_NAME).clicked += Tutorial;
+        root.Q<Button>(SETTINGS_BUTTON_NAME).clicked += Settings;
+        root.Q<Button>(QUIT_BUTTON_NAME).clicked += Quit;
     }
 
     public void Play()
     {
-        Gameplay.Manager.Instance.Easy();
+        Gameplay.Manager.Instance.Load(Gameplay.Manager.LEVEL_2_SCENE_NAME);
     }
 
     public void Tutorial()
     {
-        Gameplay.Manager.Load(Gameplay.Manager.LEVEL_0_SCENE_NAME);
+        Gameplay.Manager.Instance.Load(Gameplay.Manager.LEVEL_0_SCENE_NAME);
+    }
+
+    public void Settings()
+    {
+
     }
 
     public void Quit()

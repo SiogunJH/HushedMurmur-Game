@@ -63,7 +63,7 @@ public static class AudioSourceExtensions
 
     public static AudioSourceSettings SavePreset(this AudioSource audioSource)
     {
-        AudioSourceSettings ass;
+        AudioSourceSettings ass = new();
 
         ass.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
         ass.mute = audioSource.mute;
@@ -114,26 +114,27 @@ public static class AudioSourceExtensions
     }
 }
 
-public struct AudioSourceSettings
+[System.Serializable]
+public class AudioSourceSettings
 {
-    public AudioMixerGroup outputAudioMixerGroup;
-    public bool mute;
-    public bool bypassEffects;
-    public bool bypassListenerEffects;
-    public bool bypassReverbZones;
-    public bool playOnAwake;
-    public bool loop;
+    public AudioMixerGroup outputAudioMixerGroup = null;
+    public bool mute = false;
+    public bool bypassEffects = false;
+    public bool bypassListenerEffects = false;
+    public bool bypassReverbZones = false;
+    public bool playOnAwake = true;
+    public bool loop = false;
 
-    public int priority;
-    public float volume;
-    public float pitch;
-    public float panStereo;
-    public float spatialBlend;
-    public float reverbZoneMix;
+    [Range(0, 256)] public int priority = 128;
+    [Range(0, 1)] public float volume = 1;
+    [Range(-3, 3)] public float pitch = 1;
+    [Range(-1, 1)] public float panStereo = 0;
+    [Range(0, 1)] public float spatialBlend = 0;
+    [Range(0, 1.1f)] public float reverbZoneMix = 1;
 
-    public float dopplerLevel;
-    public float spread;
-    public AudioRolloffMode rolloffMode;
-    public float minDistance;
-    public float maxDistance;
+    [Range(0, 5)] public float dopplerLevel = 1;
+    [Range(0, 360)] public float spread = 0;
+    public AudioRolloffMode rolloffMode = AudioRolloffMode.Logarithmic;
+    public float minDistance = 1;
+    public float maxDistance = 500;
 }

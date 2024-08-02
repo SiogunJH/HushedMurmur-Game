@@ -30,38 +30,49 @@ namespace Gameplay
 
         #endregion
 
-        #region Scene Management
-
-        public const string MAIN_MENU_SCENE_NAME = "Level 2 - Main Office";
-        public const string LEVEL_0_SCENE_NAME = "Level 0 - Lab Grounds";
-        public const string LEVEL_2_SCENE_NAME = "Level 2 - Main Office";
-
-        public static void Reload() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        public static void Load(string sceneName) => SceneManager.LoadScene(sceneName);
+        #region OnEnable & OnDisable
 
         void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
         void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        #endregion
+
+        #region Scene Management
+
+        public const string MAIN_MENU_SCENE_NAME = "Main Menu";
+        public const string LEVEL_0_SCENE_NAME = "Level 0 - Lab Grounds";
+        public const string LEVEL_2_SCENE_NAME = "Level 2 - Main Office";
+
+        public void Reload() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             switch (scene.name)
             {
-                // case MAIN_MENU_SCENE_NAME:
+                case MAIN_MENU_SCENE_NAME:
 
-                //     break;
+                    break;
 
                 case LEVEL_0_SCENE_NAME:
                     StartCoroutine(TutorialSequence());
                     break;
 
                 case LEVEL_2_SCENE_NAME:
-
+                    StartCoroutine(Level2Sequence());
                     break;
 
                 default:
                     Debug.LogError($"Unhandled OnSceneLoaded scene '{scene.name}'. Verify scene name and saved string, you dumb fuck.");
                     break;
             }
+        }
+
+        public void Load(string sceneName) => StartCoroutine(LoadSceneCoroutine(sceneName));
+
+        IEnumerator LoadSceneCoroutine(string sceneName)
+        {
+            yield return BlackScreen.Instance.FadeOut();
+            SceneManager.LoadScene(sceneName);
         }
 
         #endregion
@@ -477,13 +488,24 @@ namespace Gameplay
             yield return message.Display($"You can exit to Main Menu by holding down [Esc] for a second. Good luck", MessageSettings.DoNotRequireEndInput);
         }
 
-        public void Easy()
+        IEnumerator Level2Sequence()
         {
+            // Setup
+            const float INITIAL_IDLE_TIME = 10;
+            const float BIRD_ONE_SLEEP_TIME = 20;
+            const float BIRD_TWO_SLEEP_TIME = 110;
+
+            yield return new WaitForSeconds(INITIAL_IDLE_TIME);
+
+            // Bird One
+
             var birdOne = Bird.Manager.Instance.SpawnBird().GetComponent<Bird.Controller>();
-            birdOne.initialSleepTime = 30;
+            birdOne.initialSleepTime = BIRD_ONE_SLEEP_TIME;
+
+            // Bird Two
 
             var birdTwo = Bird.Manager.Instance.SpawnBird().GetComponent<Bird.Controller>();
-            birdTwo.initialSleepTime = 120;
+            birdTwo.initialSleepTime = BIRD_TWO_SLEEP_TIME;
         }
 
         #endregion
