@@ -25,6 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - EFFECT_HUE_VARIATION
   - GEOM_TYPE_LEAF
   m_InvalidKeywords:
   - _ALPHAPREMULTIPLY_ON
@@ -144,7 +145,7 @@ Material:
     - _WINDMASKONOFF: 0
     - _WindDensity: 3.3
     - _WindMovement: 0.5
-    - _WindQuality: 0
+    - _WindQuality: 1
     - _WindStrength: 0.3
     - _ZWrite: 0
     - __dirty: 0
@@ -152,7 +153,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 1, g: 0, b: 0, a: 1}
-    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _HueVariation: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TopColor: {r: 0.5754717, g: 0.5186884, b: 0.04071733, a: 1}
