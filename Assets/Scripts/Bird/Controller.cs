@@ -160,7 +160,7 @@ namespace Bird
         {
             if (location == null) return;
             SetLocation(location.GetNextRoom(favoredRoom));
-            MotionDetectionStation.Instance.OnMotionDetectionTrigger.Invoke(this);
+            MotionDetectionStation.Instance.OnMotionDetectionTrigger?.Invoke(this);
         }
 
         public void ScareAway()

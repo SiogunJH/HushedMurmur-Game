@@ -126,7 +126,7 @@ namespace Gameplay
 
         Func<bool> IsWiretappingSetTurnedOn()
         {
-            return () => WiretappingSetStation.Instance.IsActive;
+            return () => WiretappingSetStation.Instance.IsTurnedOn;
         }
 
         #endregion

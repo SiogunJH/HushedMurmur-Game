@@ -25,6 +25,18 @@ public static class AudioSourceExtensions
         return randomClip;
     }
 
+    public static (AudioSource audioSource, Coroutine coroutine) PlayOneTimeAudio(this MonoBehaviour executor, IEnumerable<AudioClip> audioClips, GameObject parent, string name = "One-Time Random Audio Player")
+    {
+        if (audioClips == null || !audioClips.Any())
+        {
+            Debug.LogError("AudioClip collection is empty or null!");
+            return (null, null);
+        }
+
+        return PlayOneTimeAudio(executor, audioClips.ElementAt(Random.Range(0, audioClips.Count())), parent, name);
+    }
+
+
     /// <summary>
     /// Creates an empty <i>GameObject</i> with an <i>AudioSource</i> component in a specified position. 
     /// Automatically plays the provided <i>AudioClip</i> via created component, and then destroys itself.
