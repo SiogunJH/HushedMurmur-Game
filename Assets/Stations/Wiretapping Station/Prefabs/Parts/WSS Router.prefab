@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8888037678768402822, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c575781d0291c742b5f87a51557d967,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,16 +83,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 08e9ea8111f378748980e0b0490e7487, type: 2}
+    - target: {fileID: -1375892624624588259, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -518470674339455465, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c575781d0291c742b5f87a51557d967,
         type: 3}
       propertyPath: m_Name
       value: WSS Router
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3211582395249497714, guid: 9c575781d0291c742b5f87a51557d967,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 08e9ea8111f378748980e0b0490e7487, type: 2}
+    - target: {fileID: 6821887585681450876, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332627883499054156, guid: 9c575781d0291c742b5f87a51557d967,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

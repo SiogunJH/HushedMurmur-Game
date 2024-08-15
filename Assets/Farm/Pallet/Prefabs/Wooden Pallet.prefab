@@ -58,11 +58,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3138414810020530980, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -712776192392354015, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4a63fe2e77c61a84887389ffc98aba26, type: 2}
+    - target: {fileID: -421905867338162629, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -396696818694451232, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -41332511266282170, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -77,6 +92,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wooden Pallet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415664353241066192, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5146720307312966807, guid: ead5d3ada6e558e4bbf24a987c47ffcd,
         type: 3}

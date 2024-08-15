@@ -63,10 +63,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0a50b9c71fc9df34d9e4c991c6ddc466, type: 2}
+    - target: {fileID: -6318543853440944205, guid: 1924db0480caedf44bc46c16224a36d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1924db0480caedf44bc46c16224a36d7,
         type: 3}
       propertyPath: m_Name
       value: Wooden Crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1924db0480caedf44bc46c16224a36d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4860039863680566826, guid: 1924db0480caedf44bc46c16224a36d7,
         type: 3}
@@ -78,13 +88,24 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 0a50b9c71fc9df34d9e4c991c6ddc466, type: 2}
+    - target: {fileID: 5420981401696185149, guid: 1924db0480caedf44bc46c16224a36d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507901977716847365, guid: 1924db0480caedf44bc46c16224a36d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7339356831882890532, guid: 1924db0480caedf44bc46c16224a36d7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a612d3ce038a8314ab2b2b040636a057, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6507901977716847365, guid: 1924db0480caedf44bc46c16224a36d7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1924db0480caedf44bc46c16224a36d7,

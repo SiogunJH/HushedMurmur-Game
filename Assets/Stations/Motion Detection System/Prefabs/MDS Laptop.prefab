@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2806309446413127525
 RectTransform:
@@ -118,7 +118,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &7496953872764755169
 RectTransform:
@@ -169,8 +169,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Admin> Hello
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0bd2fefd8fac25642809ffdc61b160a0, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 0bd2fefd8fac25642809ffdc61b160a0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -244,40 +244,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8998846403871171202, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.449
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.751
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.756
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.116387516
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.99320394
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
@@ -287,7 +292,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 166.633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
@@ -309,6 +314,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 77353a09ddcc3804685e614e56496064, type: 2}
+    - target: {fileID: -7874259440426380412, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -7448179547250338786, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -6171988424905353855, guid: f2b09fc6090f25a409ad3e52327741e8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -358,6 +373,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MDS Laptop
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137677059690827613, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118412328864623428, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542571238884553569, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742316020475929678, guid: f2b09fc6090f25a409ad3e52327741e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
