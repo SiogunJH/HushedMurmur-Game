@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7239617672764429127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8977779702581975258}
+  - component: {fileID: 7121142595710590812}
+  m_Layer: 0
+  m_Name: Birdkin Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8977779702581975258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239617672764429127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7121142595710590812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239617672764429127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d173c82b88365243aa4b5c93d49c243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  birdPrefabs:
+  - {fileID: 5955923340996054180, guid: 1b87edbd29740dd48845d06315d4dd87, type: 3}
+  - {fileID: 5955923340996054180, guid: 905b2415721717c4eb8828f1c330261c, type: 3}
+  - {fileID: 5955923340996054180, guid: 10b563ab33a3f3b40b54fb50cef75940, type: 3}
+  noiseCollections:
+  - Sound: 0
+    audioClips:
+    - {fileID: 8300000, guid: 10d08ae9c237603488f0f5cdf6d14fcc, type: 3}
+  - Sound: 1
+    audioClips:
+    - {fileID: 8300000, guid: 6c21577aa2200c041a466359bfc876f8, type: 3}
+  - Sound: 2
+    audioClips:
+    - {fileID: 8300000, guid: 1a218aefdabb44e40bc4fbb09346bd92, type: 3}
+  commonNoise: []
+  globalNoise: []
+  clumsyTraitNoise: []
+  heavyTraitNoise: []
+  droolingTraitNoise: []
+  brutalTraitNoise: []
+  speakingTraitNoise: []

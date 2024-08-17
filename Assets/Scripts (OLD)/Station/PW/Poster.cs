@@ -19,8 +19,8 @@ public class Poster : MonoBehaviour
     {
         birdName.text = Enum.GetName(typeof(Bird.Type), bird.birdType).ToUpper();
         repellant.color = bird.repellantColor;
-        mainTrait.text = Enum.GetName(typeof(Bird.Trait), bird.mainTrait).ToUpper();
-        secondaryTrait.text = Enum.GetName(typeof(Bird.Trait), bird.secondaryTrait).ToUpper();
-        favoredRoom.text = Enum.GetName(typeof(Room.Type), bird.favoredRoom).ToUpper();
+        // mainTrait.text = Enum.GetName(typeof(Bird.Trait), bird.mainTrait).ToUpper();
+        // secondaryTrait.text = Enum.GetName(typeof(Bird.Trait), bird.secondaryTrait).ToUpper();
+        // favoredRoom.text = Enum.GetName(typeof(Room.Type), bird.favoredRoom).ToUpper();
     }
 }
