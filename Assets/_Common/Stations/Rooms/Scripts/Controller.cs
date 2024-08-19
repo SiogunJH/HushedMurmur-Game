@@ -46,12 +46,12 @@ namespace Room
 
         [SerializeField] List<Controller> roomConnectionsForward = new();
         public List<Tag> tags;
-        public Type type;
+        public List<Trait> traits;
 
         public Controller GetNextRoom(Type preferredRoomType)
         {
-            if (roomConnectionsForward.Select(room => room.type).Contains(preferredRoomType))
-                return roomConnectionsForward.Where(room => room.type == preferredRoomType).ToArray()[0];
+            // if (roomConnectionsForward.Select(room => room.type).Contains(preferredRoomType))
+            //     return roomConnectionsForward.Where(room => room.type == preferredRoomType).ToArray()[0];
 
             return roomConnectionsForward[Random.Range(0, roomConnectionsForward.Count)];
         }

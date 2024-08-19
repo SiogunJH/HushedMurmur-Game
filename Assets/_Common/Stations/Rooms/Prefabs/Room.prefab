@@ -48,12 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   codeDisplay: {fileID: 3926101345607406928}
   roomCode: X0
-  roomOccupants: []
   roomConnectionsForward:
   - {fileID: 0}
   - {fileID: 0}
   tags: 
-  type: 66
+  traits: 01000000
 --- !u!1 &5276192402626238235
 GameObject:
   m_ObjectHideFlags: 0

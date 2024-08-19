@@ -64,4 +64,4 @@ MonoBehaviour:
   noiseDelay: 5
   noiseDelayOffset: 3
   location: {fileID: 0}
-  sendDebugInfo: 1
+  sendDebugInfo: 0

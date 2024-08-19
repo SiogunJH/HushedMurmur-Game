@@ -1776,7 +1776,7 @@ PrefabInstance:
     - target: {fileID: 8095726942977552256, guid: 19abfe16c14927a41abfd9070044e375,
         type: 3}
       propertyPath: m_Name
-      value: Farm Map 1
+      value: Farm Map
       objectReference: {fileID: 0}
     - target: {fileID: 8868181876629321018, guid: 19abfe16c14927a41abfd9070044e375,
         type: 3}
@@ -4900,22 +4900,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wiretapping Set
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205694106408667868, guid: c6228516f8be454429a946c0858329c5,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 7205694106408667868, guid: c6228516f8be454429a946c0858329c5,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 7205694106408667868, guid: c6228516f8be454429a946c0858329c5,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

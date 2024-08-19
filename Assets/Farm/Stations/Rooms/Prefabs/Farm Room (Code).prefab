@@ -21,6 +21,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 3926101345607406928, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926101345607406928, guid: 5c74e3bb155a60748befb55c109315e8,
+        type: 3}
       propertyPath: m_fontColor.b
       value: 0.509434
       objectReference: {fileID: 0}
@@ -43,7 +48,7 @@ PrefabInstance:
     - target: {fileID: 3926101345607406928, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4286719811
+      value: 3867289411
       objectReference: {fileID: 0}
     - target: {fileID: 3926101345607406928, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
@@ -124,12 +129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 5032092275707741345, guid: 5c74e3bb155a60748befb55c109315e8,
         type: 3}
       propertyPath: m_Name
-      value: Farm Room
+      value: Farm Room (Code)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
