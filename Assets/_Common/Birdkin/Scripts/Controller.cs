@@ -13,8 +13,8 @@ namespace Bird
 
         [Header("Traits, Noises and Preferences")]
         [SerializeField] List<NoiseEntry> noiseEventsPool;
-        [SerializeField] public Room.Type[] avoidRoomTraits;
-        [SerializeField] public Room.Type[] favorRoomTraits;
+        [SerializeField] public Room.Trait[] avoidRoomTraits;
+        [SerializeField] public Room.Trait[] favorRoomTraits;
 
         [Space, SerializeField] public Color repellantColor;
 
@@ -126,7 +126,7 @@ namespace Bird
         public void GoNextRoom()
         {
             if (location == null) return;
-            SetLocation(location.GetNextRoom(favorRoomTraits[0]));                      //TODO
+            SetLocation(location.GetNextRoom(avoidRoomTraits, favorRoomTraits));
             MotionDetectionStation.Instance.OnMotionDetectionTrigger?.Invoke(this);
         }
 

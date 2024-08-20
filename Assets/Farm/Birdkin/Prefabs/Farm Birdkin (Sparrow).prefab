@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 5277900712837057592, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
         type: 3}
       propertyPath: m_Name
-      value: Birdkin (Sparrow)
+      value: Farm Birdkin (Sparrow)
       objectReference: {fileID: 0}
     - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
         type: 3}
@@ -32,6 +32,16 @@ PrefabInstance:
         type: 3}
       propertyPath: repellantColor.r
       value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: favorRoomTraits.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: avoidRoomTraits.Array.data[0]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8154943977249357621, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
         type: 3}
