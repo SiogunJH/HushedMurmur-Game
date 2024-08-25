@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes (OLD)/Game/Main Menu.unity
+    path: Assets/_Old/Scenes (OLD)/Game/Main Menu.unity
     guid: 15358a26c91555849b8a9ff8be3c8f07
   - enabled: 1
-    path: Assets/Scenes (OLD)/Game/Level 0 - Lab Grounds.unity
+    path: Assets/_Old/Scenes (OLD)/Game/Level 0 - Lab Grounds.unity
     guid: d577ef0e70995544394b2754dcd079bd
   - enabled: 1
-    path: Assets/Scenes (OLD)/Game/Level 2 - Main Office.unity
+    path: Assets/_Old/Scenes (OLD)/Game/Level 2 - Main Office.unity
     guid: 2d3bb4a40e3f6fb41b1b53c837849cf5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 73e9ca3456888144ab753ff945eb5f2b,

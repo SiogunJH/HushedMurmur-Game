@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviourSingleton<PlayerLook>, ISingleton
 {
     [Header("Sensitivity Settings")]
     public static float mouseXSensitivity = 4;
@@ -21,21 +21,6 @@ public class PlayerLook : MonoBehaviour
     public float xRotation { get; private set; } = 0;
     const float xRotationMin = -80;
     const float xRotationMax = 80;
-
-    #region Singleton
-
-    public static PlayerLook Instance { get; private set; }
-
-    void Awake()
-    {
-        // Destroy self, if object of this class already exists
-        if (Instance != null) Destroy(gameObject);
-
-        //One time setup of a Singleton
-        else Instance = this;
-    }
-
-    #endregion
 
     void OnEnable()
     {

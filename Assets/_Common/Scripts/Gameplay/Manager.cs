@@ -291,14 +291,14 @@ namespace Gameplay
             while (noiseSet.Count != 0)
             {
                 int index = UnityEngine.Random.Range(0, noiseSet.Count);
-                yield return WiretappingSetStation.Instance.PlayAudio(noiseSet[index], tutorialBird.location).coroutine;
+                yield return WiretappingSetStation.Instance.SpawnAudio(noiseSet[index], tutorialBird.location).coroutine;
                 noiseSet.RemoveAt(index);
 
                 float delay = UnityEngine.Random.Range(tutorialBird.noiseDelay - tutorialBird.noiseDelayOffset, tutorialBird.noiseDelay + tutorialBird.noiseDelayOffset);
                 yield return new WaitForSeconds(delay);
             }
             // Always finish with unique
-            yield return WiretappingSetStation.Instance.PlayAudio(Bird.Manager.Instance.clumsyTraitNoise[UnityEngine.Random.Range(0, Bird.Manager.Instance.clumsyTraitNoise.Length)], tutorialBird.location).coroutine;
+            yield return WiretappingSetStation.Instance.SpawnAudio(Bird.Manager.Instance.clumsyTraitNoise[UnityEngine.Random.Range(0, Bird.Manager.Instance.clumsyTraitNoise.Length)], tutorialBird.location).coroutine;
 
             yield return message.Display($"Notice the sound of breaking glass - this could indicate the clumsiness of the Bird in the room {tutorialBird.location.roomCode}");
 
@@ -366,14 +366,14 @@ namespace Gameplay
             while (noiseSet.Count != 0)
             {
                 int index = UnityEngine.Random.Range(0, noiseSet.Count);
-                yield return WiretappingSetStation.Instance.PlayAudio(noiseSet[index], tutorialBird.location).coroutine;
+                yield return WiretappingSetStation.Instance.SpawnAudio(noiseSet[index], tutorialBird.location).coroutine;
                 noiseSet.RemoveAt(index);
 
                 float delay = UnityEngine.Random.Range(tutorialBird.noiseDelay - tutorialBird.noiseDelayOffset, tutorialBird.noiseDelay + tutorialBird.noiseDelayOffset);
                 yield return new WaitForSeconds(delay);
             }
             // Always finish with unique
-            yield return WiretappingSetStation.Instance.PlayAudio(Bird.Manager.Instance.speakingTraitNoise[UnityEngine.Random.Range(0, Bird.Manager.Instance.speakingTraitNoise.Length)], tutorialBird.location).coroutine;
+            yield return WiretappingSetStation.Instance.SpawnAudio(Bird.Manager.Instance.speakingTraitNoise[UnityEngine.Random.Range(0, Bird.Manager.Instance.speakingTraitNoise.Length)], tutorialBird.location).coroutine;
 
             yield return message.Display($"The threat attempted to speak, although the words were indistinguishable - this could indicate the chatterbox-like tendencies of the Bird in the room");
 

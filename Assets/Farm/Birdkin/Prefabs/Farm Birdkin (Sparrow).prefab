@@ -43,6 +43,31 @@ PrefabInstance:
       propertyPath: avoidRoomTraits.Array.data[0]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: noiseEventsPool.Array.data[0].Weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: noiseEventsPool.Array.data[2].Weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: noiseEventsPool.Array.data[3].Weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: noiseEventsPool.Array.data[9].Weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738232422430533343, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
+        type: 3}
+      propertyPath: noiseEventsPool.Array.data[13].Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8154943977249357621, guid: 2cec27c494e1d1b4c98a58ea122e5fb3,
         type: 3}
       propertyPath: m_LocalPosition.x

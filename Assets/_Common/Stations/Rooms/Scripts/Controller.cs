@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Room
@@ -12,17 +13,18 @@ namespace Room
             Initialize();
         }
 
+        void Initialize()
+        {
+            roomCode = Manager.Instance.GenerateUniqueRoomCode();
+            Manager.Instance.AddToRoomPool(this);
+            UpdateCodeDisplay();
+            PlayAmbient();
+        }
+
         #region Naming
 
         [SerializeField] TextMeshProUGUI codeDisplay;
         [HideInInspector] public string roomCode = "X0";
-
-        void Initialize()
-        {
-            roomCode = Manager.Instance.GenerateUniqueRoomCode(this);
-            Manager.Instance.AddToRoomPool(this);
-            UpdateCodeDisplay();
-        }
 
         void UpdateCodeDisplay()
         {
@@ -42,13 +44,13 @@ namespace Room
 
         #endregion
 
-        #region Properties
+        #region Room Traits & Connections
 
-        [SerializeField] List<Controller> roomConnectionsForward = new();
-        public List<Tag> tags;
-        public List<Trait> traits;
+        [Space, SerializeField] List<Controller> roomConnectionsForward = new();
+        [SerializeField] public List<Tag> tags;
+        [SerializeField] public List<Trait> traits;
 
-        public Controller GetNextRoom(Trait[] traitsToAvoid = null, Trait[] traitsToFavor = null)
+        public Controller GetNextRoom(Trait[] traitsToAvoid, Trait[] traitsToFavor)
         {
             List<Controller> roomPool = roomConnectionsForward;
 
@@ -79,6 +81,18 @@ namespace Room
 
             // Pick a room from pool
             return roomPool[Random.Range(0, roomPool.Count)];
+        }
+
+        #endregion
+
+        #region Ambient
+
+        [Space, SerializeField] AudioClip roomAmbient;
+        void PlayAmbient(bool loop = true)
+        {
+            if (roomAmbient == null) return;
+            var independentAudio = WiretappingSetStation.Instance.SpawnAudio(roomAmbient, this);
+            independentAudio.audioSource.loop = loop;
         }
 
         #endregion

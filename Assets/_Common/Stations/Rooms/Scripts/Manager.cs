@@ -14,7 +14,7 @@ namespace Room
             currentID = Random.Range(0, MaxRooms);
         }
 
-        #region Room ID LCG
+        #region Room ID
 
         int MaxRooms { get => codeCharactersAvailable_Slot1.Length * codeCharactersAvailable_Slot2.Length; }
         HashSet<Controller> allRooms = new();
@@ -43,18 +43,20 @@ namespace Room
             step = validSteps.ElementAt(Random.Range(0, validSteps.Count));
         }
 
-        public string GenerateUniqueRoomCode(Controller room)
+        public string GenerateUniqueRoomCode()
         {
             if (allRooms.Count >= MaxRooms)
             {
                 Debug.LogError($"Room code error! Room pool is full, and new unique room code cannot be generated. This may be due to the amount of room objects exceeding the amount of unique room codes possible");
-                return "ERR";
+                return null;
             }
 
             string roomCode = $"{codeCharactersAvailable_Slot1[currentID / codeCharactersAvailable_Slot1.Length]}{codeCharactersAvailable_Slot2[currentID % codeCharactersAvailable_Slot2.Length]}";
             currentID = (currentID + step) % MaxRooms;
             return roomCode;
         }
+
+        public bool DoesRoomExist(string roomCode) => allRooms.Where(room => room.roomCode == roomCode).Any();
 
         #endregion
 

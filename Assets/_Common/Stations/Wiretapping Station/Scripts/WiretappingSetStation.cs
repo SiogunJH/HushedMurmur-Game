@@ -12,11 +12,17 @@ public class WiretappingSetStation : MonoBehaviourSingleton<WiretappingSetStatio
     [Space, Header("Children References")]
     [SerializeField] TextMeshProUGUI letterDisplay;
     [SerializeField] TextMeshProUGUI numberDisplay;
+
     [Space, SerializeField] GameObject audioOutput;
+    [SerializeField] AudioSource audioSourceTemplate;
+
+    [Space, SerializeField] AudioClip whiteNoise;
 
     void Start()
     {
         ScrambleDisplay();
+        SpawnWhiteNoise();
+        ToggleOnOff(); // Turn off
     }
 
     #region IToggleable
@@ -44,6 +50,8 @@ public class WiretappingSetStation : MonoBehaviourSingleton<WiretappingSetStatio
 
     public void ChangeSlot1(bool forward)
     {
+        if (!IsTurnedOn) return;
+
         var characterAvailable = Room.Manager.Instance.codeCharactersAvailable_Slot1.ToList();
         letterDisplay.text = characterAvailable[(characterAvailable.IndexOf(letterDisplay.text[0]) + (forward ? 1 : -1 + characterAvailable.Count)) % characterAvailable.Count].ToString();
 
@@ -52,6 +60,8 @@ public class WiretappingSetStation : MonoBehaviourSingleton<WiretappingSetStatio
 
     public void ChangeSlot2(bool forward)
     {
+        if (!IsTurnedOn) return;
+
         var characterAvailable = Room.Manager.Instance.codeCharactersAvailable_Slot2.ToList();
         numberDisplay.text = characterAvailable[(characterAvailable.IndexOf(numberDisplay.text[0]) + (forward ? 1 : -1 + characterAvailable.Count)) % characterAvailable.Count].ToString();
 
@@ -70,28 +80,41 @@ public class WiretappingSetStation : MonoBehaviourSingleton<WiretappingSetStatio
 
     #region Audio Handling
 
-    public (AudioSource audioSource, Coroutine coroutine) PlayAudio(AudioClip audioClip, Room.Controller sourceRoom)
+    public (AudioSource audioSource, Coroutine coroutine) SpawnAudio(AudioClip audioClip, Room.Controller sourceRoom, float maxPitchOffset = 0.15f)
     {
-        var oneTimeAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioOutput, name: sourceRoom.roomCode);
+        var independentAudio = AudioSourceExtensions.PlayOneTimeAudio(this, audioClip, audioOutput, name: sourceRoom.roomCode);
+        independentAudio.audioSource.LoadPreset(audioSourceTemplate.SavePreset());
+        independentAudio.audioSource.pitch += Random.Range(-maxPitchOffset, maxPitchOffset);
 
-        oneTimeAudio.audioSource.spatialBlend = 1.0f;
-        oneTimeAudio.audioSource.minDistance = 5.0f;
-        oneTimeAudio.audioSource.maxDistance = 10.0f;
-        oneTimeAudio.audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
-
-        if (!IsTurnedOn || sourceRoom.roomCode != WiretappedRoomCode) oneTimeAudio.audioSource.mute = true;
+        if (!IsTurnedOn || sourceRoom.roomCode != WiretappedRoomCode) independentAudio.audioSource.mute = true;
 
         UnityAction<bool, string> listener = null;
         listener = (isTurnedOn, wiretappedRoom) =>
         {
-            if (oneTimeAudio.audioSource == null) OnStationStatusChange.RemoveListener(listener);
-            else if (!isTurnedOn || oneTimeAudio.audioSource.gameObject.name != wiretappedRoom) oneTimeAudio.audioSource.mute = true;
-            else oneTimeAudio.audioSource.mute = false;
+            if (independentAudio.audioSource == null) OnStationStatusChange.RemoveListener(listener);
+            else if (!isTurnedOn || independentAudio.audioSource.gameObject.name != wiretappedRoom) independentAudio.audioSource.mute = true;
+            else independentAudio.audioSource.mute = false;
         };
-
         OnStationStatusChange.AddListener(listener);
 
-        return oneTimeAudio;
+        return independentAudio;
+    }
+
+    void SpawnWhiteNoise()
+    {
+        var independentAudio = AudioSourceExtensions.PlayOneTimeAudio(this, whiteNoise, audioOutput, name: "Independent Audio (White Noise)");
+        independentAudio.audioSource.LoadPreset(audioSourceTemplate.SavePreset());
+        independentAudio.audioSource.loop = true;
+
+        if (!IsTurnedOn) independentAudio.audioSource.mute = true;
+        UnityAction<bool, string> listener = null;
+        listener = (isTurnedOn, wiretappedRoom) =>
+        {
+            if (independentAudio.audioSource == null) OnStationStatusChange.RemoveListener(listener);
+            else if (!isTurnedOn || Room.Manager.Instance.DoesRoomExist(wiretappedRoom)) independentAudio.audioSource.mute = true;
+            else independentAudio.audioSource.mute = false;
+        };
+        OnStationStatusChange.AddListener(listener);
     }
 
     #endregion

@@ -88,7 +88,7 @@ namespace Bird
                 randWeight -= noiseEvent.Weight;
             }
 
-            WiretappingSetStation.Instance.PlayAudio(noise, location);
+            WiretappingSetStation.Instance.SpawnAudio(noise, location);
         }
 
         #endregion

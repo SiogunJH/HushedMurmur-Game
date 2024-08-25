@@ -216,21 +216,13 @@ public class PlayerScreech : MonoBehaviour
 
     void ScreechAttack()
     {
-        if (birdRepelled == null) return;
-
         Ray ray = new Ray(PlayerLook.Instance.transform.position, PlayerLook.Instance.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10))
+        if (Physics.Raycast(ray, out hit, 100))
         {
-            var corridorEntrance = hit.collider.gameObject.GetComponent<CorridorEntrance>();
-            if (corridorEntrance == null) return;
-
-            var vulnerableOccupants = corridorEntrance.connectedRoom.GetOccupants().Where(bird => bird.birdType == birdRepelled).ToList();
-            if (vulnerableOccupants.Count != 0)
-                foreach (var occupant in vulnerableOccupants)
-                    occupant.ScareAway();
+            var shriekableObject = hit.collider.gameObject.GetComponent<IShriekable>();
+            if (shriekableObject != null) shriekableObject.OnShriekedAt?.Invoke();
         }
-        //birdRepelled = null;
     }
 }
 

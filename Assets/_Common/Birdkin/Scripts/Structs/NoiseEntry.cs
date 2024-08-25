@@ -12,7 +12,7 @@ namespace Bird
         public bool Enabled;
         public float Weight;
 
-        public NoiseEntry(Sounds sound = Sounds.Breathing, bool enabled = true, float weight = 0)
+        public NoiseEntry(Sounds sound = Sounds.LoudBreath, bool enabled = true, float weight = 0)
         {
             Sound = sound;
             Enabled = enabled;
@@ -32,7 +32,7 @@ namespace Bird
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
             // Calculate the positions for each field
-            float enumWidth = 90f;
+            float enumWidth = 150f;
             float labelWidth = 60f;
             float checkboxWidth = 20f;
             float mariginWidth = 5f;

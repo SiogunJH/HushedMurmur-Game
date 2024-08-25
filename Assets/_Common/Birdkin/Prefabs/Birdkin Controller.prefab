@@ -46,22 +46,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birdType: 0
   noiseEventsPool:
-  - Sound: 1
-    Enabled: 1
-    Weight: 2
-  - Sound: 2
-    Enabled: 1
-    Weight: 2
   - Sound: 0
     Enabled: 1
+    Weight: 2
+  - Sound: 1
+    Enabled: 0
+    Weight: 2
+  - Sound: 10
+    Enabled: 1
+    Weight: 2
+  - Sound: 11
+    Enabled: 1
+    Weight: 2
+  - Sound: 12
+    Enabled: 0
+    Weight: 2
+  - Sound: 13
+    Enabled: 1
+    Weight: 2
+  - Sound: 20
+    Enabled: 1
+    Weight: 2
+  - Sound: 21
+    Enabled: 0
+    Weight: 2
+  - Sound: 30
+    Enabled: 0
+    Weight: 2
+  - Sound: 31
+    Enabled: 1
+    Weight: 2
+  - Sound: 32
+    Enabled: 0
+    Weight: 2
+  - Sound: 100
+    Enabled: 0
+    Weight: 2
+  - Sound: 101
+    Enabled: 0
+    Weight: 2
+  - Sound: 102
+    Enabled: 1
+    Weight: 2
+  - Sound: 103
+    Enabled: 0
+    Weight: 2
+  - Sound: 300
+    Enabled: 0
     Weight: 2
   avoidRoomTraits: 00000000
   favorRoomTraits: 01000000
   repellantColor: {r: 0, g: 0, b: 0, a: 0}
   initialSleepTime: 10
-  moveDelay: 60
-  moveDelayOffset: 15
-  noiseDelay: 5
-  noiseDelayOffset: 3
+  moveDelay: 65
+  moveDelayOffset: 10
+  noiseDelay: 8
+  noiseDelayOffset: 2
   location: {fileID: 0}
   sendDebugInfo: 0

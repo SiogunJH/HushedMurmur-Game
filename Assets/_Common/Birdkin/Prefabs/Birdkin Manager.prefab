@@ -51,13 +51,35 @@ MonoBehaviour:
   noiseCollections:
   - Sound: 0
     audioClips:
-    - {fileID: 8300000, guid: 10d08ae9c237603488f0f5cdf6d14fcc, type: 3}
-  - Sound: 1
+    - {fileID: 8300000, guid: 35a99cdb118f941478bbe615b1f21bfb, type: 3}
+  - Sound: 10
     audioClips:
     - {fileID: 8300000, guid: 6c21577aa2200c041a466359bfc876f8, type: 3}
-  - Sound: 2
+    - {fileID: 8300000, guid: c07707b4ef99f7e448f2cba5e790674f, type: 3}
+  - Sound: 11
     audioClips:
-    - {fileID: 8300000, guid: 1a218aefdabb44e40bc4fbb09346bd92, type: 3}
+    - {fileID: 8300000, guid: 7268181bf58615c4d8801fb3f5b51175, type: 3}
+    - {fileID: 8300000, guid: 9edbaa7b018a4e6479de4d27c0370eb6, type: 3}
+  - Sound: 13
+    audioClips:
+    - {fileID: 8300000, guid: f724325559eb6804288dc19acddb7768, type: 3}
+    - {fileID: 8300000, guid: e66418c7d6f966e408018b643bcdda63, type: 3}
+  - Sound: 20
+    audioClips:
+    - {fileID: 8300000, guid: da7d9be43d034394b88f293aa3726a96, type: 3}
+    - {fileID: 8300000, guid: 11d77bad862c1ea49a3b4fcf0d3a2723, type: 3}
+  - Sound: 102
+    audioClips:
+    - {fileID: 8300000, guid: 13ba8f590bd83d7418ef8ee366a116c6, type: 3}
+    - {fileID: 8300000, guid: ad059145c74a4094b8708583642844a3, type: 3}
+  - Sound: 31
+    audioClips:
+    - {fileID: 8300000, guid: 2ed2cf0c8ccee894ca4f12dd16ee305c, type: 3}
+    - {fileID: 8300000, guid: fcd3909f781aac14db7ff1dff95ff2cd, type: 3}
+    - {fileID: 8300000, guid: e6555071858adc94e9b5b9ff489250d7, type: 3}
+  - Sound: 300
+    audioClips:
+    - {fileID: 8300000, guid: e1ddd6206a3be5a4c8cf9e68a4772481, type: 3}
   commonNoise: []
   globalNoise: []
   clumsyTraitNoise: []
