@@ -6,28 +6,26 @@ namespace FloatingEyes
 {
     [RequireComponent(typeof(AudioSource))] // Attack Warning
     [RequireComponent(typeof(AudioSource))] // Footsteps
-    public class Aggresive : Base
+    public class Aggressive : Base
     {
-        [Header("Settings (Aggresive)")]
+        [Header("Settings (Aggressive)")]
 
-        [Space, SerializeField] float forwardWalkingSpeed = 0.1f;
-        [SerializeField] float forwardChargingSpeed = 2f;
+        [Space, SerializeField] protected float forwardWalkingSpeed = 0.1f;
+        [SerializeField] protected float forwardChargingSpeed = 2f;
 
-        [Space, SerializeField] float attackProccingDistance = 24f;
-        [SerializeField] float attackDelay = 15f;
-        [SerializeField] float attackDelayOffset = 5f;
-        [SerializeField] float attackRange = 4f;
+        [Space, SerializeField] protected float attackProccingDistance = 24f;
+        [SerializeField] protected float attackDelay = 15f;
+        [SerializeField] protected float attackDelayOffset = 5f;
+        [SerializeField] protected float attackRange = 4f;
 
-        [SerializeField] AudioClip attackWarning;
-        AudioSource attackWarningAS;
+        [SerializeField] protected AudioClip attackWarning;
+        protected AudioSource attackWarningAS;
 
-        [SerializeField] AudioClip attackFootstep;
-        AudioSource attackFootstepsAS;
+        [SerializeField] protected AudioClip attackFootstep;
+        protected AudioSource attackFootstepsAS;
 
         protected override void Start()
         {
-            base.Start();
-
             var audioSources = GetComponents<AudioSource>();
             if (audioSources.Length != 2) Debug.LogError($"{gameObject.name} is expected to have exactly {2} AudioSource components, but instead has {audioSources.Length}!");
             else
@@ -35,11 +33,14 @@ namespace FloatingEyes
                 attackWarningAS = audioSources[0];
                 attackFootstepsAS = audioSources[1];
             }
+
+            base.Start();
         }
 
         protected override IEnumerator InternalLogic(bool skipInitialInactivity = false)
         {
-            yield return base.InternalLogic(skipInitialInactivity);
+            if (!skipInitialInactivity) yield return new WaitForSeconds(initialInactivity + Random.Range(-initialInactivityOffset, initialInactivityOffset));
+            PlayRevealAnimation();
 
             // Slowly approach cabin
             while (DistanceToPlayer() > attackProccingDistance)
@@ -52,6 +53,13 @@ namespace FloatingEyes
             PlayAttackWarningAudio();
             yield return new WaitForSeconds(attackDelay + Random.Range(-attackDelayOffset, attackDelayOffset));
 
+            yield return Charge();
+        }
+
+        #region Sub-Logic
+
+        protected IEnumerator Charge()
+        {
             // Charge at the player
             PlayChargeAnimation();
             while (DistanceToPlayer() > attackRange)
@@ -63,6 +71,8 @@ namespace FloatingEyes
             // Attack
             AttackPlayer();
         }
+
+        #endregion
 
         protected void PlayAttackWarningAudio()
         {
@@ -83,10 +93,6 @@ namespace FloatingEyes
             attackFootstepsAS.pitch = defaultPitch + Random.Range(-maxPitchOffset, maxPitchOffset);
             attackFootstepsAS.Play();
         }
-
-        #region Player Related Stuff
-
-        #endregion
 
         protected override void OnDrawGizmosSelected()
         {

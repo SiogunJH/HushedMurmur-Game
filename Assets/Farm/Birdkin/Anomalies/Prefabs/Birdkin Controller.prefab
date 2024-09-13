@@ -104,3 +104,5 @@ MonoBehaviour:
   noiseDelayOffset: 2
   location: {fileID: 0}
   sendDebugInfo: 0
+  visualBirdkinPrefab: {fileID: 2895517848276226638, guid: 35707cc0381b04b4eae7830144dd1a79,
+    type: 3}

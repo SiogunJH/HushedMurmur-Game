@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 2452056342091628590}
   - component: {fileID: 5842379140169419481}
   m_Layer: 0
-  m_Name: Floating Eyes (Aggresive)
+  m_Name: Floating Eyes (Aggressive)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

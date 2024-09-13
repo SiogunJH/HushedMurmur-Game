@@ -2224,17 +2224,17 @@ PrefabInstance:
     - target: {fileID: 8977779702581975258, guid: f6a7e8a6bdb2f2e418c2324b9fa118dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -19.75
       objectReference: {fileID: 0}
     - target: {fileID: 8977779702581975258, guid: f6a7e8a6bdb2f2e418c2324b9fa118dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8977779702581975258, guid: f6a7e8a6bdb2f2e418c2324b9fa118dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.56
       objectReference: {fileID: 0}
     - target: {fileID: 8977779702581975258, guid: f6a7e8a6bdb2f2e418c2324b9fa118dd,
         type: 3}
@@ -6863,6 +6863,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb740d157feb91d4db725454a5acfe5d, type: 3}
+--- !u!1001 &1756475153
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3996722775908422544, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_Name
+      value: Black Loading Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004497201274522949, guid: 5f7c21502909d5a4dbabf3d4653c8fed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f7c21502909d5a4dbabf3d4653c8fed, type: 3}
 --- !u!1001 &1759221343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7828,6 +7896,7 @@ SceneRoots:
   - {fileID: 1560222656}
   - {fileID: 653025252}
   - {fileID: 998064353}
+  - {fileID: 1756475153}
   - {fileID: 1070979082}
   - {fileID: 1031910175}
   - {fileID: 966253240}

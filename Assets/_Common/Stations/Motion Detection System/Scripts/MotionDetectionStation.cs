@@ -55,7 +55,7 @@ public class MotionDetectionStation : MonoBehaviourSingleton<MotionDetectionStat
         PushMessage($"{MOTION_ALERT_MESSAGE} {roomID}");
     }
 
-    void PushMessage(string message)
+    public void PushMessage(string message)
     {
         if (tmpText.GetAmountOfLineBreaks() >= maxAmountOfLines)
         {

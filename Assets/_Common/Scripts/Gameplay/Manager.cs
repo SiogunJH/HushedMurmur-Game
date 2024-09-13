@@ -1,34 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Gameplay
 {
-    public class Manager : MonoBehaviour
+    public class Manager : MonoBehaviourSingleton<Manager>, ISingleton
     {
         [Header("References")]
         [SerializeField] Message message;
-
-        #region Singleton
-
-        public static Manager Instance { get; private set; }
-
-        void Awake()
-        {
-            // Destroy self, if object of this class already exists
-            if (Instance != null) Destroy(gameObject);
-
-            //One time setup of a Singleton
-            else Instance = this;
-        }
-
-        #endregion
 
         #region OnEnable & OnDisable
 
@@ -507,12 +489,10 @@ namespace Gameplay
             yield return new WaitForSeconds(INITIAL_IDLE_TIME);
 
             // Bird One
-
             var birdOne = Bird.Manager.Instance.SpawnBird().GetComponent<Bird.Controller>();
             birdOne.initialSleepTime = BIRD_ONE_SLEEP_TIME;
 
             // Bird Two
-
             var birdTwo = Bird.Manager.Instance.SpawnBird().GetComponent<Bird.Controller>();
             birdTwo.initialSleepTime = BIRD_TWO_SLEEP_TIME;
         }

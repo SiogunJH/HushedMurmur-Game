@@ -37,8 +37,11 @@ namespace FloatingEyes
 
             OnShriekedAt.AddListener(ShriekReaction);
             internalLogic = StartCoroutine(InternalLogic(true));
+
             initialPosition = transform.position;
             initialScale = transform.localScale;
+
+            Relocate();
         }
 
         void Update()
@@ -50,11 +53,7 @@ namespace FloatingEyes
 
         protected Coroutine internalLogic;
 
-        protected virtual IEnumerator InternalLogic(bool skipInitialInactivity = false)
-        {
-            if (!skipInitialInactivity) yield return new WaitForSeconds(initialInactivity + Random.Range(-initialInactivityOffset, initialInactivityOffset));
-            PlayRevealAnimation();
-        }
+        protected abstract IEnumerator InternalLogic(bool skipInitialInactivity = false);
 
         protected void ResetInternalLogic()
         {
@@ -157,6 +156,7 @@ namespace FloatingEyes
         protected virtual void AttackPlayer()
         {
             if (logDebugInfo) Debug.Log($"{gameObject.name} is attacking Player!");
+            Gameplay.Manager.Instance.OnDefeat?.Invoke();
         }
 
         #endregion

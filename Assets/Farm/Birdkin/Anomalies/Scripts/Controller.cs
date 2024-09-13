@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FloatingEyes;
 using Unity.Collections;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Bird
 
         [Space, SerializeField] public Color repellantColor;
 
-        [Header("Statistics")]
+        [Header("Settings")]
         [Space, SerializeField] public float initialSleepTime = 10;
 
         [Space, SerializeField] float moveDelay = 60;
@@ -31,6 +32,8 @@ namespace Bird
 
         [Header("Other")]
         [SerializeField] bool sendDebugInfo;
+        [SerializeField] GameObject visualBirdkinPrefab;
+        GameObject visualBirdkin;
 
         public Coroutine MoveCoroutine { get; private set; }
         public Coroutine NoiseCoroutine { get; private set; }
@@ -143,7 +146,12 @@ namespace Bird
 
         void Attack()
         {
-            Gameplay.Manager.Instance.OnDefeat?.Invoke();
+            visualBirdkin = Instantiate(visualBirdkinPrefab, gameObject.transform);
+            visualBirdkin.transform.position = transform.position;
+            visualBirdkin.name = "Visual Birdkin";
+            visualBirdkin.GetComponent<Anomaly>().birdController = this;
+
+            MotionDetectionStation.Instance.PushMessage("MDS> Motion outside");
         }
 
         #endregion

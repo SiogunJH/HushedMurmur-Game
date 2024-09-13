@@ -34,7 +34,7 @@ namespace Bird
             }
 
             GameObject spawnedBird = Instantiate(birdPool[Random.Range(0, birdPool.Length)]);
-            spawnedBird.transform.SetParent(birdCage.transform);
+            spawnedBird.transform.SetParent(birdCage.transform, false);
             spawnedBird.GetComponent<Controller>().SetLocation(startingRooms[Random.Range(0, startingRooms.Length)]);
             activeBirds.Add(spawnedBird);
 
